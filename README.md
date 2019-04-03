@@ -20,7 +20,7 @@ As a PSP, you need to create the merchants in MobilePay in order to create payme
 
 This can be done by invoking the [create merchant](https://www.youtube.com/watch?v=dQw4w9WgXcQ) endpoint.
 
-## Creating a payment
+## Payments
 
 1. In order to create a payment you need to invoke the [create payment](https://www.youtube.com/watch?v=dQw4w9WgXcQ) endpoint.
 To use this you need to provide information about the merchant, the payment, the public key used for encrypting the data, callback-, and redirection urls.
