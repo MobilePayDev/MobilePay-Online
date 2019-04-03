@@ -1,4 +1,4 @@
-3# MobilePay Online
+## MobilePay Online
 
 ## Product description
 
@@ -20,7 +20,7 @@ As a PSP, you need to create the merchants in MobilePay in order to create payme
 
 This can be done by invoking the [create merchant](https://www.youtube.com/watch?v=dQw4w9WgXcQ) endpoint.
 
-When a Merchant is no longer using the solution it must be offboarded using the [delete merchant] (https://www.youtube.com/watch?v=dQw4w9WgXcQ) endpoint.
+When a Merchant is no longer using the solution it must be offboarded using the [delete merchant](https://www.youtube.com/watch?v=dQw4w9WgXcQ) endpoint.
 
 ## Payments
 
