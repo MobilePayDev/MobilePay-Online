@@ -8,10 +8,16 @@ MobilePay Online is essentially a way for the user to accept online payments in 
 
 As a rule of thumb, the APIs are RESTful. You can expect POSTs to return the id of the resource created.
 
+## Sandbox environment
+
+The MobilePay Sandbox is a self-contained, testing environment that mimics the live MobilePay production environment. It provides you the space to play around and test your implementation and the requests you make to the MobilePay APIs without affecting MobilePay for the users.
+Link: https://sandbox-developer.mobilepay.dk/
+
 ## Partner (PSP)
 
-A PSP is created manually by the support team, after signing an agreement with the MobilePay Business unit. The Partner must give these input: Name, VATNumber, BusinessContactEmail, BusinessContactPhone, OperationalContactEmail and OperationalContactPhone. Attach a copy of PCI-DSS AoC and a RSA public key as a X.509 SubjetPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding. Key length must be 4096 bits. This public key will be used for encrypting card data for the callback. Make sure you keep the private key safe. It is suggested to make different keys for our Sand-prod (integration) and Prod environments.
-The Partner will be assigned a PartnerId, and recieve the security credentials for both the Sand-Prod (integration environment) and Production environment.
+A PSP is created manually by the support team, after signing an agreement with the MobilePay Business unit. The Partner must give these input: Name, VATNumber, BusinessContactEmail, BusinessContactPhone, OperationalContactEmail and OperationalContactPhone. Attach a copy of PCI-DSS AoC and a RSA public key as a X.509 SubjetPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding. Key length must be 4096 bits. This public key will be used for encrypting card data for the callback. Make sure you keep the private key safe. It is suggested to make different keys for our Sandbox (integration) and Prod environments.
+
+The Partner will be assigned a PartnerId, and recieve the security credentials for both the Sandbox (integration environment) and Production environment.
 
 
 ## Merchants
