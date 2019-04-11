@@ -10,7 +10,7 @@ As a rule of thumb, the APIs are RESTful. You can expect POSTs to return the id 
 
 ## Partner (PSP)
 
-A PSP is created manually by the support team [mobilepayonlinesupport@danskebank.dk], after signing an agreement with the MobilePay Business unit. The Partner must give these input: Name, VATNumber, BusinessContactEmail, BusinessContactPhone, OperationalContactEmail and OperationalContactPhone. Attach a copy of PCI-DSS AoC and a RSA public key as a X.509 SubjetPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding. Key length must be 4096 bits. This public key will be used for encrypting card data for the callback. Make sure you keep the private key safe.
+A PSP is created manually by the support team, after signing an agreement with the MobilePay Business unit. The Partner must give these input: Name, VATNumber, BusinessContactEmail, BusinessContactPhone, OperationalContactEmail and OperationalContactPhone. Attach a copy of PCI-DSS AoC and a RSA public key as a X.509 SubjetPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding. Key length must be 4096 bits. This public key will be used for encrypting card data for the callback. Make sure you keep the private key safe.
 The Partner will be assigned a PartnerId, and recieve the security credentials for both the Sand-Prod (integration environment) and Production environment.
 
 
