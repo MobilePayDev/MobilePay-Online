@@ -56,3 +56,9 @@ This will return an url the end-user should be redirected to.
 
 A payment will time out within 20 minutes, meaning that the whole process of user accepting, callbacks made and authorization must be completed within 20 minutes.
 Furthermore after you get the callback containing the card data, you must update the status of the authorization to either "authorize-succesfull" or "authorize-failed" within 32 seconds to ensure a smooth experience for the user waiting for the confirmation.
+
+## A note on callbacks
+
+As a rule of thump, MobilePay Online is idempotent in all operations. Likewise, we expect PSPs to be able to handle the same callback more than once in the event of transient errors on network, ours or your side.
+This means that if we make a callback to you an a given payment id or a given authorization attempt, you may receive the same data more than once and should ensure that your systems are able to handle that.
+We will retry our callbacks for more than 5 seconds in the event of network errors or non 200-range http status codes in your responses.
