@@ -67,5 +67,5 @@ Furthermore after you get the callback containing the card data, you must update
 ## A note on callbacks
 
 As a rule of thump, MobilePay Online is idempotent in all operations. Likewise, we expect PSPs to be able to handle the same callback more than once in the event of transient errors on network, ours or your side.
-This means that if we make a callback to you an a given payment id or a given authorization attempt, you may receive the same data more than once and should ensure that your systems are able to handle that.
+This means that if we make a callback to you on a given payment id or a given authorization attempt, you may receive the same data more than once and should ensure that your systems are able to handle that.
 We will retry our callbacks for more than 5 seconds in the event of network errors or non 200-range http status codes in your responses.
