@@ -81,7 +81,7 @@ A callback will be made on the CardDataCallbackUrl when the user swipes to accep
 }
 ```
 
-# PSP Onboarding Guide
+## PSP Onboarding Guide
 ### If you are onboarding MobilePay Online for the first time 
 When you as a new PSP wants to be onboarded for the Online solution, you need to send an email to the MobilePay business support with this information:
 * The PSP name
