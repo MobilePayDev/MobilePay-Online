@@ -1,4 +1,4 @@
-## MobilePay Online
+### MobilePay Online
 
 ## Product description
 
@@ -80,3 +80,56 @@ A callback will be made on the CardDataCallbackUrl when the user swipes to accep
   'PublicKeyId': 263012
 }
 ```
+
+## PSP Onboarding Guide
+### If you are onboarding MobilePay Online for the first time 
+When you as a new PSP wants to be onboarded for the Online solution, you need to send an email to the MobilePay business support with this information:
+
+The PSP name
+PCI-DSS AoC
+
+VATNumber
+
+BusinessContactName
+
+BusinessContactEmail
+
+OperationsEmail
+
+OperationsPhonenumber
+
+Two PublicKeys for Card encryption: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits. Clearly stating in the file name wich one is for Sand-Prod and wich is for Prod. 
+
+Phone number for the ClientId SMSes would also be needed.
+If you are already using MobilePay Online
+When you as an existing PSP wants to be onboarded for the new Online solution, you need to send an email to the MobilePay business support with this information:
+
+The PSP name
+A new PublicKey for Card encryption in SandBox environment: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits. 
+
+BusinessContactName
+
+BusinessContactEmail
+
+OperationsEmail
+
+OperationsPhonenumber
+
+Phone number for the ClientId SMSes would also be needed.
+How to call the Online APIs in SandBox
+Go to sandbox-developer.mobilepay.dk and log in with your credentials.
+Next you select your account > My Apps > Create new App to register a new application. 
+Retrieve the Client Id and Client Secret for the newly created App. IMPORTANT: Please make a note of your Client Secret as you will only see this once!
+Send the SandBox Client Id to MobilePay Support.
+Subscribe the App to the Online API.
+You should have received a PublicKeyId for SandBox from MobilePay Support . This Id should be used when the payments are initiated.
+Call the endpoints in the Online API using these headers:
+       --header 'x-ibm-client-id: REPLACE_THIS_KEY' 
+       --header 'x-ibm-client-secret: REPLACE_THIS_KEY'
+How to call the Online APIs in production
+Same guide as above, but use this url https://developer.mobilepay.dk and use the PublicKeyId for production.
+
+How to test MobilePay Online in SandBox
+You will need a special version of the MobilePay App for the SandBox environment. A link to it can be requested from MobilePay Support.
+MobilePay Support will send a Phonenumber and Password, which can be used for login to the App in SandBox.
+If you need more cards to test on, they can be requested by MobilePay Support.
