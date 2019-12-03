@@ -16,7 +16,7 @@ Link: https://sandbox-developer.mobilepay.dk/
 ## Developer portal
 
 The description of the Online API and the endpoints can be seen on the developer portal.
-Link: https://developer.mobilepay.dk/node/2248
+Link: https://developer.mobilepay.dk/node/2826
 
 ## Partner (PSP)
 
