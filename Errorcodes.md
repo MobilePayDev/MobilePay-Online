@@ -47,5 +47,4 @@ The following card types are allowed:
 | Maestro | MTRO-DEBIT |
 | Visa credit | VISA-CREDIT |
 | Visa debit | VISA-DEBIT |
-| Visa/Dankort | VISA-DANKORT |
 | Dankort | DANKORT |
