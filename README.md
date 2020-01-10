@@ -70,6 +70,8 @@ As a rule of thump, MobilePay Online is idempotent in all operations. Likewise, 
 This means that if we make a callback to you on a given payment id or a given authorization attempt, you may receive the same data more than once and should ensure that your systems are able to handle that.
 We will retry our callbacks for more than 5 seconds in the event of network errors or non 200-range http status codes in your responses.
 
+### Card data callback
+
 A callback will be made on the CardDataCallbackUrl when the user swipes to accept the payment. The callback will have a JSON body like this:
 
 ```
@@ -80,6 +82,40 @@ A callback will be made on the CardDataCallbackUrl when the user swipes to accep
   'PublicKeyId': 263012
 }
 ```
+
+### Checkout callback
+
+A callback will be made on the AddressCallbackUrl when the user swipes to accept the payment and isCheckout is set to true. The callback will have a JSON body like this:
+
+```
+{
+  'PaymentId': 'fsfnsdjkfbgdft34895u7345',
+  'AuthorizationAttemptId': 'fsfnsdjkfbgdft34895u7345',
+  'Addresses [
+    'FirstName': 'John',
+    'Surname': 'Doe',
+    'Attention': '',
+    'CompanyName': '',
+    'AddressLine1': 'Flower Street 23',
+    'AddressLine2': '',
+    'PostalCode': '3434',
+    'City': 'Great city',
+    'CountryCode': 'DK',
+    'IsCustomerOfficialAddress': true,
+    'IsBillingAddress': true,
+    'IsDeliveryAddress': true,
+    'AddressValidationMethod': 'DaWa',
+    'AddressValidationStatus': 'NotFound'
+  ],
+  'EmailAddress': 'johndoe@gmail.com',
+  'EmailAddressValidationMethod': 'EmailEnteredTwice',
+  'EmailAddressValidationStatus': 'Validated',
+  'PhoneNumber': '+4512345678',
+  'PhoneNumberValidationMethod': 'SMSChallenge',
+  'PhoneNumberValidationStatus': 'Validated'
+}
+```
+
 
 ## PSP Onboarding Guide
 ### If you are onboarding MobilePay Online for the first time 
