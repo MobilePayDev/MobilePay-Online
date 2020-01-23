@@ -127,7 +127,8 @@ When you as a new PSP wants to be onboarded for the Online solution, you need to
 * BusinessContactEmail
 * OperationsEmail
 * OperationsPhonenumber
-* Two PublicKeys for Card encryption: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits. Clearly stating in the file name wich one is for Sand-Prod and wich is for Prod. 
+
+We will reply to your mail with a secure link where you can upload two PublicKeys for Card encryption: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits. Clearly stating in the file name wich one is for Sand-Prod and wich is for Prod. 
 
 ### If you are already using MobilePay Online
 When you as an existing PSP wants to be onboarded for the new Online solution, you need to send an email to the MobilePay business support with this information:
