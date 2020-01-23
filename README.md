@@ -119,7 +119,7 @@ A callback will be made on the AddressCallbackUrl when the user swipes to accept
 
 ## PSP Onboarding Guide
 ### If you are onboarding MobilePay Online for the first time 
-When you as a new PSP wants to be onboarded for the Online solution, you need to send an email to the MobilePay business support with this information:
+When you as a new PSP wants to be onboarded for the Online solution, you must have an agreement with MobilePay, please contact erhverv@mobilepay.dk. Afterwards you need to send an email to the MobilePay business support with this information:
 * The PSP name
 * PCI-DSS AoC
 * VATNumber
@@ -128,16 +128,16 @@ When you as a new PSP wants to be onboarded for the Online solution, you need to
 * OperationsEmail
 * OperationsPhonenumber
 
-We will reply to your mail with a secure link where you can upload two PublicKeys for Card encryption: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits. Clearly stating in the file name wich one is for Sand-Prod and wich is for Prod. 
+We will reply to your mail with a secure link where you can upload two PublicKeys for Card encryption: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits. Clearly stating in the file name wich one is for Sand-Prod and which is for Prod. 
 
 ### If you are already using MobilePay Online
 When you as an existing PSP wants to be onboarded for the new Online solution, you need to send an email to the MobilePay business support with this information:
 * The PSP name
-* A new PublicKey for Card encryption in SandBox environment: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits. 
 * BusinessContactName
 * BusinessContactEmail
 * OperationsEmail
 * OperationsPhonenumber
+We will reply to your mail with a secure link where you can upload a new PublicKey for Card encryption in SandBox environment: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits.
 
 ### How to call the Online APIs in SandBox
 1. Go to sandbox-developer.mobilepay.dk and log in with your credentials.
