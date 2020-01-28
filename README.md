@@ -119,7 +119,7 @@ A callback will be made on the AddressCallbackUrl when the user swipes to accept
 
 ## PSP Onboarding Guide
 ### If you are onboarding MobilePay Online for the first time 
-When you as a new PSP wants to be onboarded for the Online solution, you must have an agreement with MobilePay, please contact erhverv@mobilepay.dk. Afterwards you need to send an email to the MobilePay business support at developer@mobilepay.dk with this information:
+When you as a new PSP wants to be onboarded for the Online solution, you must have an agreement with MobilePay, please contact lagr@mobilepay.dk. Afterwards you need to send an email to the MobilePay business support at developer@mobilepay.dk with this information:
 * The PSP name
 * PCI-DSS AoC
 * VATNumber
