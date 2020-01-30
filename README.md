@@ -4,6 +4,57 @@
 
 MobilePay Online is essentially a way for the user to accept online payments in the Mobilepay app. When the user accepts the payment, their card data is encrypted and transferred to the PSP who can then do the authorization towards the merchants chosen acquirer.
 
+## Development Guide
+
+### Step 1: Read and understand the documentation 
+Both the decription here in GitHub and the API in Developer Portal link: https://developer.mobilepay.dk/node/2957 
+Make sure you open the .svg files with sequence diagrams. They are rather informative, to understand the flows.
+
+### Step 2A If you are onboarding MobilePay Online for the first time 
+When you as a new PSP wants to be onboarded for the Online solution, you must have an agreement with MobilePay, please contact lagr@mobilepay.dk. When the agreement is signed, you must send an email to the MobilePay at developer@mobilepay.dk with this information:
+* The PSP name
+* PCI-DSS AoC
+* VATNumber
+* BusinessContactName
+* BusinessContactEmail
+* OperationsEmail
+* OperationsPhonenumber
+
+We will reply to your mail with a secure link where you can upload two PublicKeys for Card encryption: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits. You must clearly state in the file name wich one is for Sandbox and which is for Prod. 
+
+### Step 2B If you are already using MobilePay Online
+When you as an existing PSP wants to be onboarded for the new Online solution, you need to send an email to the MobilePay business support at developer@mobilepay.dk with this information:
+* The PSP name
+* BusinessContactName
+* BusinessContactEmail
+* OperationsEmail
+* OperationsPhonenumber
+
+We will reply to your mail with a secure link where you can upload a new PublicKey for Card encryption in Sandbox environment: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits.
+For Production environment, we will migrate your existing Public Key or create a new one, whatever you prefer.
+
+### Step 3 Get a login to sandbox-developer.mobilepay.dk
+from the you can get the clienId and clientSecret you need to call our APIs.
+
+### Step 4 Make your own test merchant
+By posting to /merchants/
+
+### Step 5 Initiate a payment
+By posting to /payments/. You´ll get the redirectToMPUrl in reponse. Now is also a good time to start working on your callback endpoint (the service you expose on cardDataCallbackUrl). Make sure it at least consumes the POST and reply http200.
+
+### Step 6 Try the payment in the app
+Open the "redirectToMPUrl" in a browser (or from an app), and try the payment flow.
+
+### Step 7 Decrypt the card data, call the Acquirer and update the authorisationAttempt
+Decrypt the cardData from the callback and call the Acquirer.
+When the Acquirer reply (or timeout), make sure you Patch our authorisationAttempt with the new status.
+
+### Step 8 Move to hidden Production
+Get new API credentials from the Production Developer Portal. Deploy your solution into "hidden production". Make a test webshop, and share the link to it with us (developer@mobilepay.dk) for a "slim certification". Do not to step 9 before we´re happy!
+
+### Step 9 Public production
+Document everything (including Checkout with all features) towards your Merchants in a fantastic documentation. Just the way your customers want it. Go live!
+
 ## API guidelines
 
 As a rule of thumb, the APIs are RESTful. You can expect POSTs to return the id of the resource created.
@@ -13,44 +64,49 @@ As a rule of thumb, the APIs are RESTful. You can expect POSTs to return the id 
 The MobilePay Sandbox is a self-contained, testing environment that mimics the live MobilePay production environment. It provides you the space to play around and test your implementation and the requests you make to the MobilePay APIs without affecting MobilePay for the users.
 Link: https://sandbox-developer.mobilepay.dk/
 
-## Developer portal
+Installing the sandbox MobilePay app and logging in to it
+1.	Open one of these links on the phone were you want to install the sandbox app: 
+•	Android DK: https://dbg.tpa.io/p/KnSXxG8NQ8Mv0yhct5iC
+•	iOS DK: https://dbg.tpa.io/p/h-XHpPXMT3PgvNiKtalW
 
-The description of the Online API and the endpoints can be seen on the developer portal.
-Link: https://developer.mobilepay.dk/node/2957
+2.	Download and install the app from the link (please just disregard any “POS vendor” references).
+•	Android: To install, you’ll have to allow installation from “unknown sources”.
+•	iOS: When the app is installed, you have to accept “MobilePay A/S” as app distributor under Settings > General > Profiles & Device management, to make it work.
+3.	After installation, open the app (If you get a prompt about a new version being available, just install it).
+4.	Select “Log på (Eksisterende bruger)”
+5.	Ensure that the environment selector is set to ”Integrator Sandbox (With Login)
+6.	Enter a valid Sandbox phone number (you can get one from the Developer Support team)
+7.	Enter “1234” as pin
+8.	Enter “123456” as activation code and press OK
+9.	You should now be logged in and see the main page of MobilePay
 
-## Partner (PSP)
-
-A PSP is created manually by the support team, after signing an agreement with the MobilePay Business unit. The Partner must give these input: 
-* Name
-* VATNumber
-* BusinessContactEmail
-* BusinessContactPhone
-* OperationalContactEmail
-* OperationalContactPhone
-
-Attach a copy of PCI-DSS AoC and a RSA public key as a X.509 SubjetPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding. Key length must be 4096 bits. This public key will be used for encrypting card data for the callback. Make sure you keep the private key safe. It is suggested to make different keys for our Sandbox (integration) and Prod environments.
-
-The Partner will be assigned a PartnerId, and recieve the security credentials for both the Sandbox (integration environment) and Production environment.
+Testing a MobilePay Online payment
+1.	As PSP, you can now initiate a MobilePay Online payment against our Sandprod environment.
+2.	When you see our payment website, enter the phone number you used in the sandbox app.
+3.	Ideally, you should now get a notification (not yet working in sandbox)
+4.	Login to the app
+5.	You should automatically see a confirmation page for the payment
+6.	Swipe to approve
 
 ## Merchants
 
 As a PSP, you need to create the merchants in MobilePay in order to create payments on their behalf.
 
-This can be done by invoking the "create merchant" endpoint.
+This can be done by invoking the "create merchant" endpoint (POST /merchants/).
 
 When a Merchant is no longer using the solution it must be offboarded using the "delete merchant" endpoint.
 
 ## Payments
 
-1. In order to create a payment you need to invoke the "create payment" endpoint.
+1. In order to create a payment you need to invoke the "create payment" endpoint (POST to /payments/).
 To use this you need to provide information about the merchant, the payment, the public key used for encrypting the data, callback-, and redirection urls.
 This will return an url the end-user should be redirected to.
 
 2. When the user has accepted the payment in the MobilePay app, you'll receive a callback on the url defined in 1. containing the encrypted card data and you can create the authorization.
 
-3. When you have successfully authorized the payment (or it has failed), you'll call us and we'll show a receipt (or error message) to the user
+3. When you have successfully authorized the payment (or it has failed), you'll patch the authorisationAttempt endpoint and we'll show a receipt (or error message) to the user.
 
-4. When the merchant makes captures, refunds, or cancels the payment the status of the payment must be updated to reflect this to give the best possible user experience.
+4. When the merchant makes captures, refunds, or cancels the payment the status of the payment must be updated to reflect this to give the best possible user experience. See the API.
 
 ## Request Fishing Scenario
 
@@ -73,7 +129,6 @@ We will retry our callbacks for more than 5 seconds in the event of network erro
 ### Card data callback
 
 A callback will be made on the CardDataCallbackUrl when the user swipes to accept the payment. The callback will have a JSON body like this:
-
 ```
 {
   'EncryptedCardData': 'fsfnsdjkfbgdft34895u7345',
@@ -82,6 +137,14 @@ A callback will be made on the CardDataCallbackUrl when the user swipes to accep
   'PublicKeyId': 263012
 }
 ```
+The EncryptedCardData is encrypted according to the OAEP padding scheme. Once decrypted, you´ll see:
+{
+  "encryptedCardData": {
+    "cardNumber": "1234567812345678",
+    "expiryMonth": "12",
+    "expiryYear": "28"
+  }
+}
 
 ### Checkout callback
 
@@ -116,31 +179,6 @@ A callback will be made on the AddressCallbackUrl when the user swipes to accept
 }
 ```
 
-
-## PSP Onboarding Guide
-### If you are onboarding MobilePay Online for the first time 
-When you as a new PSP wants to be onboarded for the Online solution, you must have an agreement with MobilePay, please contact lagr@mobilepay.dk. Afterwards you need to send an email to the MobilePay business support at developer@mobilepay.dk with this information:
-* The PSP name
-* PCI-DSS AoC
-* VATNumber
-* BusinessContactName
-* BusinessContactEmail
-* OperationsEmail
-* OperationsPhonenumber
-
-We will reply to your mail with a secure link where you can upload two PublicKeys for Card encryption: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits. Clearly stating in the file name wich one is for Sand-Prod and which is for Prod. 
-
-### If you are already using MobilePay Online
-When you as an existing PSP wants to be onboarded for the new Online solution, you need to send an email to the MobilePay business support at developer@mobilepay.dk with this information:
-* The PSP name
-* BusinessContactName
-* BusinessContactEmail
-* OperationsEmail
-* OperationsPhonenumber
-
-We will reply to your mail with a secure link where you can upload a new PublicKey for Card encryption in SandBox environment: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits.
-For Production environment, we will migrate your existing Public Key or create a new one, whatever you prefer.
-
 ### How to call the Online APIs in SandBox
 1. Go to sandbox-developer.mobilepay.dk and log in with your credentials.
 2. Next you select your account > My Apps > Create new App to register a new application. 
@@ -154,8 +192,3 @@ For Production environment, we will migrate your existing Public Key or create a
 
 ### How to call the Online APIs in production
 Same guide as above, but use this url https://developer.mobilepay.dk and use the PublicKeyId for production.
-
-### How to test MobilePay Online in SandBox
-1. You will need a special version of the MobilePay App for the SandBox environment. A link to it can be requested from MobilePay Support.
-2. MobilePay Support will send a Phonenumber and Password, which can be used for login to the App in SandBox.
-3. If you need more cards to test on, they can be requested by MobilePay Support.
