@@ -7,11 +7,11 @@ MobilePay Online is essentially a way for the user to accept online payments in 
 ## Development Guide
 
 ### Step 1: Read and understand the documentation 
-Both the decription here in GitHub and the API in Developer Portal link: https://developer.mobilepay.dk/node/2957 
-Make sure you open the .svg files with sequence diagrams. They are rather informative, to understand the flows.
+Please read both the decription here in GitHub and the API in Developer Portal: https://developer.mobilepay.dk/product (click 'Online').
+In Github, make sure you open the .svg files with sequence diagrams. They are rather informative to understand the flows.
 
 ### Step 2A If you are onboarding MobilePay Online for the first time 
-When you as a new PSP wants to be onboarded for the Online solution, you must have an agreement with MobilePay, please contact lagr@mobilepay.dk. When the agreement is signed, you must send an email to the MobilePay at developer@mobilepay.dk with this information:
+When you as a PSP wants to be onboarded for the Online solution, you must first have an agreement with MobilePay. Please contact lagr@mobilepay.dk to obtain this. When the agreement is signed, you must send an email to the MobilePay developer support at developer@mobilepay.dk with this information:
 * The PSP name
 * PCI-DSS AoC
 * VATNumber
@@ -23,7 +23,7 @@ When you as a new PSP wants to be onboarded for the Online solution, you must ha
 We will reply to your mail with a secure link where you can upload two PublicKeys for Card encryption: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits. You must clearly state in the file name wich one is for Sandbox and which is for Prod. 
 
 ### Step 2B If you are already using MobilePay Online
-When you as an existing PSP wants to be onboarded for the new Online solution, you need to send an email to the MobilePay business support at developer@mobilepay.dk with this information:
+When you as an existing PSP wants to be onboarded for the new Online solution, you need to send an email to the MobilePay developer support at developer@mobilepay.dk with this information:
 * The PSP name
 * BusinessContactName
 * BusinessContactEmail
@@ -50,7 +50,7 @@ Decrypt the cardData from the callback and call the Acquirer.
 When the Acquirer reply (or timeout), make sure you Patch our authorisationAttempt with the new status.
 
 ### Step 8 Move to hidden Production
-Get new API credentials from the Production Developer Portal. Deploy your solution into "hidden production". Make a test webshop, and share the link to it with us (developer@mobilepay.dk) for a "slim certification". Do not to step 9 before we´re happy!
+Get new API credentials from the Production Developer Portal. Deploy your solution into "hidden production". Make a test webshop, and share the link to it with us (developer@mobilepay.dk) for a "slim certification". Do not proceed to step 9 before we´re happy!
 
 ### Step 9 Public production
 Document everything (including Checkout with all features) towards your Merchants in a fantastic documentation. Just the way your customers want it. Go live!
