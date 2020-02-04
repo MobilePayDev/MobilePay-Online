@@ -1,40 +1,31 @@
 # MobilePay Online
 
 ## Table of Contents
-**[Product description](#product-description)**<br>
-**[Product description](#product-description)**<br>
-**[Development Guide](#development-guide)**<br>
-**[API guidelines](#api-guidelines)**<br>
-**[Sandbox environment](#sandbox-environment)**<br>
-**[Merchants](#merchants)**<br>
-**[Payments](#payments)**<br>
-**[Request Fishing Scenario](#request-fishing-scenario)**<br>
-**[Restrictions](#restrictions)**<br>
-**[Callbacks](#callbacks)**<br>
+**[Product description](#product-description)**<br />
+**[Development Guide](#development-guide)**<br />
+**[API guidelines](#api-guidelines)**<br />
+**[Sandbox environment](#sandbox-environment)**<br />
+**[Merchants](#merchants)**<br />
+**[Payments](#payments)**<br />
+**[Request Fishing Scenario](#request-fishing-scenario)**<br />
+**[Restrictions](#restrictions)**<br />
+**[Callbacks](#callbacks)**<br />
 
----
-
-**[Appendix](#appendix)**<br>
-**[Error Codes](#error-codes)**<br>
-**[Allowed currencies](#allowed-currencies)**<br>
-**[Allowed card types](#allowed-card-types)**<br>
+**Appendix**<br />
+**[Error Codes](#error-codes)**<br />
+**[Allowed currencies](#allowed-currencies)**<br />
+**[Allowed card types](#allowed-card-types)**<br />
+**[Diagrams](#diagrams)**
 
 ## Product description
 
-MobilePay Online is essentially a way for the user to accept online payments in the Mobilepay app. When the user accepts the payment, their card data is encrypted and transferred to the PSP who can then do the authorization towards the merchants' chosen acquirer.
+MobilePay Online is essentially a way for the user to accept online payments in the Mobilepay app. When the user accepts the payment, their card data is encrypted and transferred to the PSP who can then do the authorization towards the merchant's chosen acquirer.
 
 ## Development Guide
 
 ### Step 1: Read and understand the documentation 
-Please read both the decription here in GitHub and the API in Developer Portal: https://developer.mobilepay.dk/product (click 'Online').
-In Github, make sure you open the .svg files with sequence diagrams. They are rather informative to understand the flows.
-
-* [Merchants](./assets/merchant-sequence-diagram.svg)
-* [Payments](./assets/payment-sequence-diagram.svg)
-* [Checkout](./assets/checkout-sequence-diagram.svg)
-* [When acquirer or issurer rejects a payment](./assets/acquirer-or-issuer-reject-payment-sequence-diagram.svg)
-* [When the user rejects a payment](./assets/user-rejects-payment-sequence-diagram.svg)
-* [After authorization](./assets/after-authorization-sequence-diagram.svg)
+Please read both the description here in GitHub and the API in Developer Portal: https://developer.mobilepay.dk/product (click 'Online').
+The diagrams in the appendix [Diagrams](#diagrams) should also be helpful to understand the different flows.
 
 
 ### Step 2A If you are onboarding MobilePay Online for the first time 
@@ -270,3 +261,29 @@ The following card types are allowed:
 | Visa credit | VISA-CREDIT |
 | Visa debit | VISA-DEBIT |
 | Dankort | DANKORT |
+
+## Diagrams
+
+### Merchants
+
+![Merchants](./assets/merchant-sequence-diagram.svg)
+
+### Payments
+
+![Payments](./assets/payment-sequence-diagram.svg)
+
+### Checkout
+
+![Checkout](./assets/checkout-sequence-diagram.svg)
+
+### When acquirer or issurer rejects a payment
+
+![When acquirer or issurer rejects a payment](./assets/acquirer-or-issuer-reject-payment-sequence-diagram.svg)
+
+### When the user rejects a payment
+
+![When the user rejects a payment](./assets/user-rejects-payment-sequence-diagram.svg)
+
+### After authorization
+
+![After authorization](./assets/after-authorization-sequence-diagram.svg)
