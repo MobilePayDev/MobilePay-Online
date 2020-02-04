@@ -1,20 +1,20 @@
 # MobilePay Online
 
 ## Table of Contents
-**[Product description](#product-description)**
-**[Development Guide](#development-guide)**
-**[API guidelines](#api-guidelines)**
-**[Sandbox environment](#sandbox-environment)**
-**[Merchants](#merchants)**
-**[Payments](#payments)**
-**[Request Fishing Scenario](#request-fishing-scenario)**
-**[Restrictions](#restrictions)**
-**[Callbacks](#callbacks)**
+**[Product description](#product-description)**<br />
+**[Development Guide](#development-guide)**<br />
+**[API guidelines](#api-guidelines)**<br />
+**[Sandbox environment](#sandbox-environment)**<br />
+**[Merchants](#merchants)**<br />
+**[Payments](#payments)**<br />
+**[Request Fishing Scenario](#request-fishing-scenario)**<br />
+**[Restrictions](#restrictions)**<br />
+**[Callbacks](#callbacks)**<br />
 
 **Appendix**
-**[Error Codes](#error-codes)**
-**[Allowed currencies](#allowed-currencies)**
-**[Allowed card types](#allowed-card-types)**
+**[Error Codes](#error-codes)**<br />
+**[Allowed currencies](#allowed-currencies)**<br />
+**[Allowed card types](#allowed-card-types)**<br />
 **[Diagrams](#diagrams)**
 
 ## Product description
