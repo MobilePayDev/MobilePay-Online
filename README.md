@@ -261,3 +261,42 @@ The following card types are allowed:
 | Visa credit | VISA-CREDIT |
 | Visa debit | VISA-DEBIT |
 | Dankort | DANKORT |
+
+
+## Diagrams
+
+### Merchants
+
+<a href='./assets/merchant-sequence-diagram.svg'>
+  <img src="./assets/merchant-sequence-diagram.svg" />
+</a>
+
+### Payments
+
+<a href='./assets/payment-sequence-diagram.svg'>
+  <img src="./assets/payment-sequence-diagram.svg" />
+</a>
+
+### Checkout
+
+<a href='./assets/checkout-sequence-diagram.svg'>
+  <img src="./assets/checkout-sequence-diagram.svg" />
+</a>
+
+### When acquirer or issurer rejects a payment
+
+<a href='./assets/acquirer-or-issuer-reject-payment-sequence-diagram.svg'>
+  <img src="./assets/acquirer-or-issuer-reject-payment-sequence-diagram.svg" />
+</a>
+
+### When the user rejects a payment
+
+<a href='./assets/user-rejects-payment-sequence-diagram.svg'>
+  <img src="./assets/user-rejects-payment-sequence-diagram.svg" />
+</a>
+
+### After authorization
+
+<a href='./assets/after-authorization-sequence-diagram.svg'>
+  <img src="./assets/after-authorization-sequence-diagram.svg" />
+</a>
