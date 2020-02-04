@@ -52,7 +52,7 @@ We will reply to your mail with a secure link where you can upload a new PublicK
 For Production environment, we will migrate your existing Public Key or create a new one, whatever you prefer.
 
 ### Step 3 Request a login to sandbox-developer.mobilepay.dk
-from there you can get the clientId and clientSecret you need for calling our APIs.
+from there you can get the clientId and clientSecret you need for calling our APIs. Further reading: https://github.com/MobilePayDev/MobilePay-Online#how-to-call-the-online-apis-in-sandbox
 
 ### Step 4 Make your own test merchant
 By posting to /merchants/
