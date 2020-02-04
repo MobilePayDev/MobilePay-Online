@@ -11,7 +11,7 @@
 **[Restrictions](#restrictions)**<br />
 **[Callbacks](#callbacks)**<br />
 
-**Appendix**
+**Appendix**<br />
 **[Error Codes](#error-codes)**<br />
 **[Allowed currencies](#allowed-currencies)**<br />
 **[Allowed card types](#allowed-card-types)**<br />
