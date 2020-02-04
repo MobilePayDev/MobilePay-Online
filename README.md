@@ -59,6 +59,7 @@ By posting to /merchants/. Further reading: https://github.com/MobilePayDev/Mobi
 
 ### Step 5 Initiate a payment
 By posting to /payments/. Further reading: https://github.com/MobilePayDev/MobilePay-Online/blob/master/README.md#payments
+
 You´ll get the redirectToMPUrl in reponse. Now is also a good time to start working on your callback endpoint (the service you expose on cardDataCallbackUrl). Make sure it at least consumes the POST and reply http200.
 
 ### Step 6 Try the payment in the app
