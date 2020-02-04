@@ -23,7 +23,7 @@ MobilePay Online is essentially a way for the user to accept online payments in 
 
 ## Development Guide
 
-### Step 1: Read and understand the documentation 
+### Step 1 Read and understand the documentation 
 Please read both the description here in GitHub and the API in Developer Portal: https://developer.mobilepay.dk/product (click 'Online').
 The diagrams in the appendix [Diagrams](#diagrams) should also be helpful to understand the different flows.
 
