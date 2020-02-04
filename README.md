@@ -1,14 +1,41 @@
 # MobilePay Online
 
+## Table of Contents
+**[Product description](#product-description)**<br>
+**[Product description](#product-description)**<br>
+**[Development Guide](#development-guide)**<br>
+**[API guidelines](#api-guidelines)**<br>
+**[Sandbox environment](#sandbox-environment)**<br>
+**[Merchants](#merchants)**<br>
+**[Payments](#payments)**<br>
+**[Request Fishing Scenario](#request-fishing-scenario)**<br>
+**[Restrictions](#restrictions)**<br>
+**[Callbacks](#callbacks)**<br>
+
+---
+
+**[Appendix](#appendix)**<br>
+**[Error Codes](#error-codes)**<br>
+**[Allowed currencies](#allowed-currencies)**<br>
+**[Allowed card types](#allowed-card-types)**<br>
+
 ## Product description
 
-MobilePay Online is essentially a way for the user to accept online payments in the Mobilepay app. When the user accepts the payment, their card data is encrypted and transferred to the PSP who can then do the authorization towards the merchants chosen acquirer.
+MobilePay Online is essentially a way for the user to accept online payments in the Mobilepay app. When the user accepts the payment, their card data is encrypted and transferred to the PSP who can then do the authorization towards the merchants' chosen acquirer.
 
 ## Development Guide
 
 ### Step 1: Read and understand the documentation 
 Please read both the decription here in GitHub and the API in Developer Portal: https://developer.mobilepay.dk/product (click 'Online').
 In Github, make sure you open the .svg files with sequence diagrams. They are rather informative to understand the flows.
+
+* [Merchants](./assets/merchant-sequence-diagram.svg)
+* [Payments](./assets/payment-sequence-diagram.svg)
+* [Checkout](./assets/checkout-sequence-diagram.svg)
+* [When acquirer or issurer rejects a payment](./assets/acquirer-or-issuer-reject-payment-sequence-diagram.svg)
+* [When the user rejects a payment](./assets/user-rejects-payment-sequence-diagram.svg)
+* [After authorization](./assets/after-authorization-sequence-diagram.svg)
+
 
 ### Step 2A If you are onboarding MobilePay Online for the first time 
 When you as a PSP wants to be onboarded for the Online solution, you must first have an agreement with MobilePay. Please contact lagr@mobilepay.dk to obtain this. When the agreement is signed, you must send an email to the MobilePay developer support at developer@mobilepay.dk with this information:
@@ -152,8 +179,8 @@ A callback will be made on the AddressCallbackUrl when the user swipes to accept
 
 ```
 {
-  'PaymentId': 'fsfnsdjkfbgdft34895u7345',
-  'AuthorizationAttemptId': 'fsfnsdjkfbgdft34895u7345',
+  'PaymentId': '9369ea35-4b5b-428a-bdf8-c29c29a4b264',
+  'AuthorizationAttemptId': 'a8c99cbf-3468-4eb9-9c0e-ddd110e8ed33',
   'Addresses [
     'FirstName': 'John',
     'Surname': 'Doe',
@@ -168,7 +195,7 @@ A callback will be made on the AddressCallbackUrl when the user swipes to accept
     'IsBillingAddress': true,
     'IsDeliveryAddress': true,
     'AddressValidationMethod': 'DaWa',
-    'AddressValidationStatus': 'NotFound'
+    'AddressValidationStatus': 'NotValidated'
   ],
   'EmailAddress': 'johndoe@gmail.com',
   'EmailAddressValidationMethod': 'EmailEnteredTwice',
@@ -192,3 +219,54 @@ A callback will be made on the AddressCallbackUrl when the user swipes to accept
 
 ### How to call the Online APIs in production
 Same guide as above, but use this url https://developer.mobilepay.dk and use the PublicKeyId for production.
+
+# Appendix
+
+## Error codes
+
+The following will describe the error codes thrown and in which cases they can occur.
+
+The error format will be the following:
+
+```json
+{
+    "code": "2020",
+    "message": "Some description",
+    "correlationId": "8d72ece4-1b0b-464b-98d9-6bbb02199dc8"
+}
+```
+
+| Code | Endpoint(s) | Description
+|:---|:---|:---|
+| 2000 | POST /payments | Merchant doesn't exist
+| 2010 | POST /payments | The merchant isn't created by you
+| 2020 | POST /payments | The merchant is deleted
+| 2030 | POST /payments | Allowed card types are not set
+| 2040 | POST /payments | One or more of the allowed card types are invalid
+| 2050 | POST /payments | Currency code is invalid
+
+## Allowed currencies
+
+Currencies must be specified according to the ISO-4217 standard. Either using the alpha or the numeric version.
+Allowed currencies are:
+
+| Name | Alphabetic code | Numeric code
+|:---|:---|:---|
+| Danish kroner | DKK | 208
+| Euro | EUR | 978
+| Norwegian kroner | NOK | 578
+| Swedish kroner | SEK | 752
+
+## Allowed card types
+
+The following card types are allowed:
+
+| Card name | Code
+|:---|:---|
+| Visa electron | ELEC-DEBIT |
+| Mastercard credit | MC-CREDIT |
+| Mastercard debit | MC-DEBIT |
+| Maestro | MTRO-DEBIT |
+| Visa credit | VISA-CREDIT |
+| Visa debit | VISA-DEBIT |
+| Dankort | DANKORT |
