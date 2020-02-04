@@ -262,7 +262,6 @@ The following card types are allowed:
 | Visa debit | VISA-DEBIT |
 | Dankort | DANKORT |
 
-
 ## Diagrams
 
 ### Merchants
@@ -281,11 +280,9 @@ The following card types are allowed:
 
 ![When acquirer or issurer rejects a payment](./assets/acquirer-or-issuer-reject-payment-sequence-diagram.svg)
 
-
 ### When the user rejects a payment
 
 ![When the user rejects a payment](./assets/user-rejects-payment-sequence-diagram.svg)
-
 
 ### After authorization
 
