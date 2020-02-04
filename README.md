@@ -55,10 +55,11 @@ For Production environment, we will migrate your existing Public Key or create a
 from there you can get the clientId and clientSecret you need for calling our APIs. Further reading: https://github.com/MobilePayDev/MobilePay-Online#how-to-call-the-online-apis-in-sandbox
 
 ### Step 4 Make your own test merchant
-By posting to /merchants/
+By posting to /merchants/. Further reading: https://github.com/MobilePayDev/MobilePay-Online/blob/master/README.md#merchants
 
 ### Step 5 Initiate a payment
-By posting to /payments/. You´ll get the redirectToMPUrl in reponse. Now is also a good time to start working on your callback endpoint (the service you expose on cardDataCallbackUrl). Make sure it at least consumes the POST and reply http200.
+By posting to /payments/. Further reading: https://github.com/MobilePayDev/MobilePay-Online/blob/master/README.md#payments
+You´ll get the redirectToMPUrl in reponse. Now is also a good time to start working on your callback endpoint (the service you expose on cardDataCallbackUrl). Make sure it at least consumes the POST and reply http200.
 
 ### Step 6 Try the payment in the app
 Open the "redirectToMPUrl" in a browser (or from an app), and try the payment flow.
