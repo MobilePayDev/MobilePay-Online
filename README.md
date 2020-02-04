@@ -51,8 +51,8 @@ When you as an existing PSP wants to be onboarded for the new Online solution, y
 We will reply to your mail with a secure link where you can upload a new PublicKey for Card encryption in Sandbox environment: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits.
 For Production environment, we will migrate your existing Public Key or create a new one, whatever you prefer.
 
-### Step 3 Get a login to sandbox-developer.mobilepay.dk
-from the you can get the clienId and clientSecret you need to call our APIs.
+### Step 3 Request a login to sandbox-developer.mobilepay.dk
+from there you can get the clientId and clientSecret you need for calling our APIs.
 
 ### Step 4 Make your own test merchant
 By posting to /merchants/
