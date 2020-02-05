@@ -51,8 +51,8 @@ When you as an existing PSP wants to be onboarded for the new Online solution, y
 We will reply to your mail with a secure link where you can upload a new PublicKey for Card encryption in Sandbox environment: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits.
 For Production environment, we will migrate your existing Public Key or create a new one, whatever you prefer.
 
-### Step 3 Request a login to sandbox-developer.mobilepay.dk
-from there you can get the clientId and clientSecret you need for calling our APIs. Further reading: https://github.com/MobilePayDev/MobilePay-Online#how-to-call-the-online-apis-in-sandbox
+### Step 3 Ask developer@mobilepay.dk for a login to sandbox-developer.mobilepay.dk
+from that site you can get the clientId and clientSecret you need for calling our APIs. Further reading: https://github.com/MobilePayDev/MobilePay-Online#how-to-call-the-online-apis-in-sandbox
 
 ### Step 4 Make your own test merchant
 By posting to /merchants/. Further reading: https://github.com/MobilePayDev/MobilePay-Online/blob/master/README.md#merchants
@@ -70,7 +70,8 @@ Decrypt the cardData from the callback and call the Acquirer.
 When the Acquirer reply (or timeout), make sure you Patch our authorisationAttempt with the new status.
 
 ### Step 8 Move to hidden Production
-Get new API credentials from the Production Developer Portal. Deploy your solution into "hidden production". Make a test webshop, and share the link to it with us (developer@mobilepay.dk) for a "slim certification". Do not proceed to step 9 before we´re happy!
+Ask developer@mobilepay.dk for an invitation to the Production Developer Portal https://developer.mobilepay.dk/ to get Production credentials, similar to sandbox. 
+Deploy your solution into "hidden production". Make a test webshop, and share the link to it with us (developer@mobilepay.dk) for a "slim certification". Do not proceed to step 9 before we´re happy!
 
 ### Step 9 Public production
 Document everything (including Checkout with all features) towards your Merchants in a fantastic documentation. Just the way your customers want it. Go live!
