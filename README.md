@@ -29,7 +29,7 @@ The diagrams in the appendix [Diagrams](#diagrams) should also be helpful to und
 
 
 ### Step 2A If you are onboarding MobilePay Online for the first time 
-When you as a PSP wants to be onboarded for the Online solution, you must first have an agreement with MobilePay. Please contact lagr@mobilepay.dk to obtain this. When the agreement is signed, you must send an email to the MobilePay developer support at developer@mobilepay.dk with this information:
+When you as a PSP wants to be onboarded for the Online solution, you must first have an agreement with MobilePay. Please contact partnership_online@mobilepay.dk to obtain this. When the agreement is signed, you must send an email to the MobilePay developer support at developer@mobilepay.dk with this information:
 * The PSP name
 * PCI-DSS AoC
 * VATNumber
