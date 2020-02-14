@@ -42,6 +42,8 @@ When you as a PSP wants to be onboarded for the Online solution, you must first 
 
 We will reply to your mail with a secure link where you can upload two PublicKeys for Card encryption: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits. You must clearly state in the file name wich one is for Sandbox and which is for Prod. 
 
+The technical contact will receive an invivation to our Sandbox Developer Portal and can continue with step 3
+
 ### Step 2B If you are already using MobilePay Online
 When you as an existing PSP wants to be onboarded for the new Online solution, you need to send an email to the MobilePay developer support at developer@mobilepay.dk with this information:
 * The PSP name
@@ -49,9 +51,13 @@ When you as an existing PSP wants to be onboarded for the new Online solution, y
 * BusinessContactEmail
 * OperationsEmail
 * OperationsPhonenumber
+* TechnicalContactName
+* TechnicalContactEmail
 
 We will reply to your mail with a secure link where you can upload a new PublicKey for Card encryption in Sandbox environment: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits.
 For Production environment, we will migrate your existing Public Key or create a new one, whatever you prefer.
+
+The technical contact will receive an invivation to our Sandbox Developer Portal and can continue with step 3
 
 ### Step 3 Ask developer@mobilepay.dk for a login to sandbox-developer.mobilepay.dk
 from that site you can get the clientId and clientSecret you need for calling our APIs. Further reading: https://github.com/MobilePayDev/MobilePay-Online#how-to-call-the-online-apis-in-sandbox
