@@ -59,8 +59,22 @@ For Production environment, we will migrate your existing Public Key or create a
 
 The technical contact will receive an invivation to our Sandbox Developer Portal and can continue with step 3
 
-### Step 3 Ask developer@mobilepay.dk for a login to sandbox-developer.mobilepay.dk
-from that site you can get the clientId and clientSecret you need for calling our APIs. Further reading: https://github.com/MobilePayDev/MobilePay-Online#how-to-call-the-online-apis-in-sandbox
+### Step 3 Register to sandbox-developer.mobilepay.dk
+From the invitatio to our Sandbox Developer Portal you create your user. 
+1. Go to sandbox-developer.mobilepay.dk and log in with your credentials.
+2. Next you select your account > My Apps > Create new App to register a new application. 
+3. Retrieve the Client Id and Client Secret for the newly created App. IMPORTANT: Please make a note of your Client Secret as you will only see this once!
+4. Send the SandBox Client Id to MobilePay Support.
+5. Subscribe the App to the Online API.
+
+#### How to call the Online APIs in SandBox
+You should have received a PublicKeyId for SandBox from MobilePay Support . This Id should be used when the payments are initiated.
+Call the endpoints in the Online API using these headers:
+       --header 'x-ibm-client-id: REPLACE_THIS_KEY' 
+       --header 'x-ibm-client-secret: REPLACE_THIS_KEY'
+
+#### How to call the Online APIs in production
+Same guide as above, but use this url https://developer.mobilepay.dk and use the PublicKeyId for production.
 
 ### Step 4 Make your own test merchant
 By posting to /merchants/. Further reading: https://github.com/MobilePayDev/MobilePay-Online/blob/master/README.md#merchants
@@ -207,20 +221,6 @@ A callback will be made on the AddressCallbackUrl when the user swipes to accept
   'PhoneNumberValidationStatus': 'Validated'
 }
 ```
-
-### How to call the Online APIs in SandBox
-1. Go to sandbox-developer.mobilepay.dk and log in with your credentials.
-2. Next you select your account > My Apps > Create new App to register a new application. 
-3. Retrieve the Client Id and Client Secret for the newly created App. IMPORTANT: Please make a note of your Client Secret as you will only see this once!
-4. Send the SandBox Client Id to MobilePay Support.
-5. Subscribe the App to the Online API.
-6. You should have received a PublicKeyId for SandBox from MobilePay Support . This Id should be used when the payments are initiated.
-7. Call the endpoints in the Online API using these headers:
-       --header 'x-ibm-client-id: REPLACE_THIS_KEY' 
-       --header 'x-ibm-client-secret: REPLACE_THIS_KEY'
-
-### How to call the Online APIs in production
-Same guide as above, but use this url https://developer.mobilepay.dk and use the PublicKeyId for production.
 
 # Appendix
 
