@@ -60,7 +60,7 @@ For Production environment, we will migrate your existing Public Key or create a
 The technical contact will receive an invivation to our Sandbox Developer Portal and can continue with step 3
 
 ### Step 3 Register to sandbox-developer.mobilepay.dk
-From the invitatio to our Sandbox Developer Portal you create your user. 
+From the invitatio to our Sandbox Developer Portal you create your user. Afterwards please complete following steps:
 1. Go to sandbox-developer.mobilepay.dk and log in with your credentials.
 2. Next you select your account > My Apps > Create new App to register a new application. 
 3. Retrieve the Client Id and Client Secret for the newly created App. IMPORTANT: Please make a note of your Client Secret as you will only see this once!
@@ -69,8 +69,8 @@ From the invitatio to our Sandbox Developer Portal you create your user.
 
 #### How to call the Online APIs in SandBox
 You should have received a PublicKeyId for SandBox from MobilePay Support . This Id should be used when the payments are initiated.
-Call the endpoints in the Online API using these headers:
-       --header 'x-ibm-client-id: REPLACE_THIS_KEY' 
+Call the endpoints in the Online API using these headers:<br>
+       --header 'x-ibm-client-id: REPLACE_THIS_KEY' <br>
        --header 'x-ibm-client-secret: REPLACE_THIS_KEY'
 
 #### How to call the Online APIs in production
