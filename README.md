@@ -37,6 +37,8 @@ When you as a PSP wants to be onboarded for the Online solution, you must first 
 * BusinessContactEmail
 * OperationsEmail
 * OperationsPhonenumber
+* TechnicalContactName
+* TechnicalContactEmail
 
 We will reply to your mail with a secure link where you can upload two PublicKeys for Card encryption: The RSA public key should be provided as a X.509 SubjectPublicKeyInfo (using ASN.1 DER Encoding) represented in PEM encoding (use PEM file extension). The public key must have a length of 4096 bits. You must clearly state in the file name wich one is for Sandbox and which is for Prod. 
 
