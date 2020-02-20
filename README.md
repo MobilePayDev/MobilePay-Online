@@ -191,7 +191,7 @@ The EncryptedCardData is encrypted according to the OAEP padding scheme. Once de
 
 ### Failed callback
 
-In case that the user rejects the payment and the payment times out, a failed callback is sent to the FailedPaymentCallbackUrl url supplied in the initiate payment call.
+In case the payment times out, a callback is made to the FailedPaymentCallbackUrl url supplied in the initiate payment call.
 
 ```
 {
