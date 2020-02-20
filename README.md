@@ -189,6 +189,18 @@ The EncryptedCardData is encrypted according to the OAEP padding scheme. Once de
   }
 }
 
+### Failed callback
+
+In case that the user rejects the payment and the payment times out, a failed callback is sent to the FailedPaymentCallbackUrl url supplied in the initiate payment call.
+
+```
+{
+    'code': '100',
+    'reason': 'Payment expired',
+    'paymentId': '8d72ece4-1b0b-464b-98d9-6bbb02199dc8'
+}
+```
+
 ### Checkout callback
 
 A callback will be made on the AddressCallbackUrl when the user swipes to accept the payment and isCheckout is set to true. The callback will have a JSON body like this:
