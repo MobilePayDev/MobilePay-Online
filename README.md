@@ -28,29 +28,32 @@ Please read both the description here in GitHub and the API in Developer Portal:
 The diagrams in the appendix [Diagrams](#diagrams) should also be helpful to understand the different flows.
 
 
-### Step 2 Technical onboarding
-When you as a PSP wants to be onboarded for the Online solution, you must first have an agreement with MobilePay. Please contact partnership_online@mobilepay.dk to obtain this. When the agreement is signed, please visit our developer portal to start the technical onboarding: https://developer.mobilepay.dk/products/online/getting-started
+### Step 2 Onboarding
+If you have already signed an agreement with MobilePay for the use of MobilePay Online, you can skip this step. Otherwise, you must first obtain an agreement by contacting partnership_online@mobilepay.dk.
 
-### Step 3 Make your own test merchant
+### Step 3 Technical onboarding
+When your agreement is signed, please visit our developer portal to start the technical onboarding: https://developer.mobilepay.dk/products/online/getting-started
+
+### Step 4 Make your own test merchant
 By posting to /merchants/. Further reading: https://github.com/MobilePayDev/MobilePay-Online/blob/master/README.md#merchants
 
-### Step 4 Initiate a payment
+### Step 5 Initiate a payment
 By posting to /payments/. Further reading: https://github.com/MobilePayDev/MobilePay-Online/blob/master/README.md#payments
 
 You´ll get the redirectToMPUrl in reponse. Now is also a good time to start working on your callback endpoint (the service you expose on cardDataCallbackUrl). Make sure it at least consumes the POST and reply http200.
 
-### Step 5 Try the payment in the app
+### Step 6 Try the payment in the app
 Open the "redirectToMPUrl" in a browser (or from an app), and try the payment flow.
 
-### Step 6 Decrypt the card data, call the Acquirer and update the authorisationAttempt
+### Step 7 Decrypt the card data, call the Acquirer and update the authorisationAttempt
 Decrypt the cardData from the callback and call the Acquirer.
 When the Acquirer reply (or timeout), make sure you Patch our authorisationAttempt with the new status.
 
-### Step 7 Move to hidden Production
+### Step 8 Move to hidden Production
 Ask developer@mobilepay.dk for an invitation to the Production Developer Portal https://developer.mobilepay.dk/ to get Production credentials, similar to sandbox. 
-Deploy your solution into "hidden production". Make a test webshop, and share the link to it with us (developer@mobilepay.dk) for a "slim certification". Do not proceed to step 8 before we´re happy!
+Deploy your solution into "hidden production". Make a test webshop, and share the link to it with us (developer@mobilepay.dk) for a "slim certification". Do not proceed to step 9 before we´re happy!
 
-### Step 8 Public production
+### Step 9 Public production
 Document everything (including Checkout with all features) towards your Merchants in a fantastic documentation. Just the way your customers want it. Go live!
 
 ## API guidelines
