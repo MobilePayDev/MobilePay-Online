@@ -63,31 +63,7 @@ As a rule of thumb, the APIs are RESTful. You can expect POSTs to return the id 
 ## Sandbox environment
 
 The MobilePay Sandbox is a self-contained, testing environment that mimics the live MobilePay production environment. It provides you the space to play around and test your implementation and the requests you make to the MobilePay APIs without affecting MobilePay for the users.
-Link: https://sandbox-developer.mobilepay.dk/
-
-Installing the sandbox MobilePay app and logging in to it
-1.	Open one of these links on the phone were you want to install the sandbox app: 
-•	Android DK: https://dbg.tpa.io/p/KnSXxG8NQ8Mv0yhct5iC
-•	iOS DK: https://dbg.tpa.io/p/h-XHpPXMT3PgvNiKtalW
-
-2.	Download and install the app from the link (please just disregard any “POS vendor” references).
-•	Android: To install, you’ll have to allow installation from “unknown sources”.
-•	iOS: When the app is installed, you have to accept “MobilePay A/S” as app distributor under Settings > General > Profiles & Device management, to make it work.
-3.	After installation, open the app (If you get a prompt about a new version being available, just install it).
-4.	Select “Log på (Eksisterende bruger)”
-5.	Ensure that the environment selector is set to ”Integrator Sandbox (With Login)
-6.	Enter a valid Sandbox phone number (you can get one from the Developer Support team)
-7.	Enter “1234” as pin
-8.	Enter “123456” as activation code and press OK
-9.	You should now be logged in and see the main page of MobilePay
-
-Testing a MobilePay Online payment
-1.	As PSP, you can now initiate a MobilePay Online payment against our Sandprod environment.
-2.	When you see our payment website, enter the phone number you used in the sandbox app.
-3.	Ideally, you should now get a notification (not yet working in sandbox)
-4.	Login to the app
-5.	You should automatically see a confirmation page for the payment
-6.	Swipe to approve
+Find information about test app and sandbox test here: https://developer.mobilepay.dk/products/online/test
 
 ## Merchants
 
