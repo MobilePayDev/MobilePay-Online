@@ -286,7 +286,7 @@ Example
 </script>
 ```
 
-### Return Coddes
+### Return Codes
 When the flow in MobilePay is complete the iframe will be redirected to the return url specified, when the payment was created and just prior to that it will also post a message via ```javascript:postMessage()```, which the parent page can listen for in JavaScript.
 The message has the following syntax, when the user ends the flow
 ```
