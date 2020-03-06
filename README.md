@@ -263,15 +263,9 @@ The width should be 375px.
 Example
 ```
  <iframe 
-        scrolling=”no” 
-        src=”URL_FROM_PAYMENTID_CREATION” 
-        style=”position: absolute;    
-        top: 0px;    
-        left: 0;    
-        width: 375px;    
-        height: 480px;  
-        z-index: 99;    
-        border: 0; >
+        scrolling="no"
+        src="URL_FROM_PAYMENTID_CREATION"
+        style="width: 375px; height: 480px; border: 0;" >
 </iframe>
 ```
 
@@ -279,12 +273,12 @@ Example
 The parent page can listen for posted messages by adding JavaScript code like this example
 
 ```
-<script type=”text/javascript”>
+<script type="text/javascript">
  window.addEventListener( 
-   “message”,
+   "message",
    function(event) {
-      if (event.data.indexOf(“mobilepay”)>=0){
-         //Do your logic, e.g. remove iframe from DOM
+      if (event.data.indexOf("mobilepay")>=0){
+         //Do your logic
          //Continue purchase processing
          alert(event.data);
       }
@@ -293,7 +287,7 @@ The parent page can listen for posted messages by adding JavaScript code like th
 </script>
 ```
 
-### Return Codes
+### Response Codes
 When the flow in MobilePay is complete the iframe will be redirected to the return url specified, when the payment was created and just prior to that it will also post a message via ```javascript:postMessage()```, which the parent page can listen for via JavaScript.
 The message has the following syntax, when the user ends the flow
 ```
