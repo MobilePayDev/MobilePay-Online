@@ -15,7 +15,8 @@
 **[Error Codes](#error-codes)**<br />
 **[Allowed currencies](#allowed-currencies)**<br />
 **[Allowed card types](#allowed-card-types)**<br />
-**[Diagrams](#diagrams)**
+**[Diagrams](#diagrams)**<br />
+**[Embedded flow](#embedded-flow)**
 
 ## Product description
 
@@ -244,3 +245,60 @@ The following card types are allowed:
 ### After authorization
 
 ![After authorization](./assets/after-authorization-sequence-diagram.svg)
+
+## Embedded Flow
+
+### IFRAME
+Add an <iframe> to the webshop html source and set the iframe src property to the url returned from the payment link creation endpoint.
+
+The width should be 375px.
+
+Example
+```
+ <iframe 
+        scrolling=”no” 
+        src=”URL_FROM_PAYMENTID_CREATION” 
+        style=”position: absolute;    
+        top: 0px;    
+        left: 0;    
+        width: 375px;    
+        height: 480px;  
+        z-index: 99;    
+        border: 0; >
+</iframe>
+```
+
+### Event Listener
+The parent page can listen for posted messages by adding javascript code like this
+Example
+```
+<script type=”text/javascript”>
+ window.addEventListener( 
+   “message”,
+   function(event) {
+      if (event.data.indexOf(“mobilepay”)>=0){
+         //Do your logic, e.g. remove iframe from DOM
+         //Continue purchase processing
+         alert(event.data);
+      }
+    },
+   false);
+</script>
+```
+
+### Return Coddes
+When the flow in MobilePay is complete the iframe will be redirected to the return url specified, when the payment was created and just prior to that it will also post a message via ```javascript:postMessage()```, which the parent page can listen for in JavaScript.
+The message has the following syntax, when the user ends the flow
+```
+mobilepay:rc=RESPONSE_CODE&message=DESCRIPTIVE_MESSAGE 
+```
+
+The response codes are
+| Response Code | Description
+|:---|:---|
+| 0 | Completed |
+| 1 | Rejected |
+| 2 | Failed |
+| 3 |	Expired |
+| 4	| Cancelled |
+| 9 | Other |
