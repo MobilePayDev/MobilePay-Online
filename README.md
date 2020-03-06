@@ -114,7 +114,8 @@ A callback will be made on the CardDataCallbackUrl when the user swipes to accep
   'PublicKeyId': 263012
 }
 ```
-The EncryptedCardData is encrypted according to the OAEP padding scheme. Once decrypted, you´ll see:
+The EncryptedCardData is encrypted according to this OAEP algorithm&padding scheme: RSA/NONE/OAEPWithSHA256AndMGF1Padding . 
+Once decrypted, you´ll see:
 {
   "encryptedCardData": {
     "cardNumber": "1234567812345678",
