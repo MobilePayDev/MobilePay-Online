@@ -248,8 +248,14 @@ The following card types are allowed:
 
 ## Embedded Flow
 
+Webshops or Payment Service Providers (PSPs) may embed the web part of the flow into their own website by showing the MobilePay flow in an iframe and listen for response codes emitted from the iframe. 
+
+Embedding is especially relevant for users on bigger screens, e.g. desktop computers, where the user will request the payment to a phone number and complete the flow in MobilePay on a phone.
+
+On mobile devices it is expected that the MobilePay flow visually covers the whole screen (simple header and footer is acceptable).
+
 ### IFRAME
-Add an <iframe> to the webshop html source and set the iframe src property to the url returned from the payment link creation endpoint.
+Add an "iframe" to the html source and set the iframe "src" property to the URL returned from the payment link creation endpoint.
 
 The width should be 375px.
 
@@ -269,8 +275,8 @@ Example
 ```
 
 ### Event Listener
-The parent page can listen for posted messages by adding javascript code like this
-Example
+The parent page can listen for posted messages by adding JavaScript code like this example
+
 ```
 <script type=”text/javascript”>
  window.addEventListener( 
@@ -287,7 +293,7 @@ Example
 ```
 
 ### Return Codes
-When the flow in MobilePay is complete the iframe will be redirected to the return url specified, when the payment was created and just prior to that it will also post a message via ```javascript:postMessage()```, which the parent page can listen for in JavaScript.
+When the flow in MobilePay is complete the iframe will be redirected to the return url specified, when the payment was created and just prior to that it will also post a message via ```javascript:postMessage()```, which the parent page can listen for via JavaScript.
 The message has the following syntax, when the user ends the flow
 ```
 mobilepay:rc=RESPONSE_CODE&message=DESCRIPTIVE_MESSAGE 
