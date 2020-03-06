@@ -15,7 +15,8 @@
 **[Error Codes](#error-codes)**<br />
 **[Allowed currencies](#allowed-currencies)**<br />
 **[Allowed card types](#allowed-card-types)**<br />
-**[Diagrams](#diagrams)**
+**[Diagrams](#diagrams)**<br />
+**[Embedded flow](#embedded-flow)**
 
 ## Product description
 
@@ -245,3 +246,66 @@ The following card types are allowed:
 ### After authorization
 
 ![After authorization](./assets/after-authorization-sequence-diagram.svg)
+
+## Embedded Flow
+
+Webshops or Payment Service Providers (PSPs) may embed the web part of the flow into their own website by showing the MobilePay flow in an iframe and listen for response codes emitted from the iframe. 
+
+Embedding is especially relevant for users on bigger screens, e.g. desktop computers, where the user will request the payment to a phone number and complete the flow in MobilePay on a phone.
+
+On mobile devices it is expected that the MobilePay flow visually covers the whole screen (simple header and footer is acceptable).
+
+### IFRAME
+Add an "iframe" to the html source and set the iframe "src" property to the URL returned from the payment link creation endpoint.
+
+The width should be 375px.
+
+Example
+```
+ <iframe 
+        scrolling=”no” 
+        src=”URL_FROM_PAYMENTID_CREATION” 
+        style=”position: absolute;    
+        top: 0px;    
+        left: 0;    
+        width: 375px;    
+        height: 480px;  
+        z-index: 99;    
+        border: 0; >
+</iframe>
+```
+
+### Event Listener
+The parent page can listen for posted messages by adding JavaScript code like this example
+
+```
+<script type=”text/javascript”>
+ window.addEventListener( 
+   “message”,
+   function(event) {
+      if (event.data.indexOf(“mobilepay”)>=0){
+         //Do your logic, e.g. remove iframe from DOM
+         //Continue purchase processing
+         alert(event.data);
+      }
+    },
+   false);
+</script>
+```
+
+### Return Codes
+When the flow in MobilePay is complete the iframe will be redirected to the return url specified, when the payment was created and just prior to that it will also post a message via ```javascript:postMessage()```, which the parent page can listen for via JavaScript.
+The message has the following syntax, when the user ends the flow
+```
+mobilepay:rc=RESPONSE_CODE&message=DESCRIPTIVE_MESSAGE 
+```
+
+The response codes are
+| Response Code | Description
+|:---|:---|
+| 0 | Completed |
+| 1 | Rejected |
+| 2 | Failed |
+| 3 |	Expired |
+| 4	| Cancelled |
+| 9 | Other |
