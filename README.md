@@ -22,6 +22,7 @@
 
 MobilePay Online is essentially a way for the user to accept online payments in the Mobilepay app. When the user accepts the payment, their card data is encrypted and transferred to the PSP who can then do the authorization towards the merchant's chosen acquirer.
 [![](./assets/MPO%20stylized%20flow.svg)](./assets/MPO%20stylized%20flow.svg)
+See example flow [here](https://www.mobilepay.dk/mobilepaymedia/mobilepay-dk/films/product/mobilepay-online-2018.mp4). 
 
 ## Development Guide
 
