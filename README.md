@@ -48,7 +48,9 @@ You´ll get the redirectToMPUrl in reponse. Now is also a good time to start wor
 ### Step 6 Try the payment in the app
 Open the "redirectToMPUrl" in a browser (or from an app), and try the payment flow.
 
-You can provide a phone number to be prefilled in the phone number field on the MobilePay webpage. You do this by adding an URI encoded "alias" parameter to the search parameters of the "redirectToMPUrl". For "+45 12 34 56 78" you would add the following to the url: &alias=%2B4512345678
+**Prefilled phone number**<br/>
+You can provide a phone number to be prefilled in the phone number field on the MobilePay webpage. 
+You do this by adding an URI encoded "alias" parameter with the phone number to the search parameters of the "redirectToMPUrl". The phone number must be fully specified including country code. For "+45 12 34 56 78" you would add the following to the url: &alias=%2B4512345678
 
 ### Step 7 Decrypt the card data, call the Acquirer and update the authorisationAttempt
 Decrypt the cardData from the callback and call the Acquirer.
