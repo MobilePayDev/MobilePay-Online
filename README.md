@@ -151,7 +151,7 @@ A callback will be made on the AddressCallbackUrl when the user swipes to accept
 {
   'PaymentId': '9369ea35-4b5b-428a-bdf8-c29c29a4b264',
   'AuthorizationAttemptId': 'a8c99cbf-3468-4eb9-9c0e-ddd110e8ed33',
-  'Addresses [
+  'Addresses': [{
     'FirstName': 'John',
     'Surname': 'Doe',
     'Attention': '',
@@ -166,7 +166,7 @@ A callback will be made on the AddressCallbackUrl when the user swipes to accept
     'IsDeliveryAddress': true,
     'AddressValidationMethod': 'DaWa',
     'AddressValidationStatus': 'NotValidated'
-  ],
+  }],
   'EmailAddress': 'johndoe@gmail.com',
   'EmailAddressValidationMethod': 'EmailEnteredTwice',
   'EmailAddressValidationStatus': 'Validated',
