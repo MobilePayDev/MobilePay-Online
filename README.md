@@ -57,8 +57,7 @@ Decrypt the cardData from the callback and call the Acquirer.
 When the Acquirer reply (or timeout), make sure you Patch our authorisationAttempt with the new status.
 
 ### Step 8 Move to hidden Production
-Ask developer@mobilepay.dk for an invitation to the Production Developer Portal https://developer.mobilepay.dk/ to get Production credentials, similar to sandbox. 
-Deploy your solution into "hidden production". Make a test webshop, and share the link to it with us (developer@mobilepay.dk) for a "slim certification". Do not proceed to step 9 before we´re happy!
+Please visit https://developer.mobilepay.dk/products/online/verification to see details of how to move to hidden production. This includes: Deploy your solution into "hidden production". Make a test webshop, and share the link to it with us (developer@mobilepay.dk) for a "slim certification". Do not proceed to step 9 before we´re happy!
 
 ### Step 9 Public production
 Document everything (including Checkout with all features) towards your Merchants in a fantastic documentation. Just the way your customers want it. Go live!
