@@ -26,41 +26,13 @@ You can find an example of a MobilePay Online flow [here](https://www.mobilepay.
 
 ## Development Guide
 
-### Step 1 Read and understand the documentation 
-Please read both the description here in GitHub and the API in Developer Portal: https://developer.mobilepay.dk/product (click 'Online').
+In order to implement MobilePay Online you must first obtain an agreement by contacting partnership_online@mobilepay.dk. If you have already signed an agreement with MobilePay for the use of MobilePay Online, you can skip this step
+
+When your agreement is signed, please visit our Developer Portal to start the technical onboarding: https://developer.mobilepay.dk/products/online/getting-started
+You will also find the API on the Developer Portal: https://developer.mobilepay.dk/product (click 'Online').
 The diagrams in the appendix [Diagrams](#diagrams) should also be helpful to understand the different flows.
 
-
-### Step 2 Onboarding
-If you have already signed an agreement with MobilePay for the use of MobilePay Online, you can skip this step. Otherwise, you must first obtain an agreement by contacting partnership_online@mobilepay.dk.
-
-### Step 3 Technical onboarding
-When your agreement is signed, please visit our developer portal to start the technical onboarding: https://developer.mobilepay.dk/products/online/getting-started
-
-### Step 4 Make your own test merchant
-By posting to /merchants/. Further reading: https://github.com/MobilePayDev/MobilePay-Online/blob/master/README.md#merchants
-
-### Step 5 Initiate a payment
-By posting to /payments/. Further reading: https://github.com/MobilePayDev/MobilePay-Online/blob/master/README.md#payments
-
-You´ll get the redirectToMPUrl in reponse. Now is also a good time to start working on your callback endpoint (the service you expose on cardDataCallbackUrl). Make sure it at least consumes the POST and reply http200.
-
-### Step 6 Try the payment in the app
-Open the "redirectToMPUrl" in a browser (or from an app), and try the payment flow.
-
-**Prefilled phone number**<br/>
-You can provide a phone number to be prefilled in the phone number field on the MobilePay webpage. 
-You do this by adding an URI encoded "alias" parameter with the phone number to the search parameters of the "redirectToMPUrl". The phone number must be fully specified including country code. For "+45 12 34 56 78" you would add the following to the url: &alias=%2B4512345678
-
-### Step 7 Decrypt the card data, call the Acquirer and update the authorisationAttempt
-Decrypt the cardData from the callback and call the Acquirer.
-When the Acquirer reply (or timeout), make sure you Patch our authorisationAttempt with the new status.
-
-### Step 8 Move to hidden Production
-Please visit https://developer.mobilepay.dk/products/online/verification to see details of how to move to hidden production. This includes: Deploy your solution into "hidden production". Make a test webshop, and share the link to it with us (developer@mobilepay.dk) for a "slim certification". Do not proceed to step 9 before we´re happy!
-
-### Step 9 Public production
-Document everything (including Checkout with all features) towards your Merchants in a fantastic documentation. Just the way your customers want it. Go live!
+On the developer portal you will also find information about [test](https://developer.mobilepay.dk/products/online/test) and [how to move to production](https://developer.mobilepay.dk/products/online/verification). 
 
 ## API guidelines
 
@@ -175,6 +147,9 @@ A callback will be made on the AddressCallbackUrl when the user swipes to accept
 }
 ```
 
+## Prefilled phone number
+You can provide a phone number to be prefilled in the phone number field on the MobilePay webpage. 
+You do this by adding an URI encoded "alias" parameter with the phone number to the search parameters of the "redirectToMPUrl". The phone number must be fully specified including country code. For "+45 12 34 56 78" you would add the following to the url: &alias=%2B4512345678
 # Appendix
 
 ## Error codes
