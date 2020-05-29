@@ -28,11 +28,11 @@ You can find an example of a MobilePay Online flow [here](https://www.mobilepay.
 
 In order to implement MobilePay Online you must first obtain an agreement by contacting partnership_online@mobilepay.dk. If you have already signed an agreement with MobilePay for the use of MobilePay Online, you can skip this step
 
-When your agreement is signed, please visit our Developer Portal to start the technical onboarding: https://developer.mobilepay.dk/products/online/getting-started
+When your agreement is signed, please visit our Developer Portal to start the technical onboarding: https://developer.mobilepay.dk/products/online/getting-started <br>
 You will also find the API on the Developer Portal: https://developer.mobilepay.dk/product (click 'Online').
 The diagrams in the appendix [Diagrams](#diagrams) should also be helpful to understand the different flows.
 
-On the developer portal you will also find information about [test](https://developer.mobilepay.dk/products/online/test) and [how to move to production](https://developer.mobilepay.dk/products/online/verification). 
+On the developer portal you will  find information about [test](https://developer.mobilepay.dk/products/online/test) and [how to move to production](https://developer.mobilepay.dk/products/online/verification). 
 
 ## API guidelines
 
