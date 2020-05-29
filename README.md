@@ -210,6 +210,7 @@ The following card types are allowed:
 ### Payments
 
 ![Payments](./assets/payment-sequence-diagram.svg)
+![Payments](./assets/payment-with-native-app-switching-sequence-diagrams.svg)
 
 ### Checkout
 
