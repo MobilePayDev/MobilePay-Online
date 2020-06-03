@@ -230,11 +230,13 @@ The following card types are allowed:
 
 ## Embedded Flow
 
-Webshops or Payment Service Providers (PSPs) may embed the web part of the flow into their own website by showing the MobilePay flow in an iframe and listen for response codes emitted from the iframe. 
+Webshops or Payment Service Providers (PSPs) may embed the web part of the flow into their own website by showing the MobilePay flow in an iframe and listen for response codes emitted from the iframe to the parent window.
 
 Embedding is especially relevant for users on bigger screens, e.g. desktop computers, where the user will request the payment to a phone number and complete the flow in MobilePay on a phone.
 
 On mobile devices it is expected that the MobilePay flow visually covers the whole screen (simple header and footer is acceptable).
+
+The redirect url provided when creating the payment will be navigated inside the iframe. Be aware that you might want to show the user different content if he is inside an iframe or not. If you support both iframe and full window, we recommend that you have a neutral return page without visual content. Build your logic on the parent page to listen for the response codes based on that navigate the user to the right place.
 
 ### IFRAME
 Add an "iframe" to the html source and set the iframe "src" property to the URL returned from the payment link creation endpoint.
