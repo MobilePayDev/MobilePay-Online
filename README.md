@@ -146,7 +146,10 @@ A callback will be made on the AddressCallbackUrl when the user swipes to accept
   'PhoneNumberValidationStatus': 'Validated'
 }
 ```
-
+### Endpoint security
+To ensure no unauthorized calls to your callback endpoints, we strongly suggest you apply either (or both) of these limitations:
+1. Firewall rules. These are the IP-ranges that MobilePay backend will be calling from: 212.93.32.0/19 and 185.218.228.0/22
+2. SSL "Common name" inpection. The "Common name" in our SSL client certificate should never change. Even when the certificate itself changes, or is issued to a different root.
 ## Prefilled phone number
 You can provide a phone number to be prefilled in the phone number field on the MobilePay webpage. 
 You do this by adding an URI encoded "alias" parameter with the phone number to the search parameters of the "redirectToMPUrl". The phone number must be fully specified including country code. For "+45 12 34 56 78" you would add the following to the url: &alias=%2B4512345678
