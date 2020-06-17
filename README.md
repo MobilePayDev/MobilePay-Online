@@ -94,13 +94,7 @@ A callback will be made on the CardDataCallbackUrl when the user swipes to accep
 ```
 The EncryptedCardData is encrypted according to this OAEP algorithm&padding scheme: RSA/NONE/OAEPWithSHA256AndMGF1Padding . 
 Once decrypted, you´ll see:
-{
-  "encryptedCardData": {
-    "cardNumber": "1234567812345678",
-    "expiryMonth": "12",
-    "expiryYear": "28"
-  }
-}
+{ "encryptedCardData": { "cardNumber": 1234567812345678, "expiryMonth": 12, "expiryYear": 28 }
 
 ### Failed callback
 
