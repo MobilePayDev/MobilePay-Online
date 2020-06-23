@@ -9,6 +9,7 @@
 **[Payments](#payments)**<br />
 **[Request Fishing Scenario](#request-fishing-scenario)**<br />
 **[Restrictions](#restrictions)**<br />
+**[Dankort acquiring](#Dankort-acquring)**<br />
 **[Callbacks](#callbacks)**<br />
 
 **Appendix**<br />
