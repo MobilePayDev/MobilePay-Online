@@ -13,6 +13,7 @@
 **[Callbacks](#callbacks)**<br />
 
 **Appendix**<br />
+**[Merchant documentation](#merchant-documentation)**<br />
 **[Error Codes](#error-codes)**<br />
 **[Allowed currencies](#allowed-currencies)**<br />
 **[Allowed card types](#allowed-card-types)**<br />
@@ -152,6 +153,15 @@ To ensure no unauthorized calls to your callback endpoints, we strongly suggest 
 You can provide a phone number to be prefilled in the phone number field on the MobilePay webpage. 
 You do this by adding an URI encoded "alias" parameter with the phone number to the search parameters of the "redirectToMPUrl". The phone number must be fully specified including country code. For "+45 12 34 56 78" you would add the following to the url: &alias=%2B4512345678
 # Appendix
+
+## Merchant documentation
+The documentation towards you customers, the merchants, must - at least - tell about
+* Name and LogoUrl (and the file hosted on the Url)
+* How the solution is used from a native app (API enabled)
+* Give insight on the fall pits of 'context switch' on client side<br />
+a. Scenario ‘browser A’ -> MP App -> ‘browser B’. The Merchant return page should not rely on any sort of session object (e.g. a cookie), to recognise the returning customer. It should solely rely on data given in the redirect (redirectFromMobilePayUrl).<br />
+b. Scenario ‘browser -> MP App’. If possible, the Merchant should not rely on the customer returning client side at all. Rather it should process the purchase when your server-to-server callback is received, or after getting confirmation on a status endpoint.
+
 
 ## Error codes
 
