@@ -22,9 +22,11 @@
 
 ## Product description
 
-MobilePay Online is essentially a way for the user to accept online payments in the Mobilepay app. When the user accepts the payment, their card data is encrypted and transferred to the PSP who can then do the authorization towards the merchant's chosen acquirer.
+MobilePay Online is essentially a way for the user to accept eCommerce/online payments in the MobilePay app. When the user accepts the payment, their card data is encrypted and transferred to the PSP who can then do the authorization towards the aquirer chosen by the web shop.
 [![](./assets/MPO%20stylized%20flow.svg)](./assets/MPO%20stylized%20flow.svg)
-You can find an example of a MobilePay Online flow [here](https://www.mobilepay.dk/mobilepaymedia/mobilepay-dk/films/product/mobilepay-online-2018.mp4). 
+You can find an example of a MobilePay Online flow [here](https://www.mobilepay.dk/mobilepaymedia/mobilepay-dk/films/product/mobilepay-online-2018.mp4).
+
+MobilePay is a digital wallet for iOS and Android that can be used for person to person transfers, in-store purchases, subscriptions, invoices, eCommerce transactions etc. The documentation on this page covers the technical setup of the eCommerce functionality and is directed at Payment Service Providers that wish to offer MobilePay as a payment method to their customers (i.e. web shops). 
 
 ## Development Guide
 
@@ -148,7 +150,7 @@ A callback will be made on the AddressCallbackUrl when the user swipes to accept
 ### Endpoint security
 To ensure no unauthorized calls to your callback endpoints, we strongly suggest you apply either (or both) of these limitations:
 1. Firewall rules. These are the IP-ranges that MobilePay backend will be calling from: 212.93.32.0/19 and 185.218.228.0/22
-2. SSL "Common name" inpection. The "Common name" in our SSL client certificate should never change. Even when the certificate itself changes, or is issued to a different root.
+2. SSL "Common name" inspection. The "Common name" in our SSL client certificate should never change. Even when the certificate itself changes, or is issued to a different root.
 ## Prefilled phone number
 You can provide a phone number to be prefilled in the phone number field on the MobilePay webpage. 
 You do this by adding an URI encoded "alias" parameter with the phone number to the search parameters of the "redirectToMPUrl". The phone number must be fully specified including country code. For "+45 12 34 56 78" you would add the following to the url: &alias=%2B4512345678
@@ -158,7 +160,7 @@ You do this by adding an URI encoded "alias" parameter with the phone number to 
 The documentation towards you customers, the merchants, must - at least - tell about
 * Name and LogoUrl (and the file hosted on the Url)
 * How the solution is used from a native app (API enabled)
-* Give insight on the fall pits of 'context switch' on client side<br />
+* Give insight on the pitfalls of 'context switch' on client side<br />
 a. Scenario ‘browser A’ -> MP App -> ‘browser B’. The Merchant return page should not rely on any sort of session object (e.g. a cookie), to recognise the returning customer. It should solely rely on data given in the redirect (redirectFromMobilePayUrl).<br />
 b. Scenario ‘browser -> MP App’. If possible, the Merchant should not rely on the customer returning client side at all. Rather it should process the purchase when your server-to-server callback is received, or after getting confirmation on a status endpoint.
 
