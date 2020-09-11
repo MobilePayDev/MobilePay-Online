@@ -299,3 +299,7 @@ The response codes are
 | 3 |	Expired |
 | 4	| Cancelled |
 | 9 | Other |
+
+
+### Strong Customer Authentication (SCA) proposed solution
+![suggested solution, not implemented yet](./assets/SCA%20tech%20spec%20for%20MobilePay%20Online%20v1.1.pdf)
