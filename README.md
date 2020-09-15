@@ -97,6 +97,7 @@ A callback will be made on the CardDataCallbackUrl when the user swipes to accep
   'PaymentId': 'a84781b3-af34-42ae-b296-260cfb6859fe',
   'AuthorizationAttemptId': 'ba12c5d5-8fd1-49cc-bc3f-2cb2ecb888c7',
   'PublicKeyId': 263012
+  'CardType' : 'DANKORT'
 }
 ```
 The EncryptedCardData is encrypted according to this OAEP algorithm&padding scheme: RSA/NONE/OAEPWithSHA256AndMGF1Padding . 
