@@ -80,7 +80,13 @@ A payment will time out within 35 minutes, meaning that the whole process of use
 Furthermore after you get the callback containing the card data, you must update the status of the authorization to either "authorize-succesfull" or "authorize-failed" within 32 seconds to ensure a smooth experience for the user waiting for the confirmation.
 
 ## Dankort acquiring
-Use POS code: ‘K005K0K00130’ and mark the transaction as “Delegated Authentication” . Refer to Nets´ “Merchant Guide SSL Based Card Acquiring (SPIP)”, field 47, and related specifications as updated by Nets.
+Use POS code: ‘K005K0K00130’.
+### Using Nets SDI secification
+In Field S120 tag 34: the MVV value of 8844101001</br>
+In Field S120 tag 70 pos 14 (exemption Tag): the value of 3 for Delegated Authentication
+### Using Nets TRG PSIP/ ISO 8583 / Merchant Guide SSL
+In Field 47 tag 7R: the value of 8844101001</br>
+In Field 47 tag V!: the value of 23
 
 ## Callbacks
 
