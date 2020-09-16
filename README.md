@@ -18,7 +18,8 @@
 **[Allowed currencies](#allowed-currencies)**<br />
 **[Allowed card types](#allowed-card-types)**<br />
 **[Diagrams](#diagrams)**<br />
-**[Embedded flow](#embedded-flow)**
+**[Embedded flow](#embedded-flow)**<br />
+**[Strong Customer Authentication (SCA) proposed solution](#strong-customer-authentication-sca-proposed-solution)**
 
 ## Product description
 
