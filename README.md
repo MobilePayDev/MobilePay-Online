@@ -310,4 +310,4 @@ The response codes are
 
 
 ### Strong Customer Authentication (SCA) proposed solution
-[suggested solution, not implemented yet](./assets/SCA%20tech%20spec%20for%20MobilePay%20Online%20v1.1.pdf)
+[Suggested solution, not implemented yet](./assets/SCA%20tech%20spec%20for%20MobilePay%20Online%20v1.1.pdf)
