@@ -89,6 +89,8 @@ In Field S120 tag 70 pos 14 (exemption Tag): the value of 3 for Delegated Authen
 In Field 47 tag 7R: the value of 8844101001</br>
 In Field 47 tag V!: the value of 23
 
+PROBLEM: The value "8844101001" has been questioned. We´re getting it confirmed with Nets Acquirer. Until confirmed, don´t use it!
+
 ## Callbacks
 
 As a rule of thump, MobilePay Online is idempotent in all operations. Likewise, we expect PSPs to be able to handle the same callback more than once in the event of transient errors on network, ours or your side.
@@ -103,7 +105,7 @@ A callback will be made on the CardDataCallbackUrl when the user swipes to accep
   'EncryptedCardData': 'fsfnsdjkfbgdft34895u7345',
   'PaymentId': 'a84781b3-af34-42ae-b296-260cfb6859fe',
   'AuthorizationAttemptId': 'ba12c5d5-8fd1-49cc-bc3f-2cb2ecb888c7',
-  'PublicKeyId': 263012
+  'PublicKeyId': 263012,
   'CardType' : 'DANKORT'
 }
 ```
