@@ -83,13 +83,11 @@ Furthermore after you get the callback containing the card data, you must update
 ## Dankort acquiring
 Use POS code: ‘K005K0K00130’.
 ### Using Nets SDI secification
-In Field S120 tag 34: the MVV value of 8844101001</br>
+In Field S120 tag 36: the MVV value of 8844101001</br>
 In Field S120 tag 70 pos 14 (exemption Tag): the value of 3 for Delegated Authentication
 ### Using Nets TRG PSIP/ ISO 8583 / Merchant Guide SSL
 In Field 47 tag 7R: the value of 8844101001</br>
 In Field 47 tag V!: the value of 23
-
-PROBLEM: The value "8844101001" has been questioned. We´re getting it confirmed with Nets Acquirer. Until confirmed, don´t use it!
 
 ## Callbacks
 
