@@ -83,7 +83,7 @@ Furthermore after you get the callback containing the card data, you must update
 ## Dankort acquiring
 Use POS code: ‘K005K0K00130’.
 ### Using Nets SDI secification
-In Field S120 tag 36: the MVV value of 8844101001</br>
+In Field S120 tag 36: the value of 8844101001</br>
 In Field S120 tag 70 pos 14 (exemption Tag): the value of 3 for Delegated Authentication
 ### Using Nets TRG PSIP/ ISO 8583 / Merchant Guide SSL
 In Field 47 tag 7R: the value of 8844101001</br>
