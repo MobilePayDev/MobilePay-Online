@@ -9,7 +9,7 @@
 **[Payments](#payments)**<br />
 **[Request Fishing Scenario](#request-fishing-scenario)**<br />
 **[Restrictions](#restrictions)**<br />
-**[Dankort acquiring](#Dankort-acquiring)**<br />
+**[Strong Customer Authentication (SCA)](#strong-customer-authentication-sca)**<br />
 **[Callbacks](#callbacks)**<br />
 
 **Appendix**<br />
@@ -19,7 +19,6 @@
 **[Allowed card types](#allowed-card-types)**<br />
 **[Diagrams](#diagrams)**<br />
 **[Embedded flow](#embedded-flow)**<br />
-**[Strong Customer Authentication (SCA) proposed solution](#strong-customer-authentication-sca-proposed-solution)**
 
 ## Product description
 
@@ -80,14 +79,69 @@ Depending on the scenario a DomainError will be returned stating the problem. If
 A payment will time out within 35 minutes, meaning that the whole process of user accepting, callbacks made and authorization must be completed within 35 minutes.
 Furthermore after you get the callback containing the card data, you must update the status of the authorization to either "authorize-succesfull" or "authorize-failed" within 32 seconds to ensure a smooth experience for the user waiting for the confirmation.
 
-## Dankort acquiring
+## Strong Customer Authentication (SCA)
+
+We aim to ensure Delegated Authentication (DA). This means that responsability for authenticating the customer/payer no longer lies with the Issuer, but is delegated to MobilePay.  When/if we fail, and the Issuer is responding to an authrorisation attempt with a Soft Decline/"step-up", a 3DSecure fallback solution must be in place.
+
+### DA for Dankort
+As long as you use the tags and values described here, all is well. Nets will recognize MobilePay and trust our authentication process.
+
 Use POS code: ‘K005K0K00130’.
-### Using Nets SDI secification
+#### Using Nets SDI specification
 In Field S120 tag 36: the value of 8844101001</br>
 In Field S120 tag 70 pos 14 (exemption Tag): the value of 3 for Delegated Authentication
-### Using Nets TRG PSIP/ ISO 8583 / Merchant Guide SSL
+#### Using Nets TRG PSIP/ ISO 8583 / Merchant Guide SSL
 In Field 47 tag 7R: the value of 8844101001</br>
 In Field 47 tag V!: the value of 23
+
+### DA for all Visa Cards
+When you initiate a payment, make sure to use v2 of the API. Here you give a tokenCallbackUrl for all accepted Visa types. For now, please also provide a carddataCallbackUrl as failover. Not all Visa cards can be tokenized. </br>
+
+![After authorization](./assets/payment-Strong-Customer-Authentication-With-VTS.svg)
+
+When you recieve the tokenCallback, you´ll find a cardIssuedInCountryCode (possible values DK, FI) you can use for your Acquirer routing logic. And a Visa Token Service (VTS) service response like this: <br />
+```
+{
+	"paymentId": "string",
+	"authorizationAttemptId": "string",
+	"cardType": "string",
+	"tokenMethod": "string",
+	"cardIssuedInCountryCode": "string",
+	"tokenData": {
+		"vPaymentDataID": "string",
+		"cryptogramInfo": {
+			"cryptogram": "string",
+			"eci": "string"
+		},
+		"paymentInstrument": {
+			"last4": "string",
+			"paymentType": {
+				"cardBrand": "string"
+			},
+			"paymentAccountReference": "string"
+		},
+		"tokenInfo": {
+			"encTokenInfo": "string",
+			"last4": "string",
+			"expirationDate": {
+				"month": "string",
+				"year": "string"
+			}
+		},
+		"encryptionMetaData": "string"
+	}
+}
+```
+Please pass the data to the Acquirer, as you would do if the VTS response was from you own VTS integration. 
+
+
+### DA for all Mastercard Cards
+We´re in the process of setting up Tokenization. The flow will work similar to Visa VTS, because both are based on the EMVCo, however data transferred will not be exactly the same. 
+
+### DA fails, 3DSecure Fallback
+If DA fails, the 3DSecure fallback solution applies. 
+
+![After authorization](./assets/payment-Strong-Customer-Authentication-With-3DS-Fallback.svg)
 
 ## Callbacks
 
@@ -307,7 +361,3 @@ The response codes are
 | 3 |	Expired |
 | 4	| Cancelled |
 | 9 | Other |
-
-
-### Strong Customer Authentication (SCA) proposed solution
-[Suggested solution, not implemented yet](./assets/SCA%20tech%20spec%20for%20MobilePay%20Online%20v1.1.pdf)
