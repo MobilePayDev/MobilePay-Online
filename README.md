@@ -81,7 +81,7 @@ Furthermore after you get the callback containing the card data, you must update
 
 ## Strong Customer Authentication (SCA)
 
-We aim to ensure Delegated Authentication (DA). This means that responsability for authenticating the customer/payer no longer lies with the Issuer, but is delegated to MobilePay.  When/if we fail, and the Issuer is responding to an authrorisation attempt with a Soft Decline/"step-up", a 3DSecure fallback solution must be in place.
+We aim to ensure Delegated Authentication (DA). This means that responsibility for authenticating the customer/payer no longer lies with the Issuer, but is delegated to MobilePay.  When/if we fail, and the Issuer is responding to an authorisation attempt with a Soft Decline/"step-up", a 3-D Secure fallback solution must be in place.
 
 ### DA for Dankort
 As long as you use the tags and values described here, all is well. Nets will recognize MobilePay and trust our authentication process.
