@@ -143,6 +143,8 @@ If Delegated Authentication fails, the 3DSecure fallback solution applies.
 [![](./assets/3dsfallback.svg)](./assets/3dsfallback.svg)
 Please notice the purple ”Wallet locked” and ”Wallet unlocked” in communication between MobilePay App and MobilePay Backend. This will both ensure, that the user/payer can pick a different card from his wallet, when his first attempt is ”soft rejected”, and ensure that he cannot do that, and start a parallel authorization-attempt while the second attempt on the first card is being processed. For this to work, the PSP must call MP backend with reasonCode=1009 as soon as it has crypto (Ares/Pres) from SCA, before retrying the authorization-attempt towards Acquirer and Issuer. 
 
+When the user has completed the challenge, please immediately redirect to https://products.mobilepay.dk/remote-website/apppages/done3ds.html
+
 ## Callbacks
 
 As a rule of thump, MobilePay Online is idempotent in all operations. Likewise, we expect PSPs to be able to handle the same callback more than once in the event of transient errors on network, ours or your side.
