@@ -96,8 +96,7 @@ In Field 47 tag V!: the value of 23
 
 ### Delegated Authentication for all Visa Cards
 When you initiate a payment, make sure to use v2 of the API. Here you give a tokenCallbackUrl for all accepted Visa types. For now, please also provide a carddataCallbackUrl as failover. Not all Visa cards can be tokenized. </br>
-
-![After authorization](./assets/payment-Strong-Customer-Authentication-With-VTS.svg)
+[![](./assets/vts.svg)](./assets/vts.svg)
 
 When you recieve the tokenCallback, you´ll find a cardIssuedInCountryCode (possible values DK, FI) you can use for your Acquirer routing logic. And a Visa Token Service (VTS) service response like this: <br />
 ```
@@ -141,7 +140,8 @@ We´re in the process of setting up Tokenization. The flow will work similar to 
 ### 3DSecure Fallback
 If Delegated Authentication fails, the 3DSecure fallback solution applies. 
 
-![After authorization](./assets/payment-Strong-Customer-Authentication-With-3DS-Fallback.svg)
+[![](./assets/3dsfallback.svg)](./assets/3dsfallback.svg)
+Please notice the purple ”Wallet locked” and ”Wallet unlocked” in communication between MobilePay App and MobilePay Backend. This will both ensure, that the user/payer can pick a different card from his wallet, when his first attempt is ”soft rejected”, and ensure that he cannot do that, and start a parallel authorization-attempt while the second attempt on the first card is being processed. For this to work, the PSP must call MP backend with reasonCode=1009 as soon as it has crypto (Ares/Pres) from SCA, before retrying the authorization-attempt towards Acquirer and Issuer. 
 
 ## Callbacks
 
