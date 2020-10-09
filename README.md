@@ -83,7 +83,7 @@ Furthermore after you get the callback containing the card data, you must update
 
 We aim to ensure Delegated Authentication (DA). This means that responsibility for authenticating the customer/payer no longer lies with the Issuer, but is delegated to MobilePay.  When/if we fail, and the Issuer is responding to an authorisation attempt with a Soft Decline/"step-up", a 3-D Secure fallback solution must be in place.
 
-### DA for Dankort
+### Delegated Authentication for Dankort
 As long as you use the tags and values described here, all is well. Nets will recognize MobilePay and trust our authentication process.
 
 Use POS code: ‘K005K0K00130’.
@@ -94,7 +94,7 @@ In Field S120 tag 70 pos 14 (exemption Tag): the value of 3 for Delegated Authen
 In Field 47 tag 7R: the value of 8844101001</br>
 In Field 47 tag V!: the value of 23
 
-### DA for all Visa Cards
+### Delegated Authentication for all Visa Cards
 When you initiate a payment, make sure to use v2 of the API. Here you give a tokenCallbackUrl for all accepted Visa types. For now, please also provide a carddataCallbackUrl as failover. Not all Visa cards can be tokenized. </br>
 
 ![After authorization](./assets/payment-Strong-Customer-Authentication-With-VTS.svg)
@@ -105,7 +105,7 @@ When you recieve the tokenCallback, you´ll find a cardIssuedInCountryCode (poss
 	"paymentId": "string",
 	"authorizationAttemptId": "string",
 	"cardType": "string",
-	"tokenMethod": "string",
+	"tokenMethod": "string",//value is 'VTS'
 	"cardIssuedInCountryCode": "string",
 	"tokenData": {
 		"vPaymentDataID": "string",
@@ -132,14 +132,14 @@ When you recieve the tokenCallback, you´ll find a cardIssuedInCountryCode (poss
 	}
 }
 ```
-Please pass the data to the Acquirer, as you would do if the VTS response was from you own VTS integration. 
+Please pass the data to the Acquirer, as you would do if the VTS response was from you own VTS integration. I case you have questions to the Acquirer API, ask the Acquirer.
 
 
-### DA for all Mastercard Cards
+### Delegated Authentication for all Mastercard
 We´re in the process of setting up Tokenization. The flow will work similar to Visa VTS, because both are based on the EMVCo, however data transferred will not be exactly the same. 
 
-### DA fails, 3DSecure Fallback
-If DA fails, the 3DSecure fallback solution applies. 
+### 3DSecure Fallback
+If Delegated Authentication fails, the 3DSecure fallback solution applies. 
 
 ![After authorization](./assets/payment-Strong-Customer-Authentication-With-3DS-Fallback.svg)
 
