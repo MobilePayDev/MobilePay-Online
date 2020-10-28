@@ -105,7 +105,6 @@ When you recieve the tokenCallback, you´ll find a cardIssuedInCountryCode (poss
 	"authorizationAttemptId": "string",
 	"cardType": "string",	
 	"cardIssuedInCountryCode": "string",
-	"isDelegatedAuthentication": bool,
 	"tokenData": {
 		"vPaymentDataID": "string",
 		"cryptogramInfo": {
