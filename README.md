@@ -95,7 +95,7 @@ In Field 47 tag 7R: the value of 8844101001</br>
 In Field 47 tag V!: the value of 23
 
 ### Delegated Authentication for all Visa Cards
-When you initiate a payment, make sure to use v2 of the API. Here you give a tokenCallbackUrl for all accepted Visa types. For now, please also provide a carddataCallbackUrl as failover. Not all Visa cards can be tokenized. </br>
+When you initiate a payment, make sure to use v2 of the API. Here you give a tokenCallbackUrl for all accepted Visa types. However, please also provide a carddataCallbackUrl as failover, because not all Visa cards can be tokenized. For Dynamic Linking, please give us MerchantUrl and MerchantName, exactly as registred by the merchant with the Acquirer.</br>
 [![](./assets/vts.svg)](./assets/vts.svg)
 
 When you recieve the tokenCallback, you´ll find a cardIssuedInCountryCode (possible values DK, FI) you can use for your Acquirer routing logic. And a Visa Token Service (VTS) service response like this: <br />
@@ -103,8 +103,7 @@ When you recieve the tokenCallback, you´ll find a cardIssuedInCountryCode (poss
 {
 	"paymentId": "string",
 	"authorizationAttemptId": "string",
-	"cardType": "string",
-	"tokenMethod": "string",//value is 'VTS'
+	"cardType": "string",	
 	"cardIssuedInCountryCode": "string",
 	"isDelegatedAuthentication": bool,
 	"tokenData": {
@@ -130,6 +129,42 @@ When you recieve the tokenCallback, you´ll find a cardIssuedInCountryCode (poss
 		},
 		"encryptionMetaData": "string"
 	}
+	"tokenMethod": "string",
+}
+```
+</br>
+Example: </br>
+
+```
+{
+   "paymentId":"8dab9219-ab03-4524-bae7-f0ad55119da5",
+   "authorizationAttemptId":"32eedb2b-a536-4eb6-b618-c2d6c1bf7aab",
+   "cardType":"VISA-CREDIT",
+   "cardIssuedInCountryCode":"DK",
+   "tokenData":{
+      "vPaymentDataID":"da17bd1568bdc8b418d71cf80c44ea02",
+      "cryptogramInfo":{
+         "cryptogram":"/wAAAAwAUkMTObMAAAAAgS0AAAA=",
+         "eci":"07"
+      },
+      "paymentInstrument":{
+         "last4":"6386",
+         "paymentType":{
+            "cardBrand":"VISA"
+         },
+         "paymentAccountReference":"V0010013020217426481676671969"
+      },
+      "tokenInfo":{
+         "encTokenInfo":"eyJhbGciOiJBMjU2R0NNS1ciLCJpdiI6IjJ6d19MS2RfQlVCM0JwcmwiLCJ0YWciOiJpMW5IZFR2THZ3Uk52SkxVd3dNY1p3IiwiZW5jIjoiQTI1NkdDTSIsInR5cCI6IkpPU0UiLCJraWQiOiI0NFJMTk0xNkpOTkNLMkU3M1MzUDEzTjB3NThKanpLU3ZXRllvdUNYbmc5dEh4V2o4IiwiY2hhbm5lbFNlY3VyaXR5Q29udGV4dCI6IlNIQVJFRF9TRUNSRVQiLCJpYXQiOiIxNjAzODA5MTM1In0.6e32_J7goISoA_erRTE2wD9qmBEC_w4E9c07qxx3f9k.2PUuDioChgYP-h87.QXjknQZHHP-JhzmSmXBLIgwfYsSPznLOZVj3Zw.AbVsYq9LcYYb-rX3fzrh7Q",
+         "last4":"6597",
+         "expirationDate":{
+            "month":"02",
+            "year":"2023"
+         }
+      },
+      "encryptionMetaData":"NDRSTE5NMTZKTk5DSzJFNzNTM1AxM04wdzU4Smp6S1N2V0ZZb3VDWG5nOXRIeFdqOA"
+   },
+   "tokenMethod":"VTS"
 }
 ```
 Please pass the data to the Acquirer, as you would do if the VTS response was from you own VTS integration. I case you have questions to the Acquirer API, ask the Acquirer.
