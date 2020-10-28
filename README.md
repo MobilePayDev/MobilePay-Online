@@ -9,7 +9,7 @@
 **[Payments](#payments)**<br />
 **[Request Fishing Scenario](#request-fishing-scenario)**<br />
 **[Restrictions](#restrictions)**<br />
-**[Dankort acquiring](#Dankort-acquiring)**<br />
+**[Strong Customer Authentication (SCA)](#strong-customer-authentication-sca)**<br />
 **[Callbacks](#callbacks)**<br />
 
 **Appendix**<br />
@@ -19,7 +19,6 @@
 **[Allowed card types](#allowed-card-types)**<br />
 **[Diagrams](#diagrams)**<br />
 **[Embedded flow](#embedded-flow)**<br />
-**[Strong Customer Authentication (SCA) proposed solution](#strong-customer-authentication-sca-proposed-solution)**
 
 ## Product description
 
@@ -80,14 +79,106 @@ Depending on the scenario a DomainError will be returned stating the problem. If
 A payment will time out within 35 minutes, meaning that the whole process of user accepting, callbacks made and authorization must be completed within 35 minutes.
 Furthermore after you get the callback containing the card data, you must update the status of the authorization to either "authorize-succesfull" or "authorize-failed" within 32 seconds to ensure a smooth experience for the user waiting for the confirmation.
 
-## Dankort acquiring
+## Strong Customer Authentication (SCA)
+
+We aim to ensure Delegated Authentication (DA). This means that responsibility for authenticating the customer/payer no longer lies with the Issuer, but is delegated to MobilePay.  When/if we fail, and the Issuer is responding to an authorisation attempt with a Soft Decline/"step-up", a 3-D Secure fallback solution must be in place.
+
+### Delegated Authentication for Dankort
+As long as you use the tags and values described here, all is well. Nets will recognize MobilePay and trust our authentication process.
+
 Use POS code: ‘K005K0K00130’.
-### Using Nets SDI secification
+#### Using Nets SDI specification
 In Field S120 tag 36: the value of 8844101001</br>
 In Field S120 tag 70 pos 14 (exemption Tag): the value of 3 for Delegated Authentication
-### Using Nets TRG PSIP/ ISO 8583 / Merchant Guide SSL
+#### Using Nets TRG PSIP/ ISO 8583 / Merchant Guide SSL
 In Field 47 tag 7R: the value of 8844101001</br>
 In Field 47 tag V!: the value of 23
+
+### Delegated Authentication for all Visa Cards
+When you initiate a payment, make sure to use v3 of the API. Here you give a tokenCallbackUrl for all accepted Visa types. However, please also provide a carddataCallbackUrl as failover, because not all Visa cards can be tokenized. For Dynamic Linking, please give us MerchantUrl and MerchantName.</br>
+[![](./assets/vts.svg)](./assets/vts.svg)
+
+When you recieve the tokenCallback, you´ll find a cardIssuedInCountryCode (possible values DK, FI) you can use for your Acquirer routing logic. And a Visa Token Service (VTS) service response like this: <br />
+```
+{
+	"paymentId": "string",
+	"authorizationAttemptId": "string",
+	"cardType": "string",	
+	"cardIssuedInCountryCode": "string",
+	"tokenData": {
+		"vPaymentDataID": "string",
+		"cryptogramInfo": {
+			"cryptogram": "string",
+			"eci": "string"
+		},
+		"paymentInstrument": {
+			"last4": "string",
+			"paymentType": {
+				"cardBrand": "string"
+			},
+			"paymentAccountReference": "string"
+		},
+		"tokenInfo": {
+			"encTokenInfo": "string",
+			"last4": "string",
+			"expirationDate": {
+				"month": "string",
+				"year": "string"
+			}
+		},
+		"encryptionMetaData": "string"
+	}
+	"tokenMethod": "string",
+}
+```
+</br>
+Example: </br>
+
+```
+{
+   "paymentId":"8dab9219-ab03-4524-bae7-f0ad55119da5",
+   "authorizationAttemptId":"32eedb2b-a536-4eb6-b618-c2d6c1bf7aab",
+   "cardType":"VISA-CREDIT",
+   "cardIssuedInCountryCode":"DK",
+   "tokenData":{
+      "vPaymentDataID":"da17bd1568bdc8b418d71cf80c44ea02",
+      "cryptogramInfo":{
+         "cryptogram":"/wAAAAwAUkMTObMAAAAAgS0AAAA=",
+         "eci":"07"
+      },
+      "paymentInstrument":{
+         "last4":"6386",
+         "paymentType":{
+            "cardBrand":"VISA"
+         },
+         "paymentAccountReference":"V0010013020217426481676671969"
+      },
+      "tokenInfo":{
+         "encTokenInfo":"eyJhbGciOiJBMjU2R0NNS1ciLCJpdiI6IjJ6d19MS2RfQlVCM0JwcmwiLCJ0YWciOiJpMW5IZFR2THZ3Uk52SkxVd3dNY1p3IiwiZW5jIjoiQTI1NkdDTSIsInR5cCI6IkpPU0UiLCJraWQiOiI0NFJMTk0xNkpOTkNLMkU3M1MzUDEzTjB3NThKanpLU3ZXRllvdUNYbmc5dEh4V2o4IiwiY2hhbm5lbFNlY3VyaXR5Q29udGV4dCI6IlNIQVJFRF9TRUNSRVQiLCJpYXQiOiIxNjAzODA5MTM1In0.6e32_J7goISoA_erRTE2wD9qmBEC_w4E9c07qxx3f9k.2PUuDioChgYP-h87.QXjknQZHHP-JhzmSmXBLIgwfYsSPznLOZVj3Zw.AbVsYq9LcYYb-rX3fzrh7Q",
+         "last4":"6597",
+         "expirationDate":{
+            "month":"02",
+            "year":"2023"
+         }
+      },
+      "encryptionMetaData":"NDRSTE5NMTZKTk5DSzJFNzNTM1AxM04wdzU4Smp6S1N2V0ZZb3VDWG5nOXRIeFdqOA"
+   },
+   "tokenMethod":"VTS"
+}
+```
+Please pass the data to the Acquirer, as you would do if the VTS response was from you own VTS integration. I case you have questions to the Acquirer API, ask the Acquirer.
+
+
+### Delegated Authentication for all Mastercard
+We´re in the process of setting up Tokenization. The flow will work similar to Visa VTS, because both are based on the EMVCo, however data transferred will not be exactly the same. 
+
+### 3DSecure Fallback
+If Delegated Authentication fails, the 3DSecure fallback solution applies. 
+
+[![](./assets/3dsfallback.svg)](./assets/3dsfallback.svg)
+Please notice the purple ”Wallet locked” and ”Wallet unlocked” in communication between MobilePay App and MobilePay Backend. This will both ensure, that the user/payer can pick a different card from his wallet, when his first attempt is ”soft rejected”, and ensure that he cannot do that, and start a parallel authorization-attempt while the second attempt on the first card is being processed. For this to work, the PSP must call MP backend with reasonCode=1009 as soon as it has crypto (Ares/Pres) from SCA, before retrying the authorization-attempt towards Acquirer and Issuer. 
+
+When the user has completed the challenge, please immediately redirect to https://products.mobilepay.dk/remote-website/apppages/done3ds.html
 
 ## Callbacks
 
@@ -307,7 +398,3 @@ The response codes are
 | 3 |	Expired |
 | 4	| Cancelled |
 | 9 | Other |
-
-
-### Strong Customer Authentication (SCA) proposed solution
-[Suggested solution, not implemented yet](./assets/SCA%20tech%20spec%20for%20MobilePay%20Online%20v1.1.pdf)
