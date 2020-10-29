@@ -94,7 +94,8 @@ In Field S120 tag 70 pos 14 (exemption Tag): the value of 3 for Delegated Authen
 In Field 47 tag 7R: the value of 8844101001</br>
 In Field 47 tag V!: the value of 23
 
-### Delegated Authentication for all Visa Cards
+
+### Delegated Authentication for all Visa cards
 When you initiate a payment, make sure to use v3 of the API. Here you give a tokenCallbackUrl for all accepted Visa types. However, please also provide a carddataCallbackUrl as failover, because not all Visa cards can be tokenized. For Dynamic Linking, please give us MerchantUrl and MerchantName.</br>
 [![](./assets/vts.svg)](./assets/vts.svg)
 
@@ -166,11 +167,11 @@ Example: </br>
    "tokenMethod":"VTS"
 }
 ```
-Please pass the data to the Acquirer, as you would do if the VTS response was from you own VTS integration. I case you have questions to the Acquirer API, ask the Acquirer.
+Please pass the data to the Acquirer, as you would do if the VTS response was from you own VTS integration. In case you have questions to the Acquirer API, ask the Acquirer.
 
 
-### Delegated Authentication for all Mastercard
-We´re in the process of setting up Tokenization. The flow will work similar to Visa VTS, because both are based on the EMVCo, however data transferred will not be exactly the same. 
+### Delegated Authentication for all Mastercards
+We´re in the process of setting up Tokenization. The flow will work similar to Visa VTS, because both are based on the EMVCo, however data transferred will not be exactly the same. More info will be provided as soon as we have it. Until then, the 3DSecure fallback will cover SCA for Mastercards.
 
 ### 3DSecure Fallback
 If Delegated Authentication fails, the 3DSecure fallback solution applies. 
