@@ -168,6 +168,7 @@ Example: </br>
 }
 ```
 Please pass the data to the Acquirer, as you would do if the VTS response was from you own VTS integration. In case you have questions to the Acquirer API, ask the Acquirer.
+Regarding encTokenInfo: We are currently working on as solution to decrypt the encTokenInfo before sending the callback. We will update this documentation as soon as this is ready. 
 
 
 ### Delegated Authentication for all Mastercards
