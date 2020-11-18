@@ -167,8 +167,6 @@ Example: </br>
 ```
 Please pass the data to the Acquirer, as you would do if the VTS response was from you own VTS integration. In case you have questions to the Acquirer API, ask the Acquirer.
 
-Regarding encTokenInfo: We are currently working on as solution to decrypt the encTokenInfo before sending the callback. We will update this documentation as soon as this is ready. 
-
 
 ### Delegated Authentication for all Mastercards
 We´re in the process of setting up Tokenization. The flow will work similar to Visa VTS, because both are based on the EMVCo, however data transferred will not be exactly the same. More info will be provided as soon as we have it. Until then, the 3DSecure fallback will cover SCA for Mastercards.
