@@ -106,6 +106,7 @@ When you recieve the tokenCallback, you´ll find a cardIssuedInCountryCode (poss
 	"authorizationAttemptId": "string",
 	"cardType": "string",	
 	"cardIssuedInCountryCode": "string",
+	"tokenMethod": "string",
 	"tokenData": {
 		"vPaymentDataID": "string",
 		"cryptogramInfo": {
@@ -120,16 +121,14 @@ When you recieve the tokenCallback, you´ll find a cardIssuedInCountryCode (poss
 			"paymentAccountReference": "string"
 		},
 		"tokenInfo": {
-			"encTokenInfo": "string",
+			"token": "string",
 			"last4": "string",
 			"expirationDate": {
 				"month": "string",
 				"year": "string"
 			}
 		},
-		"encryptionMetaData": "string"
 	}
-	"tokenMethod": "string",
 }
 ```
 </br>
@@ -141,6 +140,7 @@ Example: </br>
    "authorizationAttemptId":"32eedb2b-a536-4eb6-b618-c2d6c1bf7aab",
    "cardType":"VISA-CREDIT",
    "cardIssuedInCountryCode":"DK",
+   "tokenMethod":"VTS",
    "tokenData":{
       "vPaymentDataID":"da17bd1568bdc8b418d71cf80c44ea02",
       "cryptogramInfo":{
@@ -155,16 +155,14 @@ Example: </br>
          "paymentAccountReference":"V0010013020217426481676671969"
       },
       "tokenInfo":{
-         "encTokenInfo":"eyJhbGciOiJBMjU2R0NNS1ciLCJpdiI6IjJ6d19MS2RfQlVCM0JwcmwiLCJ0YWciOiJpMW5IZFR2THZ3Uk52SkxVd3dNY1p3IiwiZW5jIjoiQTI1NkdDTSIsInR5cCI6IkpPU0UiLCJraWQiOiI0NFJMTk0xNkpOTkNLMkU3M1MzUDEzTjB3NThKanpLU3ZXRllvdUNYbmc5dEh4V2o4IiwiY2hhbm5lbFNlY3VyaXR5Q29udGV4dCI6IlNIQVJFRF9TRUNSRVQiLCJpYXQiOiIxNjAzODA5MTM1In0.6e32_J7goISoA_erRTE2wD9qmBEC_w4E9c07qxx3f9k.2PUuDioChgYP-h87.QXjknQZHHP-JhzmSmXBLIgwfYsSPznLOZVj3Zw.AbVsYq9LcYYb-rX3fzrh7Q",
+         "token":"4895737462013403",
          "last4":"6597",
          "expirationDate":{
             "month":"02",
             "year":"2023"
          }
-      },
-      "encryptionMetaData":"NDRSTE5NMTZKTk5DSzJFNzNTM1AxM04wdzU4Smp6S1N2V0ZZb3VDWG5nOXRIeFdqOA"
-   },
-   "tokenMethod":"VTS"
+      }
+   }
 }
 ```
 Please pass the data to the Acquirer, as you would do if the VTS response was from you own VTS integration. In case you have questions to the Acquirer API, ask the Acquirer.
