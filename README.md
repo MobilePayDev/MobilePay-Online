@@ -15,6 +15,7 @@
 **Appendix**<br />
 **[Merchant documentation](#merchant-documentation)**<br />
 **[Error Codes](#error-codes)**<br />
+**[Retry policy](#retry-policy)**<br />
 **[Allowed currencies](#allowed-currencies)**<br />
 **[Allowed card types](#allowed-card-types)**<br />
 **[Diagrams](#diagrams)**<br />
@@ -287,6 +288,16 @@ The error format will be the following:
 | 2030 | POST /payments | Allowed card types are not set
 | 2040 | POST /payments | One or more of the allowed card types are invalid
 | 2050 | POST /payments | Currency code is invalid
+
+## Retry policy
+All MobilePay endpoints are hosted on a “cloud platform”. This means that errors will happen. To accommodate this, we suggest a retry strategy when calling our endpoints:
+
+If you do not get a response within 2 seconds, try again. 
+
+If you get an unexpected error (HTTP > 299) wait 1 second, then try again. 
+
+Suggested retry count is 2 (three attempts in all). You should under no circumstance retry more than 6 times. As this could worsen any ongoing situation in our setup.
+
 
 ## Allowed currencies
 
