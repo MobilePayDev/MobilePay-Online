@@ -129,7 +129,8 @@ When you recieve the tokenCallback, you´ll find a cardIssuedInCountryCode (poss
 				"year": "string"
 			}
 		},
-	}
+	},
+	"isDelegatedAuthentication": bool
 }
 ```
 </br>
@@ -163,7 +164,8 @@ Example: </br>
             "year":"2023"
          }
       }
-   }
+   },
+   "isDelegatedAuthentication": false
 }
 ```
 Please pass the data to the Acquirer, as you would do if the VTS response was from you own VTS integration. In case you have questions to the Acquirer API, ask the Acquirer.
