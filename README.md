@@ -170,8 +170,9 @@ Example: </br>
 ```
 Please pass the data to the Acquirer, as you would do if the VTS response was from you own VTS integration. In case you have questions to the Acquirer API, ask the Acquirer.
 
-In case you know, when you get the tokencallback, that it will not work for this payment, please reply HTTP code **501**, we will then immediately fail over to PAN callback.
+When you get the tokencallback, if you internally (without calling anyone) know, that token will not work for this payment, please reply HTTP code **501**, we will then immediately fail over to PAN callback. 
 
+Exactly as for PAN callbacks, make sure you response to the callback immediately. DO NOT leave the transaction "hanging" while you call out to the Acquirer. 
 
 ### Delegated Authentication for all Mastercards
 We´re in the process of setting up Tokenization. The flow will work similar to Visa VTS, because both are based on the EMVCo, however data transferred will not be exactly the same. More info will be provided as soon as we have it. Until then, the 3DSecure fallback will cover SCA for Mastercards.
@@ -207,6 +208,8 @@ A callback will be made on the CardDataCallbackUrl when the user swipes to accep
 The EncryptedCardData is encrypted according to this OAEP algorithm&padding scheme: RSA/NONE/OAEPWithSHA256AndMGF1Padding . 
 Once decrypted, you´ll see:
 {"timestampticks":123456789123456789,"encryptedCardData": { "cardNumber": 1234567812345678, "expiryMonth": 12, "expiryYear": 28 }
+
+Make sure you response to the callback immediately, once you´ve decrypted the content. DO NOT leave the transaction "hanging" while you call out to the Acquirer. 
 
 ### Failed callback
 
