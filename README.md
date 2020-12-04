@@ -169,6 +169,7 @@ Example: </br>
 }
 ```
 Please pass the data to the Acquirer, as you would do if the VTS response was from you own VTS integration. In case you have questions to the Acquirer API, ask the Acquirer.
+In case you know, when you get the tokencallback, that it will not work for this payment, please reply HTTP code **501**, we will then immediately fail over to PAN callback.
 
 
 ### Delegated Authentication for all Mastercards
