@@ -181,7 +181,7 @@ We´re in the process of setting up Tokenization. The flow will work similar to 
 If Delegated Authentication fails, the 3DSecure fallback solution applies. 
 
 [![](./assets/3dsfallback.svg)](./assets/3dsfallback.svg)
-Please notice the purple ”Wallet locked” and ”Wallet unlocked” in communication between MobilePay App and MobilePay Backend. This will ensure, that the user/payer can pick a different card from his wallet, when his first attempt is ”soft rejected”. It will also ensure that he cannot pick another card to start a parallel authorization-attempt while the second attempt on the first card is being processed. For this to work, the PSP must call MP backend with reasonCode=1009 as soon as it has crypto (Ares/Pres) from SCA, before retrying the authorization-attempt towards Acquirer and Issuer. 
+Please notice the purple ”Wallet locked” and ”Wallet unlocked” in communication between MobilePay App and MobilePay Backend. This will ensure, that the user/payer can pick a different card from his wallet, when his first attempt is ”soft rejected”. It will also ensure that he cannot pick another card to start a parallel authorization-attempt while the second attempt on the first card is being processed. For this to work, the PSP must call MP backend with reasonCode=1009 as soon as it has crypto (Ares/Pres) from SCA, before retrying the authorization-attempt towards Acquirer and Issuer. **At present, there´s a problem in the "1009" handling: Don´t use it just yet!**
 
 When the user has completed the challenge, please immediately redirect to https://products.mobilepay.dk/remote-website/apppages/done3ds.html
 For Sandbox use: https://sandprod-products.mobilepay.dk/remote-website/apppages/done3ds.html
