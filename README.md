@@ -152,7 +152,7 @@ Example: </br>
          "eci":"07"
       },
       "paymentInstrument":{
-         "last4":"6386",
+         "last4":"1234",
          "paymentType":{
             "cardBrand":"VISA"
          },
@@ -160,7 +160,7 @@ Example: </br>
       },
       "tokenInfo":{
          "token":"4895737462013403",
-         "last4":"6597",
+         "last4":"3403",
          "expirationDate":{
             "month":"02",
             "year":"2023"
