@@ -107,6 +107,7 @@ When you recieve the tokenCallback, you´ll find a cardIssuedInCountryCode (poss
 	"authorizationAttemptId": "string",
 	"cardType": "string",	
 	"cardIssuedInCountryCode": "string",
+	"maskedCardNumber":"string",
 	"tokenMethod": "string",
 	"tokenData": {
 		"vPaymentDataID": "string",
@@ -142,6 +143,7 @@ Example: </br>
    "authorizationAttemptId":"32eedb2b-a536-4eb6-b618-c2d6c1bf7aab",
    "cardType":"VISA-CREDIT",
    "cardIssuedInCountryCode":"DK",
+   "maskedCardNumber":"479694XXXXXX1234",
    "tokenMethod":"VTS",
    "tokenData":{
       "vPaymentDataID":"da17bd1568bdc8b418d71cf80c44ea02",
