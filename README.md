@@ -271,7 +271,7 @@ Mobile Pay Api supports automated integration tests running in the test environm
 
 The Api can be found [here](https://proxy-sandprod-az2-front-ext-rest.ext.mobilepay.dk/cardpassthrough-regressiontester-restapi/swagger/index.html?urls.primaryName=product) where the endpoint will emulate the given user entering phonenumber, receiving a payment request, selecting the first eligible card available and then accepting the payment, which will begin the authorization process starting with the card data callback being initiated.
 
-```http
+```
 POST payments/simulation/enter-phone-and-swipe/{paymentId:guid}
 {
    // example: +4500000000
