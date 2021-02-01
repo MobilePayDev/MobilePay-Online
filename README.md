@@ -264,6 +264,28 @@ To ensure no unauthorized calls to your callback endpoints, we strongly suggest 
 ## Prefilled phone number
 You can provide a phone number to be prefilled in the phone number field on the MobilePay webpage. 
 You do this by adding an URI encoded "alias" parameter with the phone number to the search parameters of the "redirectToMPUrl". The phone number must be fully specified including country code. For "+45 12 34 56 78" you would add the following to the url: &alias=%2B4512345678
+
+## Continously running integration tests
+
+Mobile Pay Api now supports automated integration tests running in the test environment 'SandProd'. To support the flow from payment creation to capture, we have added a new endpoint to emulate the neccessary user behavior.
+
+The Api can be found [here](https://proxy-sandprod-az2-front-ext-rest.ext.mobilepay.dk/cardpassthrough-regressiontester-restapi/swagger/index.html?urls.primaryName=product) where the endpoint 
+will pretent the given user enters phonenumber, receives a payment request, selectd the first eligble card available and accepts the payment, which will begin the authorization process starting with the card data callback being initiated.
+
+```http
+POST payments/simulation/enter-phone-and-swipe/{paymentId:guid}
+{
+   // example: +4500000000
+   phoneNumber: "{user-phonenumber: string}"
+}
+
+```
+
+All other actions required upto and including a payment capture, payment expiration, or payment rejection can be handled by the known and available endpoints also used in production. For more information on the genral payment flow, please see [the diagram section](#Diagrams)
+
+**Please refrain from any overly aggressive testing strategies, we expect any continously running tests to call at most once per second.**
+
+
 # Appendix
 
 ## Merchant documentation
