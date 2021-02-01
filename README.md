@@ -267,10 +267,9 @@ You do this by adding an URI encoded "alias" parameter with the phone number to 
 
 ## Continously running integration tests
 
-Mobile Pay Api now supports automated integration tests running in the test environment 'SandProd'. To support the flow from payment creation to capture, we have added a new endpoint to emulate the neccessary user behavior.
+Mobile Pay Api supports automated integration tests running in the test environment 'SandProd'. To support the flow from payment creation to capture, use the endpoint below to emulate the required user behavior.
 
-The Api can be found [here](https://proxy-sandprod-az2-front-ext-rest.ext.mobilepay.dk/cardpassthrough-regressiontester-restapi/swagger/index.html?urls.primaryName=product) where the endpoint 
-will pretent the given user enters phonenumber, receives a payment request, selectd the first eligble card available and accepts the payment, which will begin the authorization process starting with the card data callback being initiated.
+The Api can be found [here](https://proxy-sandprod-az2-front-ext-rest.ext.mobilepay.dk/cardpassthrough-regressiontester-restapi/swagger/index.html?urls.primaryName=product) where the endpoint will emulate the given user entering phonenumber, receiving a payment request, selecting the first eligible card available and then accepting the payment, which will begin the authorization process starting with the card data callback being initiated.
 
 ```http
 POST payments/simulation/enter-phone-and-swipe/{paymentId:guid}
