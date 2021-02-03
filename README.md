@@ -1,25 +1,30 @@
 # MobilePay Online
 
+
+
 ## Table of Contents
-**[Product description](#product-description)**<br />
-**[Development Guide](#development-guide)**<br />
-**[API guidelines](#api-guidelines)**<br />
-**[Sandbox environment](#sandbox-environment)**<br />
-**[Merchants](#merchants)**<br />
-**[Payments](#payments)**<br />
-**[Request Fishing Scenario](#request-fishing-scenario)**<br />
-**[Restrictions](#restrictions)**<br />
-**[Strong Customer Authentication (SCA)](#strong-customer-authentication-sca)**<br />
-**[Callbacks](#callbacks)**<br />
+  - [Table of Contents](#table-of-contents)
+  - [Product description](#product-description)
+  - [Development Guide](#development-guide)
+  - [API guidelines](#api-guidelines)
+  - [Sandbox environment](#sandbox-environment)
+  - [Merchants](#merchants)
+  - [Payments](#payments)
+  - [Request Fishing Scenario](#request-fishing-scenario)
+  - [Restrictions](#restrictions)
+  - [Strong Customer Authentication (SCA)](#strong-customer-authentication-sca)
+  - [Callbacks](#callbacks)
+  - [Prefilled phone number](#prefilled-phone-number)
+  - [Automated integration tests in Sandbox](#automated-integration-tests-in-sandbox)
 
 **Appendix**<br />
-**[Merchant documentation](#merchant-documentation)**<br />
-**[Error Codes](#error-codes)**<br />
-**[Retry policy](#retry-policy)**<br />
-**[Allowed currencies](#allowed-currencies)**<br />
-**[Allowed card types](#allowed-card-types)**<br />
-**[Diagrams](#diagrams)**<br />
-**[Embedded flow](#embedded-flow)**<br />
+  - [Merchant documentation](#merchant-documentation)
+  - [Error codes](#error-codes)
+  - [Retry policy](#retry-policy)
+  - [Allowed currencies](#allowed-currencies)
+  - [Allowed card types](#allowed-card-types)
+  - [Diagrams](#diagrams)
+  - [Embedded Flow](#embedded-flow)
 
 ## Product description
 
@@ -265,22 +270,21 @@ To ensure no unauthorized calls to your callback endpoints, we strongly suggest 
 You can provide a phone number to be prefilled in the phone number field on the MobilePay webpage. 
 You do this by adding an URI encoded "alias" parameter with the phone number to the search parameters of the "redirectToMPUrl". The phone number must be fully specified including country code. For "+45 12 34 56 78" you would add the following to the url: &alias=%2B4512345678
 
-## Continously running integration tests
+## Automated integration tests in Sandbox
 
-Mobile Pay Api supports automated integration tests running in the test environment 'SandProd'. To support the flow from payment creation to capture, use the endpoint below to emulate the required user behavior.
+Mobile Pay Api supports automated integration tests running in the test environment 'Sandbox'. To support the flow from payment creation to capture, use the endpoint below to emulate the required user behavior.
 
-The Api can be found [here](https://proxy-sandprod-az2-front-ext-rest.ext.mobilepay.dk/cardpassthrough-regressiontester-restapi/swagger/index.html?urls.primaryName=product) where the endpoint will emulate the given user entering phonenumber, receiving a payment request, selecting the first eligible card available and then accepting the payment, which will begin the authorization process starting with the card data callback being initiated.
+The Api can be found [here](https://proxy-sandprod-az2-front-ext-rest.ext.mobilepay.dk/cardpassthrough-regressiontester-restapi/swagger/index.html?urls.primaryName=product) where the endpoint will emulate the given user entering phone number, receiving a payment request, selecting the first eligible card available and then accepting the payment, which will begin the authorization process starting with the card data callback being initiated.
 
 ```
 POST payments/simulation/enter-phone-and-swipe/{paymentId:guid}
 {
-   // example: +4500000000
-   phoneNumber: "{user-phonenumber: string}"
+   phoneNumber: "+4512345678"
 }
 
 ```
 
-All other actions required upto and including a payment capture, payment expiration, or payment rejection can be handled by the known and available endpoints also used in production. For more information on the genral payment flow, please see [the diagram section](#Diagrams)
+Other actions such as initialization, update of authorization and captures can be handled by the product endpoints also available in production. For more information on the general payment flow, please see [the diagram section](#Diagrams)
 
 **Please refrain from any overly aggressive testing strategies, we expect any continously running tests to call at most once per second.**
 
