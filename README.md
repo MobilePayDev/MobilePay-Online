@@ -272,7 +272,7 @@ You do this by adding an URI encoded "alias" parameter with the phone number to 
 
 ## Automated integration tests in Sandbox
 
-The Api supports automated integration tests running in Sandbox and can be found at [sandbox-developer](https://sandbox-developer.mobilepay.dk/product), then select 'Online User Simulation' and 'Cardpassthrough RegressionTester For Product'. The api support simulation of the required user actions from payment request to capture. For more information on the general payment flow, please see [the diagram section](#Diagrams).
+The Api supports automated integration tests running in Sandbox and can be found at [sandbox-developer](https://sandbox-developer.mobilepay.dk/product) under 'Online User Simulation' and then 'Cardpassthrough RegressionTester For Product'. The api support simulation of the required user actions from payment request to capture. For more information on the general payment flow, please see [the diagram section](#Diagrams).
 
 **Please refrain from any overly aggressive testing strategies, we expect any continously running tests to call at most once per second.**
 
