@@ -181,8 +181,30 @@ When you get the tokencallback, if you internally (without calling anyone) know,
 
 Exactly as for PAN callbacks, make sure you response to the callback immediately. DO NOT leave the transaction "hanging" while you call out to the Acquirer. 
 
-### Delegated Authentication for all Mastercards
-We´re in the process of setting up Tokenization. The flow will work similar to Visa VTS, because both are based on the EMVCo, however data transferred will not be exactly the same. More info will be provided as soon as we have it. Until then, the 3DSecure fallback will cover SCA for Mastercards.
+### Delegated Authentication for all Mastercards AVAILABLE IN SANDBOX ONLY
+The flow is similar to Visa VTS because both are based on the EMVCo. However Mastercard S4C carry sligtly different data in our callback:
+```
+{ 
+   "paymentId":"8dab9219-ab03-4524-bae7-f0ad55119da5",
+   "authorizationAttemptId":"32eedb2b-a536-4eb6-b618-c2d6c1bf7aab",
+   "cardType":"MC-CREDIT",
+   "cardIssuedInCountryCode":"DK",
+   "maskedCardNumber":"579694XXXXXX1234",
+   "tokenMethod":"MC S4C",
+   "tokenData":{
+      "token":{
+      "paymentToken": "5204731613701583", 
+      "tokenExpirationMonth": "02",
+      "tokenExpirationYear": "24", 
+      "paymentAccountReference": "5001ARE1F36IUQP4A6IZ8JDDEYLLS" 
+      },
+      "dynamicData":{ 
+         "dynamicDataValue": "MGWnPacphQ6+AAfiWbfWAAADFGA=", 
+	 "dynamicDataType": "CARD_APPLICATION_CRYPTOGRAM_SHORT_FORM" 
+      }
+   }
+}
+```
 
 ### 3DSecure Fallback
 If Delegated Authentication fails, the 3DSecure fallback solution applies. 
