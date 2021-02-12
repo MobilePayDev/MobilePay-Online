@@ -184,23 +184,23 @@ Exactly as for PAN callbacks, make sure you response to the callback immediately
 ### Delegated Authentication for all Mastercards AVAILABLE IN SANDBOX ONLY
 The flow is similar to Visa VTS because both are based on the EMVCo standard. However Mastercard S4C carry sligtly different data in our callback:
 ```
-{ 
-   "paymentId":"8dab9219-ab03-4524-bae7-f0ad55119da5",
-   "authorizationAttemptId":"32eedb2b-a536-4eb6-b618-c2d6c1bf7aab",
+{
+   "paymentId":"9bb9f965-c936-41c1-937e-2f837e6f4e90",
+   "authorizationAttemptId":"6b5be8fb-3455-4a3d-863f-b166b24534d4",
    "cardType":"MC-CREDIT",
    "cardIssuedInCountryCode":"DK",
-   "maskedCardNumber":"579694XXXXXX1234",
+   "maskedCardNumber":"520473XXXXXX2804",
    "tokenMethod":"MC S4C",
    "tokenData":{
       "token":{
-      "paymentToken": "5204731613701583", 
-      "tokenExpirationMonth": "02",
-      "tokenExpirationYear": "24", 
-      "paymentAccountReference": "5001ARE1F36IUQP4A6IZ8JDDEYLLS" 
+         "paymentToken":"5204731613714644",
+         "tokenExpirationMonth":"03",
+         "tokenExpirationYear":"2024",
+         "paymentAccountReference":"50018R7IPMGFTXGWW9YMSSUMRPO19"
       },
-      "dynamicData":{ 
-         "dynamicDataValue": "MGWnPacphQ6+AAfiWbfWAAADFGA=", 
-	 "dynamicDataType": "CARD_APPLICATION_CRYPTOGRAM_SHORT_FORM" 
+      "dynamicData":{
+         "dynamicDataType":"CARD_APPLICATION_CRYPTOGRAM_SHORT_FORM",
+         "dynamicDataValue":"MOAxraQAAAE0AAaBHa96AAADFEA="
       }
    }
 }
