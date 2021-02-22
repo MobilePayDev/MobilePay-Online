@@ -103,7 +103,7 @@ In Field 47 tag V!: the value of 23
 
 ### Delegated Authentication for all Visa cards
 When you initiate a payment, make sure to use v3 of the API. Here you give a tokenCallbackUrl for all accepted Visa types. However, please also provide a carddataCallbackUrl as failover, because not all Visa cards can be tokenized. For Dynamic Linking, please give us MerchantUrl and MerchantName.</br>
-[![](./assets/vts.svg)](./assets/vts.svg)
+[![](./assets/vts.svg)](./assets/tokens.svg)
 
 When you recieve the tokenCallback, you´ll find a cardIssuedInCountryCode (possible values DK, FI) you can use for your Acquirer routing logic. And a Visa Token Service (VTS) service response like this: <br />
 ```
