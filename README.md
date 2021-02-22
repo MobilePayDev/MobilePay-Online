@@ -181,7 +181,7 @@ When you get the tokencallback, if you internally (without calling anyone) know,
 
 Exactly as for PAN callbacks, make sure you response to the callback immediately. DO NOT leave the transaction "hanging" while you call out to the Acquirer. 
 
-### Delegated Authentication for all Mastercards AVAILABLE IN SANDBOX ONLY
+### Delegated Authentication for all Mastercards
 The flow is similar to Visa VTS because both are based on the EMVCo standard. However Mastercard S4C carry sligtly different data in our callback:
 ```
 {
