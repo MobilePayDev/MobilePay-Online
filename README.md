@@ -69,7 +69,7 @@ This will return an url the end-user should be redirected to.
 
 2. When the user has accepted the payment in the MobilePay app, you'll receive a callback on the url defined in 1. containing the encrypted card data and you can create the authorization.
 
-3. When you have successfully authorized the payment (or it has failed), you'll patch the authorisationAttempt endpoint and we'll show a receipt (or error message) to the user.
+3. When you have successfully authorized the payment (or it has failed), you'll patch the authorisationAttempt and we'll show a receipt (or error message) to the user. Do not expect the user to return client side / in the UI.
 
 4. When the merchant makes captures, refunds, or cancels the payment the status of the payment must be updated to reflect this to give the best possible user experience. See the API.
 
@@ -308,7 +308,7 @@ The documentation towards you customers, the merchants, must - at least - tell a
 * How the solution is used from a native app (API enabled)
 * Give insight on the pitfalls of 'context switch' on client side<br />
 a. Scenario ‘browser A’ -> MP App -> ‘browser B’. The Merchant return page should not rely on any sort of session object (e.g. a cookie), to recognise the returning customer. It should solely rely on data given in the redirect (redirectFromMobilePayUrl).<br />
-b. Scenario ‘browser -> MP App’. If possible, the Merchant should not rely on the customer returning client side at all. Rather it should process the purchase when your server-to-server callback is received, or after getting confirmation on a status endpoint.
+b. Scenario ‘browser -> MP App’. The Merchant should not rely on the customer returning client side. Rather they should process the purchase when the PSP´s server-to-server callback is received, or after getting confirmation on a status endpoint.
 
 
 ## Error codes
