@@ -304,12 +304,21 @@ The Api supports automated integration tests running in Sandbox and can be found
 
 ## Merchant documentation
 The documentation towards you customers, the merchants, must - at least - tell about
-* Name and LogoUrl (and the file hosted on the Url)
+* *Name* displayed in the app to the end user
+* *LogoUrl* linking to an image file displaying the merchant logo in the app to the end user
+
+    * 250x250 pixels
+    * Hosted using a secure HTTPS connection
+    * PNG or JPG
+    * Set content-type in the HTTP header using *MIME* types e.g. *image/png* or *image/jpeg* 
 * How the solution is used from a native app (API enabled)
 * Give insight on the pitfalls of 'context switch' on client side<br />
-a. Scenario ‘browser A’ -> MP App -> ‘browser B’. The Merchant return page should not rely on any sort of session object (e.g. a cookie), to recognise the returning customer. It should solely rely on data given in the redirect (redirectFromMobilePayUrl).<br />
-b. Scenario ‘browser -> MP App’. The Merchant should not rely on the customer returning client side. Rather they should process the purchase when the PSP´s server-to-server callback is received, or after getting confirmation on a status endpoint.
 
+   *A. Scenario - ‘browser A’ -> MP App -> ‘browser B’*<br/> 
+   The Merchant return page should not rely on any sort of session object (e.g. a cookie), to recognise the returning customer. It should solely rely on data given in the redirect (redirectFromMobilePayUrl).<br />
+   
+   *B. Scenario - ‘browser' -> MP App’* <br/>
+   The Merchant should not rely on the customer returning client side. Rather they should process the purchase when the PSP´s server-to-server callback is received, or after getting confirmation on a status endpoint.
 
 ## Error codes
 
