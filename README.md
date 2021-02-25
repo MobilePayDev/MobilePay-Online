@@ -312,7 +312,7 @@ The documentation towards you customers, the merchants, must - at least - tell a
     * PNG or JPG
     * Set content-type in the HTTP header using *MIME* types e.g. *image/png* or *image/jpeg* 
 * How the solution is used from a native app (API enabled)
-* Give insight on the pitfalls of 'context switch' on client side<br />
+* Common pitfalls of 'context switch' on client side<br />
 
    *A. Scenario - ‘browser A’ -> MP App -> ‘browser B’*<br/> 
    The Merchant return page should not rely on any sort of session object (e.g. a cookie), to recognise the returning customer. It should solely rely on data given in the redirect (redirectFromMobilePayUrl).<br />
