@@ -205,7 +205,7 @@ The flow is similar to Visa VTS because both are based on the EMVCo standard. Ho
    }
 }
 ```
-Important static information: WalletId=A11, ECI/SLI=246
+Important static information: Electronic Commerce Indicators (ECI) = 246, Wallet identifier = 327
 
 ### 3DSecure Fallback
 If Delegated Authentication fails, the 3DSecure fallback solution applies. 
