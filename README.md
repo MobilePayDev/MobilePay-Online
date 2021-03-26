@@ -460,7 +460,5 @@ The response codes are
 |:---|:---|
 | 0 | Completed |
 | 1 | Rejected |
-| 2 | Failed |
 | 3 |	Expired |
 | 4	| Cancelled |
-| 9 | Other |
