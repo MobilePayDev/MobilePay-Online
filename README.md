@@ -185,27 +185,25 @@ Exactly as for PAN callbacks, make sure you response to the callback immediately
 The flow is similar to Visa VTS because both are based on the EMVCo standard. However Mastercard S4C carry sligtly different data in our callback:
 ```
 {
-   "paymentId":"9bb9f965-c936-41c1-937e-2f837e6f4e90",
-   "authorizationAttemptId":"6b5be8fb-3455-4a3d-863f-b166b24534d4",
+   "paymentId":"1ba21790-5e10-4db1-8e90-330fb41916e7",
+   "authorizationAttemptId":"3205ec7c-2d50-49d2-95dc-326e34edce47",
    "cardType":"MC-CREDIT",
    "cardIssuedInCountryCode":"DK",
-   "maskedCardNumber":"520473XXXXXX2804",
+   "maskedCardNumber":"520473XXXXXX4792",
    "tokenMethod":"MC S4C",
    "tokenData":{
       "token":{
-         "paymentToken":"5204731613714644",
-         "tokenExpirationMonth":"03",
+         "paymentToken":"5204731613942625",
+         "tokenExpirationMonth":"05",
          "tokenExpirationYear":"2024",
-         "paymentAccountReference":"50018R7IPMGFTXGWW9YMSSUMRPO19"
+         "paymentAccountReference":"5001BO8B9NXVVIXCT0HAJU98I512Z"
       },
       "dynamicData":{
          "dynamicDataType":"CARD_APPLICATION_CRYPTOGRAM_SHORT_FORM",
-         "dynamicDataValue":"MOAxraQAAAE0AAaBHa96AAADFEA="
-      }
-   }
-}
+         "dynamicDataValue":"MD1eEaqbngDNAy0iuRqOAAADFEA="
+      },
+      "eci":"06" 
 ```
-Important static information: Electronic Commerce Indicators (ECI) = 246
 
 ### 3DSecure Fallback
 If Delegated Authentication fails, the 3DSecure fallback solution applies. 
