@@ -202,7 +202,9 @@ The flow is similar to Visa VTS because both are based on the EMVCo standard. Ho
          "dynamicDataType":"CARD_APPLICATION_CRYPTOGRAM_SHORT_FORM",
          "dynamicDataValue":"MD1eEaqbngDNAy0iuRqOAAADFEA="
       },
-      "eci":"06" 
+      "eci":"06"
+   }
+}
 ```
 
 ### 3DSecure Fallback
