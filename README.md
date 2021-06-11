@@ -289,6 +289,24 @@ A callback will be made on the AddressCallbackUrl when the user swipes to accept
 To ensure no unauthorized calls to your callback endpoints, we strongly suggest you apply either (or both) of these limitations:
 1. Firewall rules. These are the IP-ranges that MobilePay backend will be calling from: 212.93.32.0/19 and 185.218.228.0/22
 2. SSL "Common name" inspection. The "Common name" in our SSL client certificate should never change. Even when the certificate itself changes, or is issued to a different root.
+
+## Invalidation of a payment
+In some cases the user goes back to the merchant webshop and adds something to the shopping basket after the payment has been initiated. This could end up with several requests for the user with different amounts. This is why, the payment can be invalidated. There is an endpoint in the Online api to invalidate payments. Invalidation means that the user cannot create a request for the payment or accept the payment. Active requests will also expired immediately.
+
+The invalidation request will be processed in the MobilePay backend according to these rules:
+1. If a successful authorization already exists on the payment, the invalidation endpoint will return the error code 2100.
+2. If a callback has been sent, we will wait 30 seconds for a patch to the authorization attempt. A failed authorization will result in a successfull invalidation, but a successful authorization will return an error code 2100 from the invalidation endpoint. Invalidation is not possible if the payment has been authorized.
+3. If we do not receive the patch within 30 seconds, we will accept the invalidation.
+4. When the invalidation is completed, the user cannot request or accept this payment.
+
+### Invalidation before callback
+If the invalidation request is received by MobilePay before the callback to the PSP is made, no callback will be performed and the invalidation will complete almost immediately.
+![Invalidation before callback](./assets/invalidation-before-callback.svg)
+
+### Invalidation after callback
+If the invalidation request is received by MobilePay after the callback to the PSP is performed, the PSP must also PATCH the authorizationAttempt with succeeded=false and the ReasonCode 1010 - RejectedForInvalidatePayment.
+![Invalidation after callback](./assets/invalidation-after-callback.svg)
+
 ## Prefilled phone number
 You can provide a phone number to be prefilled in the phone number field on the MobilePay webpage. 
 You do this by adding an URI encoded "alias" parameter with the phone number to the search parameters of the "redirectToMPUrl". The phone number must be fully specified including country code. For "+45 12 34 56 78" you would add the following to the url: &alias=%2B4512345678
@@ -342,6 +360,7 @@ The error format will be the following:
 | 2030 | POST /payments | Allowed card types are not set
 | 2040 | POST /payments | One or more of the allowed card types are invalid
 | 2050 | POST /payments | Currency code is invalid
+| 2100 | PUT payments/{paymentId:guid}/invalidate | Can't invalidate payment with completed authorization attempt 
 
 ## Retry policy
 Even though we have above 99% uptime and handle millions of transactions each week, external factors, such as network related issues, can contribute to momentary disturbances in our response times.
