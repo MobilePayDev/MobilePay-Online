@@ -294,8 +294,8 @@ To ensure no unauthorized calls to your callback endpoints, we strongly suggest 
 In some cases the user goes back to the merchant webshop and adds something to the shopping basket after the payment has been initiated. This could end up with several requests for the user with different amounts. This is why, the payment can be invalidated. There is an endpoint in the Online api to invalidate payments. Invalidation means that the user cannot create a request for the payment or accept the payment. Active requests will also expired immediately.
 
 The invalidation request will be processed in the MobilePay backend according to these rules:
-1. If a successful authorization already exists on the payment, the invalidation will return an error.
-2. If a callback has been sent, we will wait 30 seconds for a patch to the authorization attempt. A failed authorization will result in an invalidation, but a successful authorization will return an error.
+1. If a successful authorization already exists on the payment, the invalidation endpoint will return the error code 2100.
+2. If a callback has been sent, we will wait 30 seconds for a patch to the authorization attempt. A failed authorization will result in a successfull invalidation, but a successful authorization will return an error code 2100 from the invalidation endpoint. Invalidation is not possible if the payment has been authorized.
 3. If we do not receive the patch within 30 seconds, we will accept the invalidation.
 4. When the invalidation is completed, the user cannot request or accept this payment.
 
@@ -360,6 +360,7 @@ The error format will be the following:
 | 2030 | POST /payments | Allowed card types are not set
 | 2040 | POST /payments | One or more of the allowed card types are invalid
 | 2050 | POST /payments | Currency code is invalid
+| 2100 | PUT payments/{paymentId:guid}/invalidate | Can't invalidate payment with completed authorization attempt 
 
 ## Retry policy
 Even though we have above 99% uptime and handle millions of transactions each week, external factors, such as network related issues, can contribute to momentary disturbances in our response times.
