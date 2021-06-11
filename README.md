@@ -300,11 +300,11 @@ The invalidation request will be processed in the MobilePay backend according to
 4. When the invalidation is completed, the user cannot request or accept this payment.
 
 ### Invalidation before callback
-If the invalidation request is sent before the callback has been received, the callback will not be sent and all that is needed is to call the invalidation endpoint.
+If the invalidation request is received by MobilePay before the callback to the PSP is made, no callback will be performed and the invalidation will complete almost immediately.
 ![Invalidation before callback](./assets/invalidation-before-callback.svg)
 
 ### Invalidation after callback
-If the invalidation request is sent after the callback has been received, it is needed to call the invalidation endpoint as well as to patch the authorization attempt with error code 1010 - RejectedForInvalidatePayment. 
+If the invalidation request is received by MobilePay after the callback to the PSP is performed, the PSP must also PATCH the authorizationAttempt with succeeded=false and the ReasonCode 1010 - RejectedForInvalidatePayment.
 ![Invalidation after callback](./assets/invalidation-after-callback.svg)
 
 ## Prefilled phone number
