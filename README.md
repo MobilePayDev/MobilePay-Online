@@ -294,7 +294,7 @@ To ensure no unauthorized calls to your callback endpoints, we strongly suggest 
 In some cases the user goes back to the merchant webshop and adds something to the shopping basket after the payment has been initiated. The user could end up with several requests with different amounts and there would be a possibility, that the user accepts the wrong one in MobilePay. In this case payment invalidation endpoint can be useful. When the invalidation is completed, it means that the user cannot create a request for the payment or accept the payment. Active requests will also expired immediately.
 
 ### Invalidation before callback
-If the invalidation request is received by MobilePay before the callback to the PSP is made, no callback will be performed and the invalidation will complete almost immediately.
+If the invalidation request is received by MobilePay before the callback to the PSP is made, no callback will be performed and the invalidation will complete.
 
 ![Invalidation before callback](./assets/invalidation-before-callback.svg)
 
@@ -303,8 +303,8 @@ If the invalidation request is received by MobilePay after the callback to the P
 
 In this case the invalidation request will be processed in the MobilePay backend according to these rules:
 1. If a successful authorization already exists on the payment, the invalidation endpoint will return the error code 2100.
-2. If a callback has been sent, we will wait 30 seconds after invalidation has started for a patch to the authorization attempt. A failed authorization will result in a successfull invalidation, but a successful authorization will return an error code 2100 from the invalidation endpoint. Invalidation is not possible if the payment has been authorized.
-3. If we do not receive the patch within 30 seconds, we will accept the invalidation. 
+2. If a callback has been sent but the authorization attempt has not yet been patched or 3DS is ongoing, the invalidation endpoint will return the error code 2101. The authorization attempt must be patched with e.g. reasoncode 1010 before invalidation.
+3. A failed authorization will result in a successfull invalidation.
 
 ![Invalidation after callback](./assets/invalidation-after-callback.svg)
 
@@ -362,6 +362,7 @@ The error format will be the following:
 | 2040 | POST /payments | One or more of the allowed card types are invalid
 | 2050 | POST /payments | Currency code is invalid
 | 2100 | PUT payments/{paymentId:guid}/invalidate | Can't invalidate payment with completed authorization attempt 
+| 2101 | PUT payments/{paymentId:guid}/invalidate | Can't invalidate payment - the authorization attempt has not yet been patched with success or failure. Try again later.
 
 ## Retry policy
 Even though we have above 99% uptime and handle millions of transactions each week, external factors, such as network related issues, can contribute to momentary disturbances in our response times.
