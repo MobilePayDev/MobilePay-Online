@@ -241,6 +241,8 @@ Once decrypted, you´ll see:
 
 Make sure you response to the callback immediately, once you´ve decrypted the content. DO NOT leave the transaction "hanging" while you call out to the Acquirer. 
 
+Strictly process the payment on the card type given in field "CardType". This is the only way MobilePay can offer card type picking for co-branded cards in accordance with PSD2 requirements. 
+
 ### Failed callback
 
 In case the payment times out, a callback is made to the FailedPaymentCallbackUrl url supplied in the initiate payment call.
