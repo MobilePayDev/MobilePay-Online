@@ -345,7 +345,7 @@ The documentation towards you customers, the merchants, must - at least - tell a
 
 The following will describe the error codes thrown and in which cases they can occur.
 
-The error format will be the following:
+The error format for status code 409 will be the following:
 
 ```json
 {
