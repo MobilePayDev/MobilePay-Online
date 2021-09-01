@@ -241,7 +241,8 @@ Once decrypted, you´ll see:
 
 Make sure you response to the callback immediately, once you´ve decrypted the content. DO NOT leave the transaction "hanging" while you call out to the Acquirer. 
 
-Strictly process the payment on the card type given in field "CardType". This is the only way MobilePay can offer card type picking for co-branded cards in accordance with PSD2 requirements. 
+Strictly process the payment on the card type given in field "CardType"! This is the only way MobilePay can offer card type picking for co-branded cards in accordance with PSD2 requirements. 
+Also the SCA method vary on the cobranded Visa/Dankort. This means that if you process the PAN given with CardType=DANKORT as a Visa, the SCA is missing and the (unwanted) 3DS step-up is likely to happen. 
 
 ### Failed callback
 
