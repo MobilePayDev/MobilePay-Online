@@ -225,7 +225,7 @@ We will retry our callbacks for more than 5 seconds in the event of network erro
 
 ### Card data callback
 
-A callback will be made on the CardDataCallbackUrl when the user swipes to accept the payment. The callback will have a JSON body like this:
+A callback will be made on the encryptedPanCallbackUrl when the user swipes to accept the payment. The callback will have a JSON body like this:
 ```
 {
   'EncryptedCardData': 'fsfnsdjkfbgdft34895u7345',
