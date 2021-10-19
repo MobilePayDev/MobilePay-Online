@@ -250,9 +250,9 @@ In case the payment times out, a callback is made to the FailedPaymentCallbackUr
 
 ```
 {
-    'code': '100',
-    'reason': 'Payment expired',
-    'paymentId': '8d72ece4-1b0b-464b-98d9-6bbb02199dc8'
+    'Code': '100',
+    'Reason': 'Payment expired',
+    'PaymentId': '8d72ece4-1b0b-464b-98d9-6bbb02199dc8'
 }
 ```
 
