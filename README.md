@@ -491,7 +491,6 @@ The message has the following syntax, when the user ends the flow
 mobilepay:rc=RESPONSE_CODE&message=DESCRIPTIVE_MESSAGE 
 ```
 
-The response codes are
 | Response Code | Description
 |:--|:----------|
 | 0 | Completed |
