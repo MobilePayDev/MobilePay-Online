@@ -451,7 +451,7 @@ On mobile devices it is expected that the MobilePay flow visually covers the who
 
 The redirect url provided when creating the payment will be navigated inside the iframe. Be aware that you might want to show the user different content if he is inside an iframe or not. If you support both iframe and full window, we recommend that you have a neutral return page without visual content. Build your logic on the parent page to listen for the response codes and based on that navigate the user to the right page.
 
-### IFRAME
+#### Embed the website in an Iframe
 Add an "iframe" to the html source and set the iframe "src" property to the URL returned from the payment link creation endpoint.
 
 The width should be 375px.
@@ -465,26 +465,27 @@ Example
 </iframe>
 ```
 
-### Event Listener
-The parent page can listen for posted messages by adding JavaScript code like this example
+#### Add an Event Listener to the parent page of the iframe
+The parent page can listen for posted messages through an even listener.
 
-```
-<script type="text/javascript">
- window.addEventListener( 
-   "message",
-   function(event) {
-      if (event.data.indexOf("mobilepay")>=0){
-         //Do your logic
-         //Continue purchase processing
-         alert(event.data);
-      }
+When the payment flow in MobilePay is complete, the iframe will by default be redirected to the return url specified, 
+when the payment was created and just prior to that it will also post a message via ```javascript:postMessage()```, 
+which the parent page can listen for via JavaScript. Using the event listener therefore allow you to 'override' 
+the default behavior for example to update the parent page too.
+
+```javascript
+window.addEventListener( 
+    "message",
+    function(event) {
+        if (event.data.indexOf("mobilepay")>=0){
+            // Do your logic
+            // Continue purchase processing
+            alert(event.data);
+        }
     },
-   false);
-</script>
+    false);
 ```
 
-### Response Codes
-When the flow in MobilePay is complete the iframe will be redirected to the return url specified, when the payment was created and just prior to that it will also post a message via ```javascript:postMessage()```, which the parent page can listen for via JavaScript.
 The message has the following syntax, when the user ends the flow
 ```
 mobilepay:rc=RESPONSE_CODE&message=DESCRIPTIVE_MESSAGE 
@@ -492,8 +493,17 @@ mobilepay:rc=RESPONSE_CODE&message=DESCRIPTIVE_MESSAGE
 
 The response codes are
 | Response Code | Description
-|:---|:---|
+|:--|:----------|
 | 0 | Completed |
-| 1 | Rejected |
-| 3 |	Expired |
-| 4	| Cancelled |
+| 1 | Rejected  |
+| 3 | Expired   |
+| 4 | Cancelled |
+
+#### Manually engaging the App from the parent page
+
+In case of mobile devices, the app is not guaranteed to engage when the website is nested inside an IFrame.
+This is not possible in IOS, and on Android, the use may have permanently disabled such navigation.
+To preserve the expected behavior it's recommended to implement a redirect in the parent, calling the 
+custom url: `mobilepayonline://online?paymentid={payment-id}` on mobile should redirect to the app on all mobile devices.
+
+
