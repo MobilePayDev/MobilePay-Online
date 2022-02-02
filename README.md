@@ -501,7 +501,7 @@ mobilepay:rc=RESPONSE_CODE&message=DESCRIPTIVE_MESSAGE
 #### Manually engaging the App from the parent page
 
 In case of mobile devices, the app is not guaranteed to engage when the website is nested inside an IFrame.
-This is not possible in IOS, and on Android, the use may have permanently disabled such navigation.
+This is not possible in iOS, and on Android, the use may have permanently disabled such navigation.
 To preserve the expected behavior it's recommended to implement a redirect in the parent, calling the 
 custom url: `mobilepayonline://online?paymentid={payment-id}` on mobile should redirect to the app on all mobile devices.
 
