@@ -449,7 +449,7 @@ Embedding is especially relevant for users on bigger screens, e.g. desktop compu
 
 On mobile devices it is expected that the MobilePay flow visually covers the whole screen (simple header and footer is acceptable).
 
-The redirect url provided when creating the payment will be navigated inside the iframe. Be aware that you might want to show the user different content if he is inside an iframe or not. If you support both iframe and full window, we recommend that you have a neutral return page without visual content. Build your logic on the parent page to listen for the response codes and based on that navigate the user to the right page.
+The redirect url provided when creating the payment, will be navigated to inside the iframe. Be aware that you might want to show the user different content if he is inside an iframe or not. If you support both iframe and full window, we recommend that you have a neutral return page without visual content. Build your logic on the parent page to listen for the response codes and based on that navigate the user to the right page.
 
 #### Embed the website in an Iframe
 Add an "iframe" to the html source and set the iframe "src" property to the URL returned from the payment link creation endpoint.
@@ -466,7 +466,7 @@ Example
 ```
 
 #### Add an Event Listener to the parent page of the iframe
-The parent page can listen for posted messages through an even listener.
+The parent page can listen for posted messages through an event listener.
 
 When the payment flow in MobilePay is complete, the iframe will by default be redirected to the return url specified, 
 when the payment was created and just prior to that it will also post a message via ```javascript:postMessage()```, 
