@@ -508,7 +508,7 @@ when the payment was created and just prior to that it will also post a message 
 which the parent page can listen for via JavaScript. Using the event listener therefore allow you to 'override' 
 the default behavior for example to update the parent page too.
 
-If the query parameter `'version=2` is added to the website url, the post message behavior will be changed from 
+If the query parameter `version=2` is added to the website url, the post message behavior will be changed from 
 the default v1, to the structured messages defined below.
 
 ```html
