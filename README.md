@@ -441,44 +441,66 @@ The following card types are allowed:
 
 ## Embedded Flow
 
-Webshops or Payment Service Providers (PSPs) may embed the web part of the flow into their own website by showing the MobilePay flow in an iframe and listen for response codes emitted from the iframe to the parent window.
+Web shops and Payment Service Providers (PSPs) may embed web-based part of the
+MobilePay flow in their own website by nesting the landing page in an IFrame and
+then listen to the events emitted from the iframe.
 
-Embedding is especially relevant for users on bigger screens, e.g. desktop computers, where the user will request the payment to a phone number and complete the flow in MobilePay on a phone.
+Embedding is especially relevant for 'dual-flow' use; where the user starts the
+flow on a desktop computer, by entering their phone number on the MobilePay
+landing page and then completes the flow by accepting the payment in the
+MobilePay App on their phone.
 
-On mobile devices it is expected that the MobilePay flow visually covers the whole screen (simple header and footer is acceptable).
+On mobile devices it is expected that the MobilePay flow visually covers the
+whole screen (simple header and footer is acceptable).
 
-The redirect url provided when creating the payment, will be navigated to inside the iframe. Be aware that you might want to show the user different content if he is inside an iframe or not. If you support both iframe and full window, we recommend that you have a neutral return page without visual content. Build your logic on the parent page to listen for the response codes and based on that navigate the user to the right page.
+The redirect url provided when creating a payment, will be navigated to, inside
+the IFrame. 
+
+Be aware that you might want to show the user different content if he is inside
+an iframe or not. If you support both iframe and full window, we recommend that
+you have a neutral return page without visual content. 
+
+Build your logic on the parent page, listen for the events published by the
+IFrame and redirect the user to the right page based on the published data.
+
 
 ### Embed the website in an Iframe
-Add an "iframe" to the html source and set the iframe "src" property to the URL returned from the payment link creation endpoint.
+
+Add an "iframe" to the html source and set the iframe "src" property to the URL
+returned from the payment link creation endpoint.
 
 The width should be 375px.
 
 Example
 ```
  <iframe 
-        scrolling="no"
-        src="URL_FROM_PAYMENTID_CREATION"
-        style="width: 375px; height: 480px; border: 0;" >
+   scrolling="no"
+   src="https://products.mobilepay.dk/remote-website/index.html?page=request&id=83554a83-cd90-4ac9-bf6e-39357c21dca5&version=2"
+   style="width: 375px; height: 480px; border: 0;" >
 </iframe>
 ```
 
 ### Add an Event Listener to the parent page of the iframe (v1)
-The implementation in this section has been <span style='color:red; font-weight:bold'>deprecated</span> and 
-may be removed in future versions of the website. Please consider updating to [version 2](#add-an-event-listener-to-the-parent-page-of-the-iframe-v2).
+
+The implementation in this section has been <span style='color:red;
+font-weight:bold'>deprecated</span> and may be removed in future versions of the
+website. Please consider updating to [version
+2](#add-an-event-listener-to-the-parent-page-of-the-iframe-v2) instead.
 
 The parent page can listen for posted messages through an event listener.
 
-When the payment flow in MobilePay is complete, the iframe will by default be redirected to the return url specified, 
-when the payment was created and just prior to that it will also post a message via ```javascript:postMessage()```, 
-which the parent page can listen for via JavaScript. Using the event listener therefore allow you to 'override' 
-the default behavior for example to update the parent page too.
+When the payment flow in MobilePay is complete, the iframe will by default be
+redirected to the return url specified, when the payment was created and just
+prior to that it will also post a message via ```javascript:postMessage()```,
+which the parent page can listen for via JavaScript. Using the event listener
+therefore allow you to 'override' the default behavior for example to update the
+parent page too.
 
 ```javascript
 window.addEventListener( 
     "message",
     function(event) {
-        if (event.origin.indexOf("mobilepay") != -1){
+        if (event.data.indexOf("mobilepay") != -1){
             // Do your logic
             // Continue purchase processing
             alert(event.data);
@@ -501,15 +523,23 @@ mobilepay:rc=RESPONSE_CODE&message=DESCRIPTIVE_MESSAGE
 
 ### Add an Event Listener to the parent page of the iframe (v2)
 
-The parent page can listen for posted messages through an event listener.
+The parent page can listen for events by adding an event listener to the IFrame.
 
-When the payment flow in MobilePay is complete, the iframe will by default be redirected to the return url specified, 
-when the payment was created and just prior to that it will also post a message via ```javascript:postMessage()```, 
-which the parent page can listen for via JavaScript. Using the event listener therefore allow you to 'override' 
-the default behavior for example to update the parent page too.
+When the payment flow in MobilePay is finished, either because the payment was
+completed, rejected, cancelled or expired, the IFRame will by default redirect
+to the return url that was specified when creating the payment.
 
-If the query parameter `version=2` is added to the website url, the post message behavior will be changed from 
-the default v1, to the structured messages defined below.
+Before the IFrame redirect applies, the IFrame will also post a message to all
+registered event handlers, giving any parent page the alternative option of
+handling any redirect flow instead, for example in the case where the parent 
+page should update too.
+
+By adding the query parameter `version=2` to the IFrame src url, the published
+events will be changed from the default legacy version to the structured data
+for any registered event handlers. The main reason for upgrading to version 2 
+is to get access to the [universal link uri](#manually-engaging-the-app-from-the-parent-page).
+
+The only event currently published is `payment-flow-terminated--v2`.
 
 ```html
 <iframe 
@@ -560,8 +590,11 @@ window.addEventListener(
 
 ### Manually engaging the App from the parent page
 
-In case of mobile devices, the app is not guaranteed to engage when the website is nested inside an IFrame.
-This is not possible in iOS, and on Android, the use may have permanently disabled such navigation.
+On mobile devices, the app is not guaranteed to engage when the website is nested inside an IFrame.
+This is not supported on iOS, and on Android the user may have permanently disabled such navigation.
 
-To preserve the expected behavior it's recommended to use website version 2 (see [previous](#add-an-event-listener-to-the-parent-page-of-the-iframe-v2)) where the iframe event handler
-data includes a universal link redirect that will trigger the app if possible and otherwise fall back to opening in the browser.
+To preserve the expected behavior of engaging the app on mobile devices, we
+recommended using the newest version of the website (see
+[previous](#add-an-event-listener-to-the-parent-page-of-the-iframe-v2)) where
+the iframe event handler data includes a universal link redirect that will
+trigger the app if possible and otherwise fall back to opening in the browser.
