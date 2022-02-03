@@ -463,7 +463,7 @@ Example
 </iframe>
 ```
 
-#### Add an Event Listener to the parent page of the iframe
+#### *Deprecated*: Add an Event Listener to the parent page of the iframe (v1)
 The parent page can listen for posted messages through an event listener.
 
 When the payment flow in MobilePay is complete, the iframe will by default be redirected to the return url specified, 
@@ -475,7 +475,7 @@ the default behavior for example to update the parent page too.
 window.addEventListener( 
     "message",
     function(event) {
-        if (event.data.indexOf("mobilepay")>=0){
+        if (event.origin.indexOf("mobilepay") != -1){
             // Do your logic
             // Continue purchase processing
             alert(event.data);
@@ -496,11 +496,65 @@ mobilepay:rc=RESPONSE_CODE&message=DESCRIPTIVE_MESSAGE
 | 3 | Expired   |
 | 4 | Cancelled |
 
+#### Add an Event Listener to the parent page of the iframe (v2)
+
+The parent page can listen for posted messages through an event listener.
+
+When the payment flow in MobilePay is complete, the iframe will by default be redirected to the return url specified, 
+when the payment was created and just prior to that it will also post a message via ```javascript:postMessage()```, 
+which the parent page can listen for via JavaScript. Using the event listener therefore allow you to 'override' 
+the default behavior for example to update the parent page too.
+
+If the query parameter 'version=2' is added to the website url, the post message behavior will be changed from 
+the default v1, to the structured messages defined below.
+
+```javascript
+window.addEventListener( 
+    "message",
+    function(event) {
+      // Handler guarded in case of future breaking changes
+      if (event.data.type && event.data.type == "payment-flow-terminated--v2")
+
+            // Do your logic
+            // Continue purchase processing            
+            alert(event.data);
+        }
+    },
+    false);
+```
+
+```javascript
+// Event Type
+{
+   sender: String,
+   type: String,
+   payment: {
+      status: { message: String, code: Number}
+      paymentId: String, 
+      requestId: String|undefined 
+   },
+   universalLink: string
+}
+
+// Example
+{
+   sender: "mobile-pay",
+   type: "payment-flow-terminated--v2",
+   payment: { status: "Completed", code: 0, paymentId: "a94bd26a-af4e-4027-afb7-a1db548e148c", requestId: "900c572f-8bef-4810-a525-f667525d994a },
+   universalLink: "https://products.mobilepay.dk/remote-website/index.html?page=approve&id=a94bd26a-af4e-4027-afb7-a1db548e148c&request-id=900c572f-8bef-4810-a525-f667525d994a&alias=%2B4520020050&amount=39&languagecountrycode=da-DK&currency=DKK"
+}
+```
+
+| Response Code | Description
+|:--|:----------|
+| 0 | Completed |
+| 1 | Rejected  |
+| 3 | Expired   |
+| 4 | Cancelled |
+
 #### Manually engaging the App from the parent page
 
 In case of mobile devices, the app is not guaranteed to engage when the website is nested inside an IFrame.
 This is not possible in iOS, and on Android, the use may have permanently disabled such navigation.
-To preserve the expected behavior it's recommended to implement a redirect in the parent, calling the 
-custom url: `mobilepayonline://online?paymentid={payment-id}` on mobile should redirect to the app on all mobile devices.
-
-
+To preserve the expected behavior it's recommended to use website version 2 (see xxxx) where the iframe event handler
+data includes a universal link redirect that will trigger the app if possible and otherwise fall back to opening in the browser.
