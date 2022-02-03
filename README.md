@@ -482,8 +482,7 @@ Example
 
 ### Add an Event Listener to the parent page of the iframe (v1)
 
-The implementation in this section has been <span style='color:red;
-font-weight:bold'>deprecated</span> and may be removed in future versions of the
+The implementation in this section has been **deprecated** and may be removed in future versions of the
 website. Please consider updating to [version
 2](#add-an-event-listener-to-the-parent-page-of-the-iframe-v2) instead.
 
