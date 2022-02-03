@@ -463,7 +463,10 @@ Example
 </iframe>
 ```
 
-### Add an Event Listener to the parent page of the iframe (v1) *Deprecated*
+### Add an Event Listener to the parent page of the iframe (v1)
+The implementation in this section has been <span style='color:red; font-weight:bold'>deprecated</span> and 
+may be removed in future versions of the website. Please consider updating to [version 2](#add-an-event-listener-to-the-parent-page-of-the-iframe-v2).
+
 The parent page can listen for posted messages through an event listener.
 
 When the payment flow in MobilePay is complete, the iframe will by default be redirected to the return url specified, 
@@ -553,5 +556,6 @@ window.addEventListener(
 
 In case of mobile devices, the app is not guaranteed to engage when the website is nested inside an IFrame.
 This is not possible in iOS, and on Android, the use may have permanently disabled such navigation.
+
 To preserve the expected behavior it's recommended to use website version 2 (see [previous](#add-an-event-listener-to-the-parent-page-of-the-iframe-v2)) where the iframe event handler
 data includes a universal link redirect that will trigger the app if possible and otherwise fall back to opening in the browser.
