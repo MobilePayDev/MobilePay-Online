@@ -449,7 +449,7 @@ On mobile devices it is expected that the MobilePay flow visually covers the who
 
 The redirect url provided when creating the payment, will be navigated to inside the iframe. Be aware that you might want to show the user different content if he is inside an iframe or not. If you support both iframe and full window, we recommend that you have a neutral return page without visual content. Build your logic on the parent page to listen for the response codes and based on that navigate the user to the right page.
 
-#### Embed the website in an Iframe
+### Embed the website in an Iframe
 Add an "iframe" to the html source and set the iframe "src" property to the URL returned from the payment link creation endpoint.
 
 The width should be 375px.
@@ -463,7 +463,7 @@ Example
 </iframe>
 ```
 
-#### *Deprecated*: Add an Event Listener to the parent page of the iframe (v1)
+### *Deprecated*: Add an Event Listener to the parent page of the iframe (v1)
 The parent page can listen for posted messages through an event listener.
 
 When the payment flow in MobilePay is complete, the iframe will by default be redirected to the return url specified, 
@@ -496,7 +496,7 @@ mobilepay:rc=RESPONSE_CODE&message=DESCRIPTIVE_MESSAGE
 | 3 | Expired   |
 | 4 | Cancelled |
 
-#### Add an Event Listener to the parent page of the iframe (v2)
+### Add an Event Listener to the parent page of the iframe (v2)
 
 The parent page can listen for posted messages through an event listener.
 
@@ -552,9 +552,9 @@ window.addEventListener(
 | 3 | Expired   |
 | 4 | Cancelled |
 
-#### Manually engaging the App from the parent page
+### Manually engaging the App from the parent page
 
 In case of mobile devices, the app is not guaranteed to engage when the website is nested inside an IFrame.
 This is not possible in iOS, and on Android, the use may have permanently disabled such navigation.
-To preserve the expected behavior it's recommended to use website version 2 (see xxxx) where the iframe event handler
+To preserve the expected behavior it's recommended to use website version 2 (see [previous](#add-an-event-listener-to-the-parent-page-of-the-iframe-v2)) where the iframe event handler
 data includes a universal link redirect that will trigger the app if possible and otherwise fall back to opening in the browser.
