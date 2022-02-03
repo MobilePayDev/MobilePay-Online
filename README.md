@@ -463,7 +463,7 @@ Example
 </iframe>
 ```
 
-### *Deprecated*: Add an Event Listener to the parent page of the iframe (v1)
+### Add an Event Listener to the parent page of the iframe (v1) *Deprecated*
 The parent page can listen for posted messages through an event listener.
 
 When the payment flow in MobilePay is complete, the iframe will by default be redirected to the return url specified, 
@@ -529,6 +529,10 @@ window.addEventListener(
    sender: String,
    type: String,
    payment: {
+      // completed :0
+      // rejected  :1
+      // expired   :3
+      // cancelled :4
       status: { message: String, code: Number}
       paymentId: String, 
       requestId: String|undefined 
@@ -544,13 +548,6 @@ window.addEventListener(
    universalLink: "https://products.mobilepay.dk/remote-website/index.html?page=approve&id=a94bd26a-af4e-4027-afb7-a1db548e148c&request-id=900c572f-8bef-4810-a525-f667525d994a&alias=%2B4520020050&amount=39&languagecountrycode=da-DK&currency=DKK"
 }
 ```
-
-| Response Code | Description
-|:--|:----------|
-| 0 | Completed |
-| 1 | Rejected  |
-| 3 | Expired   |
-| 4 | Cancelled |
 
 ### Manually engaging the App from the parent page
 
