@@ -508,8 +508,16 @@ when the payment was created and just prior to that it will also post a message 
 which the parent page can listen for via JavaScript. Using the event listener therefore allow you to 'override' 
 the default behavior for example to update the parent page too.
 
-If the query parameter 'version=2' is added to the website url, the post message behavior will be changed from 
+If the query parameter `'version=2` is added to the website url, the post message behavior will be changed from 
 the default v1, to the structured messages defined below.
+
+```html
+<iframe 
+    scrolling="no"
+    src='https://products.mobilepay.dk/remote-website/index.html?page=request&id=83554a83-cd90-4ac9-bf6e-39357c21dca5&version=2'
+    style="width: 375px; height: 700px; border: 0; display: inline">
+</iframe>
+```
 
 ```javascript
 window.addEventListener( 
@@ -529,7 +537,6 @@ window.addEventListener(
 ```javascript
 // Event Type
 {
-   sender: String,
    type: String,
    payment: {
       // completed :0
@@ -538,7 +545,6 @@ window.addEventListener(
       // cancelled :4
       status: { message: String, code: Number}
       paymentId: String, 
-      requestId: String|undefined 
    },
    universalLink: string
 }
