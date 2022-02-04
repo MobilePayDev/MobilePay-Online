@@ -441,38 +441,37 @@ The following card types are allowed:
 
 ## Embedded Flow
 
-Web shops and Payment Service Providers (PSPs) may embed web-based part of the
-MobilePay flow in their own website by nesting the landing page in an IFrame and
-then listen to the events emitted from the iframe.
+Web shops and Payment Service Providers (PSPs) may embed the MobilePay landing
+page inside their own website by nesting the page in an IFrame and then
+listen to the events emitted from the IFrame.
 
-Embedding is especially relevant for 'dual-flow' use; where the user starts the
-flow on a desktop computer, by entering their phone number on the MobilePay
-landing page and then completes the flow by accepting the payment in the
-MobilePay App on their phone.
+Embedding is especially relevant for 'dual-flow' use; where the user starts by
+entering his or her phone number in a browser and then continues the flow in the
+app to accept the payment.
 
-On mobile devices it is expected that the MobilePay flow visually covers the
-whole screen (simple header and footer is acceptable).
-
-The redirect url provided when creating a payment, will be navigated to, inside
-the IFrame. 
-
-Be aware that you might want to show the user different content if he is inside
-an iframe or not. If you support both iframe and full window, we recommend that
-you have a neutral return page without visual content. 
+When the user has accepted the payment (swiped) in the app, the landing page
+will by default redirect to the url provided when the payment was created.
 
 Build your logic on the parent page, listen for the events published by the
-IFrame and redirect the user to the right page based on the published data.
-
+IFrame and redirect the user to the right page based on the returned data,
+e.g. depending on whether the user cancelled or completed the payment.
 
 ### Embed the website in an Iframe
 
 Add an "iframe" to the html source and set the iframe "src" property to the URL
 returned from the payment link creation endpoint.
 
+On mobile devices it is expected that the MobilePay flow visually covers the
+whole screen (simple header and footer is acceptable).
+
+Be aware that you might want to show the user different content if the user is inside
+an iframe or not. If you support both iframe and full window, we recommend that
+you have a neutral return page without visual content. 
+
 The width should be 375px.
 
 Example
-```
+```html
  <iframe 
    scrolling="no"
    src="https://products.mobilepay.dk/remote-website/index.html?page=request&id=83554a83-cd90-4ac9-bf6e-39357c21dca5&version=2"
@@ -480,26 +479,20 @@ Example
 </iframe>
 ```
 
-### Add an Event Listener to the parent page of the iframe (v1)
+### Add an Event Listener to the parent page of the iframe
 
-The implementation in this section has been **deprecated** and may be removed in future versions of the
-website. Please consider updating to [version
-2](#add-an-event-listener-to-the-parent-page-of-the-iframe-v2) instead.
+The parent page can listen for events by adding an event listener to the IFrame.
 
-The parent page can listen for posted messages through an event listener.
-
-When the payment flow in MobilePay is complete, the iframe will by default be
-redirected to the return url specified, when the payment was created and just
-prior to that it will also post a message via ```javascript:postMessage()```,
-which the parent page can listen for via JavaScript. Using the event listener
-therefore allow you to 'override' the default behavior for example to update the
-parent page too.
+Before the IFrame redirects, it will post a message to all registered event
+handlers, giving any parent page the alternative option of handling the page
+navigation instead, for example in the case where you want the parent page to
+change too.
 
 ```javascript
 window.addEventListener( 
     "message",
     function(event) {
-        if (event.data.indexOf("mobilepay") != -1){
+        if (event.data && event.data.startsWith("mobilepay:")){
             // Do your logic
             // Continue purchase processing
             alert(event.data);
@@ -508,92 +501,42 @@ window.addEventListener(
     false);
 ```
 
-The message has the following syntax, when the user ends the flow
-```
-mobilepay:rc=RESPONSE_CODE&message=DESCRIPTIVE_MESSAGE 
+When the user terminates the payment flow, the published event will look like as
+follows. The code and matching description indicate how the flow was terminated,
+i.e. either because the payment was completed, rejected, cancelled by the user
+or because the timer expired.
+
+```js
+mobilepay:rc={code}&message={description}
+
+// example
+mobilepay:rc=0&message=completed
 ```
 
 | Response Code | Description
 |:--|:----------|
-| 0 | Completed |
-| 1 | Rejected  |
-| 3 | Expired   |
-| 4 | Cancelled |
+| 0 | completed |
+| 1 | rejected  |
+| 3 | expired   |
+| 4 | cancelled |
 
-### Add an Event Listener to the parent page of the iframe (v2)
-
-The parent page can listen for events by adding an event listener to the IFrame.
-
-When the payment flow in MobilePay is finished, either because the payment was
-completed, rejected, cancelled or expired, the IFRame will by default redirect
-to the return url that was specified when creating the payment.
-
-Before the IFrame redirect applies, the IFrame will also post a message to all
-registered event handlers, giving any parent page the alternative option of
-handling any redirect flow instead, for example in the case where the parent 
-page should update too.
-
-By adding the query parameter `version=2` to the IFrame src url, the published
-events will be changed from the default legacy version to the structured data
-for any registered event handlers. The main reason for upgrading to version 2 
-is to get access to the [universal link uri](#manually-engaging-the-app-from-the-parent-page).
-
-The only event currently published is `payment-flow-terminated--v2`.
-
-```html
-<iframe 
-    scrolling="no"
-    src='https://products.mobilepay.dk/remote-website/index.html?page=request&id=83554a83-cd90-4ac9-bf6e-39357c21dca5&version=2'
-    style="width: 375px; height: 700px; border: 0; display: inline">
-</iframe>
-```
-
-```javascript
-window.addEventListener( 
-    "message",
-    function(event) {
-      // Handler guarded in case of future breaking changes
-      if (event.data.type && event.data.type == "payment-flow-terminated--v2")
-
-            // Do your logic
-            // Continue purchase processing            
-            alert(event.data);
-        }
-    },
-    false);
-```
-
-```javascript
-// Event Type
-{
-   type: String,
-   payment: {
-      // completed :0
-      // rejected  :1
-      // expired   :3
-      // cancelled :4
-      status: { message: String, code: Number}
-      paymentId: String, 
-   },
-   universalLink: string
-}
-
-// Example
-{
-   sender: "mobile-pay",
-   type: "payment-flow-terminated--v2",
-   payment: { status: "Completed", code: 0, paymentId: "a94bd26a-af4e-4027-afb7-a1db548e148c", requestId: "900c572f-8bef-4810-a525-f667525d994a },
-   universalLink: "https://products.mobilepay.dk/remote-website/index.html?page=approve&id=a94bd26a-af4e-4027-afb7-a1db548e148c&request-id=900c572f-8bef-4810-a525-f667525d994a&alias=%2B4520020050&amount=39&languagecountrycode=da-DK&currency=DKK"
-}
-```
 
 ### Manually engaging the App from the parent page
 
-On mobile devices, the app is not guaranteed to engage when the website is nested inside an IFrame.
-This is not supported on iOS, and on Android the user may have permanently disabled such navigation.
+On mobile devices the app is not guaranteed to engage when the website is nested
+inside an IFrame depending on user settings, version and platform.
 
-To preserve the expected behavior of engaging the app on mobile devices, we
-recommended using the newest version of the website (see
-[previous](#add-an-event-listener-to-the-parent-page-of-the-iframe-v2)) where
-the iframe event handler data includes a universal link redirect that will
-trigger the app if possible and otherwise fall back to opening in the browser.
+To preserve the expected behavior of engaging the app on mobile devices, the
+parent of the IFrame may engage the app manually with the following javascript,
+using a custom url registered for both Android and iOS.
+
+```javascript
+try {
+   window.open("mobilepayonline://online?paymentid={payment-id}", "_parent")
+} catch {
+   // Failed likely because the app is not installed, or the user is on a non-mobile device.
+   // Example 
+   // "Failed to launch 'mobilepayonline://online?paymentid=b1b603bd-834a-44dc-adbe-62430e81f48c"' 
+   // because the scheme does not have a registered handler.
+}
+```
