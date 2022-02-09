@@ -217,6 +217,7 @@ Please notice the purple ”Wallet locked” and ”Wallet unlocked” in commun
 When the user has completed the challenge, please immediately redirect to https://products.mobilepay.dk/remote-website/apppages/done3ds.html
 For Sandbox use: https://sandprod-products.mobilepay.dk/remote-website/apppages/done3ds.html
 
+If the user cancels the 3DS challenge on the 3DS website or if it fails in some way, you should fail the authorization attempt with reasonCode=1000 and redirect to the done3ds.html page. This will cancel the 3DS flow in the MobilePay app and allow the user to retry with another card (starting a new authorization attempt).
 
 ## Callbacks
 
