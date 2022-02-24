@@ -10,6 +10,7 @@
   - [Sandbox environment](#sandbox-environment)
   - [Merchants](#merchants)
   - [Payments](#payments)
+  - [Dual and single device flow](#dual-device-and-single-device-flow)
   - [Request Fishing Scenario](#request-fishing-scenario)
   - [Restrictions](#restrictions)
   - [Strong Customer Authentication (SCA)](#strong-customer-authentication-sca)
