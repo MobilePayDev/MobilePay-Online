@@ -86,7 +86,7 @@ MobilePay Online supports both dual device and single device flows. It depends o
 ## Checkout
 With MobilePay Checkout webshops can offer their customers to complete purchases even faster by linking payment and delivery details. When using Checkout MobilePay will supply you with the billing address and optionally the delivery address of the customer. When initiating a Checkout payment the user will then be prompted to choose address before accepting the payment in the MobilePay app. 
 
-Please visit our [best practice guide](https://github.com/HeboHebo/Online-Checkout/blob/main/Checkout_best_practice.md) for guidelines and recommendations on how to use MobilePay Checkout in a webshop.
+Please visit our [best practice guide](https://github.com/MobilePayDev/MobilePay-Online/blob/master/Checkout_best_practice.md) for guidelines and recommendations on how to use MobilePay Checkout in a webshop.
 
 **How to initiate a Checkout payment**
 
@@ -105,12 +105,10 @@ Four parameters are required when initiating a Checkout payment:
  - addressCallbackUrl: The url where we will deliver the checkout callback with the address details. The Checkout callback will always be delivered before the card/token callback.
  - deliveryAddressAllowed: Will define whether the user is allowed to choose delivery address. If set to false the user can only choose billing address. Can be used for instance if the user has chosen 'Pick up at store' in the webshop.
  - deliveryAddressDisallowedReasonCode: if deliveryAddressAllowed is set to false a reason must be given:
- -- 1: Reason not given
- -- 2: Goods don't require physical delivery
- -- 3: 'Pick up at store' already selected in the Webshop
- -- 4:'Parcel Shop' already selected in the Webshop
- -- 5: Shop will select a parcelshop close to your home"
- 
+1: Reason not given, 2: Goods don't require physical delivery, 3: 'Pick up at store' already selected in the Webshop, 4:'Parcel Shop' already selected in the Webshop, 5: Shop will select a parcelshop close to your home"
+
+In the appendix you can find a [digram of the checkout payment flow](https://github.com/MobilePayDev/MobilePay-Online#checkout-1). 
+
 **Checkout callback**
 
 The callback will have a JSON body like this:
