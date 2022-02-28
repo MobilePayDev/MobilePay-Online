@@ -456,30 +456,30 @@ Build your logic on the parent page, listen for the events published by the
 IFrame and redirect the user to the right page based on the returned data,
 e.g. depending on whether the user cancelled or completed the payment.
 
-### Embed the website in an Iframe
+### Embed the website in an IFrame
 
-Add an "iframe" to the html source and set the iframe "src" property to the URL
+Add an "IFrame" to the html source and set the IFrame "src" property to the URL
 returned from the payment link creation endpoint.
 
 On mobile devices it is expected that the MobilePay flow visually covers the
 whole screen (simple header and footer is acceptable).
 
 Be aware that you might want to show the user different content if the user is inside
-an iframe or not. If you support both iframe and full window, we recommend that
+an IFrame or not. If you support both IFrame and full window, we recommend that
 you have a neutral return page without visual content. 
 
 The width should be 375px.
 
 Example
 ```html
- <iframe 
+ <IFrame 
    scrolling="no"
    src="https://products.mobilepay.dk/remote-website/index.html?page=request&id=83554a83-cd90-4ac9-bf6e-39357c21dca5&version=2"
    style="width: 375px; height: 480px; border: 0;" >
-</iframe>
+</IFrame>
 ```
 
-### Add an Event Listener to the parent page of the iframe
+### Add an Event Listener to the parent page of the IFrame
 
 The parent page can listen for events by adding an event listener to the IFrame.
 
@@ -524,19 +524,25 @@ mobilepay:rc=0&message=completed
 ### Manually engaging the App from the parent page
 
 On mobile devices the app is not guaranteed to engage when the website is nested
-inside an IFrame depending on user settings, version and platform.
+inside an IFrame.
 
 To preserve the expected behavior of engaging the app on mobile devices, the
-parent of the IFrame may engage the app manually with the following javascript,
-using a custom url registered for both Android and iOS.
+parent of the IFrame may try to engage the app with the following javascript
+snippet that use a custom url registered for both Android and iOS. 
+
+You should still display the landing page inside the IFrame in case the app is
+not installed or the user navigates back to your page.
 
 ```javascript
-try {
-   window.open("mobilepayonline://online?paymentid={payment-id}", "_parent")
-} catch {
-   // Failed likely because the app is not installed, or the user is on a non-mobile device.
-   // Example 
-   // "Failed to launch 'mobilepayonline://online?paymentid=b1b603bd-834a-44dc-adbe-62430e81f48c"' 
-   // because the scheme does not have a registered handler.
+function tryToOpenMobilePayApp(paymentId) {
+   try {
+      window.open(`mobilepayonline://online?paymentid=${paymentId}`, "_parent");
+   } catch {
+      // window.open should just fail without throwing aside from logging an 
+      // error to console.
+      //
+      // This catch is strictly for good measure to avoid any incidents
+      // in legacy or future browser settings.
+   }
 }
 ```
