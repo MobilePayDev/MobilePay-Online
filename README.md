@@ -359,7 +359,7 @@ In this case the invalidation request will be processed in the MobilePay backend
 
 ## Prefilled phone number
 You can provide a phone number to be prefilled in the phone number field on the MobilePay webpage. 
-You do this by adding an URI encoded "alias" parameter with the phone number to the search parameters of the "redirectToMPUrl". The phone number must be fully specified including country code. For "+45 12 34 56 78" you would add the following to the url: `&alias=004512345678` or `&alias=%2B4512345678`
+You do this by adding an URI encoded "alias" parameter with the phone number to the search parameters of the "redirectToMPUrl". The phone number must be fully specified including country code. For "+45 12 34 56 78" you would add the following to the url: `&alias=004512345678`
 
 > /remote-website/index.html?page=request&id=d7380749-f73c-4317-bd01-58daa249212f&alias=004512345678
 
