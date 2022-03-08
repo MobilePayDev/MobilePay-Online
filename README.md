@@ -379,7 +379,7 @@ The API supports automated integration tests running in Sandbox and can be found
 # Appendix
 
 ## Merchant documentation
-The documentation towards you customers, the merchants, must - at least - tell about
+The documentation towards your customers, the merchants, must - at least - tell about
 
  - *Merchant registration*: How to setup MobilePay Online including as minimum information about: 
 	 - *Name* displayed in the app to the end user
