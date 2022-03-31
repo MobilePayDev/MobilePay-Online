@@ -392,9 +392,9 @@ The documentation towards your customers, the merchants, must - at least - tell 
  - *Checkout feature*: How to setup and use Checkout
  
  - *Common pitfalls* of 'context switch' on client side<br />
-A. Scenario - ‘browser A’ -> MP App -> ‘browser B’*<br/> 
+A. Scenario - ‘browser A’ -> MP App -> ‘browser B’<br/> 
 The Merchant return page should not rely on any sort of session object (e.g. a cookie), to recognise the returning customer. It should solely rely on data given in the redirect (redirectFromMobilePayUrl).<br /> 
-B. Scenario - ‘browser' -> MP App’* <br/>
+B. Scenario - ‘browser' -> MP App’ <br/>
 The Merchant should not rely on the customer returning client side. Rather they should process the purchase when the PSP´s server-to-server callback is received, or after getting confirmation on a status endpoint.
 
 ## Error codes
