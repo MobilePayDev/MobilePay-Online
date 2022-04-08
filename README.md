@@ -288,12 +288,13 @@ A Mastercard S4C (MS4C) response like this: <br />
 If Delegated Authentication fails, the 3DSecure fallback solution applies. 
 
 [![](./assets/3dsfallback.svg)](./assets/3dsfallback.svg)
-PSP must call MP backend with reasonCode=1009 as soon as it has crypto (Ares/Pres) from SCA, before retrying the authorization-attempt towards Acquirer and Issuer.
 
 When the user has completed the challenge, please immediately redirect to https://products.mobilepay.dk/remote-website/apppages/done3ds.html
 For Sandbox use: https://sandprod-products.mobilepay.dk/remote-website/apppages/done3ds.html
 
 If the user cancels the 3DS challenge on the 3DS website or if it fails in some way, you should fail the authorization attempt with reasonCode=1000 and redirect to the done3ds.html page. This will cancel the 3DS flow in the MobilePay app and allow the user to retry with another card (starting a new authorization attempt).
+
+Optional: As soon as you have 3DS crypto from ACS and before retrying the authorization-attempt towards Acquirer and Issuer, you can call the MP backend with reasonCode=1009. This enables us to prevent the user from retrying with another card.
 
 ## Callbacks
 
