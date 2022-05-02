@@ -195,7 +195,7 @@ A Visa Token Service (VTS) response like this: <br />
 	"cardType": "string",	
 	"cardIssuedInCountryCode": "string",
 	"maskedCardNumber":"string",
-   "cardBin":"string",
+        "cardBin":"string",
 	"tokenMethod": "string",
 	"tokenData": {
 		"vPaymentDataID": "string",
