@@ -195,6 +195,7 @@ A Visa Token Service (VTS) response like this: <br />
 	"cardType": "string",	
 	"cardIssuedInCountryCode": "string",
 	"maskedCardNumber":"string",
+   "cardBin":"string"
 	"tokenMethod": "string",
 	"tokenData": {
 		"vPaymentDataID": "string",
@@ -231,6 +232,7 @@ Example: </br>
    "cardType":"VISA-CREDIT",
    "cardIssuedInCountryCode":"DK",
    "maskedCardNumber":"479694XXXXXX1234",
+   "cardBin":"47969412",
    "tokenMethod":"VTS",
    "tokenData":{
       "vPaymentDataID":"da17bd1568bdc8b418d71cf80c44ea02",
@@ -267,6 +269,7 @@ A Mastercard S4C (MS4C) response like this: <br />
    "cardType":"MC-CREDIT",
    "cardIssuedInCountryCode":"DK",
    "maskedCardNumber":"520473XXXXXX4792",
+   "cardBin":"52047312",
    "tokenMethod":"MC S4C",
    "tokenData":{
       "token":{
