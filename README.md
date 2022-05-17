@@ -82,6 +82,7 @@ MobilePay Online supports both dual device and single device flows. It depends o
 
  - Single device flow: If the redirect happens on a mobile device the MobilePay app will be launched. The user can then accept or reject the payment and we will redirect the user to redirectFromMobilePayUrl afterwards. This url will always open in the default browser (determined by the operating system) of the mobile device. 
 	 - If the MobilePay app is not installed and therefore cannot be open our landing page will open in the browser instead and the flow will continue as a dual device flow.
+	 - It is also possible to pop the app directly instead of using the universal link. To do this, you will need to use the redirectToMobilePayAppUrl given in the response from initiating a payment. See [Manually engaging the App](#manually-engaging-the-app-from-the-parent-page) for a more detailed guide on how to use it.
  - Dual device flow: If the redirect happens on a desktop device, our landing page will open in the browser. The user can then insert the phone number or it can be pre-filled for more convenience (insert link). We will then send a push notification to the user's mobile device and the user can then accept or reject the payment in the MobilePay app. Afterwards the landing page in the desktop browser will redirect to redirectFromMobilePayUrl. 
 
 ## Checkout
@@ -580,6 +581,7 @@ inside an IFrame.
 To preserve the expected behavior of engaging the app on mobile devices, the
 parent of the IFrame may try to engage the app with the following javascript
 snippet that use a custom url registered for both Android and iOS. 
+This custom url (redirectToMobilePayAppUrl) is part of the response received, when a payment is initiated.
 
 You should still display the landing page inside the IFrame in case the app is
 not installed or the user navigates back to your page.
@@ -587,7 +589,7 @@ not installed or the user navigates back to your page.
 ```javascript
 function tryToOpenMobilePayApp(paymentId) {
    try {
-      window.open(`mobilepayonline://online?paymentid=${paymentId}`, "_parent");
+      window.open("_redirectToMobilePayAppUrl", "_parent");
    } catch {
       // window.open should just fail without throwing aside from logging an 
       // error to console.
