@@ -164,7 +164,7 @@ We aim to ensure Delegated Authentication (DA). This means that responsibility f
 
 All of the below SCA implementations are mandatory. Only Dankort can be skipped if you do not accept Dankort.
 
-Note: DA can only be effectuated by the Issuer if the authorisation is based on a token. If you for some reason receive a PAN-based transaction from us, you should handle data in the card data callback as non-authenticated PAN-transactions according to scheme rules to ensure correct handling regarding SCA. If in doubt, please contact your acquirer.
+Note: Delegated Authentication can only be effectuated by the Issuer if the authorisation is based on a token. If you for some reason receive a PAN-based transaction from us, you should handle data in the card data callback as non-authenticated PAN-transactions according to scheme rules to ensure correct handling regarding SCA. If in doubt, please contact your acquirer
 
 ### Delegated Authentication for Dankort
 As long as you use the tags and values described here, all is well. Nets will recognize MobilePay and trust our authentication process.
