@@ -162,7 +162,9 @@ Furthermore after you get the callback containing the card data, you must update
 
 We aim to ensure Delegated Authentication (DA). This means that responsibility for authenticating the customer/payer no longer lies with the Issuer, but is delegated to MobilePay.  When/if we fail, and the Issuer is responding to an authorisation attempt with a Soft Decline/"step-up", a 3-D Secure fallback solution must be in place.
 
-All of the below SCA implementations are mandatory. Only Dankort can be skipped if you do not accept Dankort. 
+All of the below SCA implementations are mandatory. Only Dankort can be skipped if you do not accept Dankort.
+
+Note: DA can only be effectuated by the Issuer if the authorisation is based on a token. If you for some reason receive a PAN-based transaction from us, you should handle data in the card data callback as non-authenticated PAN-transactions according to scheme rules to ensure correct handling regarding SCA. If in doubt, please contact your acquirer.
 
 ### Delegated Authentication for Dankort
 As long as you use the tags and values described here, all is well. Nets will recognize MobilePay and trust our authentication process.
@@ -322,7 +324,9 @@ Once decrypted, you´ll see:
 Make sure you respond to the callback immediately, once you´ve decrypted the content. DO NOT leave the transaction "hanging" while you call out to the Acquirer. 
 
 Strictly process the payment on the card type given in field "CardType"! This is the only way MobilePay can offer card type picking for co-branded cards in accordance with PSD2 requirements. 
-Also the SCA method vary on the cobranded Visa/Dankort. This means that if you process the PAN given with CardType=DANKORT as a Visa, the SCA is missing and the (unwanted) 3DS step-up is likely to happen. 
+Also the SCA method vary on the cobranded Visa/Dankort. This means that if you process the PAN given with CardType=DANKORT as a Visa, the SCA is missing and the (unwanted) 3DS step-up is likely to happen.
+
+Note: When receiving a PAN-based transaction from us, it can't be regarded as authenticated. You should handle these according to scheme rules to ensure correct handling regarding SCA. If in doubt, please contact your acquirer.
 
 ### Failed callback
 
