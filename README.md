@@ -317,7 +317,7 @@ A callback will be made on the encryptedPanCallbackUrl when the user swipes to a
   'CardType' : 'DANKORT'
 }
 ```
-The EncryptedCardData is encrypted according to this OAEP algorithm&padding scheme: RSA/NONE/OAEPWithSHA256AndMGF1Padding . 
+The EncryptedCardData is encrypted according to this OAEP algorithm&padding scheme: RSA/NONE/OAEPWithSHA256AndMGF1Padding (note that SHA-256 hash is also used for padding). 
 Once decrypted, you´ll see:
 {"timestampticks":123456789123456789,"encryptedCardData": { "cardNumber": 1234567812345678, "expiryMonth": 12, "expiryYear": 28 }
 
