@@ -190,43 +190,7 @@ Exactly as for encrypted card data callbacks, make sure you respond to the callb
 [![](./assets/token.svg)](./assets/token.svg)
 
 ### Delegated Authentication for all Visa cards
-A Visa Token Service (VTS) response like this: <br />
-```
-{
-	"paymentId": "string",
-	"authorizationAttemptId": "string",
-	"cardType": "string",	
-	"cardIssuedInCountryCode": "string",
-	"maskedCardNumber":"string",
-	"tokenMethod": "string",
-	"tokenData": {
-		"vPaymentDataID": "string",
-		"cryptogramInfo": {
-			"cryptogram": "string",
-			"eci": "string"
-		},
-		"paymentInstrument": {
-			"last4": "string",
-			"paymentType": {
-				"cardBrand": "string"
-			},
-			"paymentAccountReference": "string"
-		},
-		"tokenInfo": {
-			"token": "string",
-			"last4": "string",
-			"expirationDate": {
-				"month": "string",
-				"year": "string"
-			}
-		},
-	},
-	"isDelegatedAuthentication": bool
-}
-```
-</br>
-Example: </br>
-
+Example of Visa Token Service (VTS) response: <br />
 ```
 {
    "paymentId":"8dab9219-ab03-4524-bae7-f0ad55119da5",
@@ -262,7 +226,7 @@ Example: </br>
 ```
 
 ### Delegated Authentication for all Mastercards
-A Mastercard S4C (MS4C) response like this: <br />
+Example of Mastercard S4C (MS4C) response: <br />
 ```
 {
    "paymentId":"1ba21790-5e10-4db1-8e90-330fb41916e7",
