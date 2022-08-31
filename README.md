@@ -389,8 +389,9 @@ The error format for status code 409 will be the following:
 | 2030 | POST /payments | Allowed card types are not set
 | 2040 | POST /payments | One or more of the allowed card types are invalid
 | 2050 | POST /payments | Currency code is invalid
-| 2100 | PUT payments/{paymentId:guid}/invalidate | Can't invalidate payment with completed authorization attempt 
-| 2101 | PUT payments/{paymentId:guid}/invalidate | Can't invalidate payment - the authorization attempt has not yet been patched with success or failure. Try again later.
+| 2100 | PUT /payments/{paymentId:guid}/invalidate | Can't invalidate payment with completed authorization attempt 
+| 2101 | PUT /payments/{paymentId:guid}/invalidate | Can't invalidate payment - the authorization attempt has not yet been patched with success or failure. Try again later.
+| 2110 | POST /recurring/payments/merchant-initiated | Last 4 does not match current card on the agreement. User will be asked to update the card. Retry after receiving card update on this agreement.
 
 ## Retry policy
 Even though we have above 99% uptime and handle millions of transactions each week, external factors, such as network related issues, can contribute to momentary disturbances in our response times.
