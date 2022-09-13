@@ -179,7 +179,6 @@ In Field 47 tag V!: the value of 23
 
 ### Delegated Authentication using tokens
 Both Visa Token Service (VTS) and Mastercard S4C (MS4C) are based on the EMVCo standard. Please pass the data to the Acquirer, as you would do if the token response was from your own VTS or MS4C integration. In case you have questions to the Acquirer API, please ask the Acquirer.
-When you get the token callback, if you internally (without calling anyone) know, that token will not work for this payment, please reply HTTP code 501, we will then immediately fail over to encrypted card data callback.
 
 When you initiate a payment, make sure to use v3 of the API. Here you give a tokenCallbackUrl for all accepted Visa and Mastercard types. However, please also provide a carddataCallbackUrl as failover, because not all cards can be tokenized. For Dynamic Linking, please give us MerchantUrl and MerchantName.
 
