@@ -239,7 +239,7 @@ Example of Mastercard S4C (MS4C) response: <br />
          "paymentToken":"5204731613942625",
          "tokenExpirationMonth":"05",
          "tokenExpirationYear":"2024",
-         "paymentAccountReference":"5001BO8B9NXVVIXCT0HAJU98I512Z"
+         "paymentAccountReference":"5001BO8B9NXVVIXCT0HAJU98I512Z" //Can also be: null
       },
       "dynamicData":{
          "dynamicDataType":"CARD_APPLICATION_CRYPTOGRAM_SHORT_FORM",
